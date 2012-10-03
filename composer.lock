@@ -1,0 +1,54 @@
+{
+    "hash": "fb3e021c3111eff554a7380b7435eddb",
+    "packages": [
+        {
+            "name": "ezyang/htmlpurifier",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/ezyang/htmlpurifier.git",
+                "reference": "8a8b123d3322d24d77114dfa767a5eafbe9ff24b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/ezyang/htmlpurifier/zipball/8a8b123d3322d24d77114dfa767a5eafbe9ff24b",
+                "reference": "8a8b123d3322d24d77114dfa767a5eafbe9ff24b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "time": "1347811906",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "classmap": [
+                    "library/"
+                ]
+            },
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Edward Z. Yang",
+                    "email": "admin@htmlpurifier.org",
+                    "homepage": "http://ezyang.com"
+                }
+            ],
+            "description": "Standards compliant HTML filter written in PHP",
+            "homepage": "http://htmlpurifier.org/",
+            "keywords": [
+                "html"
+            ]
+        }
+    ],
+    "packages-dev": null,
+    "aliases": [
+
+    ],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "ezyang/htmlpurifier": 20
+    }
+}

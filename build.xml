@@ -7,6 +7,7 @@
     <target name="install" depends="composer" description="Prepare for execution" />
 
     <target name="prepare" depends="clean" description="Prepare for build">
+        <mkdir dir="cache/htmlpurifier"/>
         <mkdir dir="build/api"/>
         <mkdir dir="build/code-browser"/>
         <mkdir dir="build/coverage"/>
@@ -20,6 +21,7 @@
     </target>
 
     <target name="clean" description="Cleanup build artifacts">
+        <delete dir="cache/htmlpurifier"/>
         <delete dir="build/api"/>
         <delete dir="build/coverage"/>
         <delete dir="build/logs"/>
@@ -30,7 +32,7 @@
     </target>
     
     <target name="phpdoc" description="Generate API documentation using PHPDocumentor">
-        <exec command="phpdoc -o HTML:frames:earthli -d src -t build/api -ti 'Timer'"/>
+        <exec command="phpdoc -o HTML:frames:earthli -d src -t build/api -ti 'RSS Client'"/>
     </target>
     
     <target name="phpunit" description="Run unit tests using PHPUnit and generates junit.xml and clover.xml">

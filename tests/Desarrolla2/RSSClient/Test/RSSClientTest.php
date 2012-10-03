@@ -9,10 +9,11 @@
  * This source file is subject to the MIT license that is bundled
  * with this package in the file LICENSE.
  */
+
 namespace Desarrolla2\RSSClient\Test;
 
 use Desarrolla2\RSSClient\RSSClient;
-
+use Desarrolla2\RSSClient\Sanitizer\Sanitizer;
 /**
  * 
  * Description of RSSClientTest
@@ -23,7 +24,8 @@ use Desarrolla2\RSSClient\RSSClient;
  */
 class RSSClientTest extends \PHPUnit_Framework_TestCase
 {
-     /**
+
+    /**
      * @var Desarrolla2\Bundle\RSSClientBundle\Service\RSSClient;
      */
     protected $client = null;
@@ -32,14 +34,24 @@ class RSSClientTest extends \PHPUnit_Framework_TestCase
      * @var string
      */
     protected $example_feed = 'http://desarrolla2.com/feed/';
-    
+
+    /**
+     * @var string
+     */
     protected $example_feed2 = 'http://blog.desarrolla2.com/feed/';
 
+    /**
+     * 
+     */
     public function setUp()
     {
-        $this->client = new RSSClient();
+        $this->client = new RSSClient(new Sanitizer());
     }
 
+    /**
+     * 
+     * @return type
+     */
     public function getDataForFeeds()
     {
         return array(
@@ -190,7 +202,7 @@ class RSSClientTest extends \PHPUnit_Framework_TestCase
      * @dataProvider getDataForChannels
      */
     public function testGetChannels($data)
-    {        
+    {
         $this->client->setChannels($data);
         $this->assertEquals(count($data), count($this->client->getChannels()));
     }
@@ -230,18 +242,5 @@ class RSSClientTest extends \PHPUnit_Framework_TestCase
         $this->client->setChannels($data);
         $this->assertEquals(count($data), $this->client->countChannels());
     }
-//
-//    public function getNodes($data)
-//    {
-//        
-//    }
 
-//    /**
-//     * @test
-//     */
-//    public function testFetch($data)
-//    {
-//        $this->client->fetch();
-//        $this->assertEquals(10, $this->client->countNodes());
-//    }
 }
