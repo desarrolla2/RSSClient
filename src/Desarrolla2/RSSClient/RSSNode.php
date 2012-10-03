@@ -1,22 +1,27 @@
 <?php
 
-/*
- * This file is part of the symfony-madrid package.
+/**
+ * This file is part of the RSSClient proyect.
  * 
- * Short description   
- *
- * @author Daniel González <daniel.gonzalez@freelancemadrid.es>
- * @date Jun 19, 2012, 11:18:58 PM
- * @file RSSNode.php , UTF-8
+ * Copyright (c)
+ * Daniel González <daniel.gonzalez@freelancemadrid.es> 
  * 
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * This source file is subject to the MIT license that is bundled
+ * with this package in the file LICENSE.
  */
 
-namespace Desarrolla2\Bundle\RSSClientBundle\Model;
+namespace Desarrolla2\RSSClient;
 
 use DateTime;
 
+/**
+ * 
+ * Description of RSSNode
+ *
+ * @author : Daniel González <daniel.gonzalez@freelancemadrid.es> 
+ * @file : Node.php , UTF-8
+ * @date : Oct 3, 2012 , 2:06:56 AM
+ */
 class RSSNode
 {
 
@@ -87,17 +92,6 @@ class RSSNode
                 $this->setPubDate($options['date']);
             }
         }
-    }
-
-    /**
-     * Clean text for XSS atacks
-     * 
-     * @param string $string
-     * @return string $string 
-     */
-    protected function doClean($string)
-    {
-        return (string) $string;
     }
 
     /**
@@ -206,6 +200,17 @@ class RSSNode
             return $this->pubDate->getTimestamp();
         }
         return false;
+    }
+
+    /**
+     * Clean text for XSS atacks
+     * 
+     * @param string $string
+     * @return string $string 
+     */
+    protected function doClean($string)
+    {
+        return (string) $string;
     }
 
 }

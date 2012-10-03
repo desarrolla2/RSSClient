@@ -1,23 +1,28 @@
 <?php
 
-/*
- * This file is part of the symfony-madrid package.
+/**
+ * This file is part of the RSSClient proyect.
  * 
- * Short description   
- *
- * @author Daniel González <daniel.gonzalez@freelancemadrid.es>
- * @date Jun 19, 2012, 11:18:58 PM
- * @file RSSClient.php , UTF-8
+ * Copyright (c)
+ * Daniel González <daniel.gonzalez@freelancemadrid.es> 
  * 
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * This source file is subject to the MIT license that is bundled
+ * with this package in the file LICENSE.
  */
 
-namespace Desarrolla2\Bundle\RSSClientBundle\Service;
+namespace Desarrolla2\RSSClient;
 
-use Desarrolla2\Bundle\RSSClientBundle\Model\RSSNode;
-use Desarrolla2\Bundle\RSSClientBundle\Model\RSSClientInterface;
+use Desarrolla2\RSSClient\RSSNode;
+use Desarrolla2\RSSClient\RSSClientInterface;
 
+/**
+ * 
+ * Description of Client
+ *
+ * @author : Daniel González <daniel.gonzalez@freelancemadrid.es> 
+ * @file : Client.php , UTF-8
+ * @date : Oct 3, 2012 , 2:07:02 AM
+ */
 class RSSClient implements RSSClientInterface
 {
 
@@ -39,6 +44,7 @@ class RSSClient implements RSSClientInterface
     /**
      * @var string 
      */
+
     const APCKEY = 'd2.client.rss.nodes';
 
     /**

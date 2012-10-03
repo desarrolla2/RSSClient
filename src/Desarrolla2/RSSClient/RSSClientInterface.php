@@ -1,20 +1,25 @@
 <?php
 
-/*
- * This file is part of the desarrolla2 package.
+/**
+ * This file is part of the RSSClient proyect.
  * 
- * Short description   
- *
- * @author Daniel González <daniel.gonzalez@freelancemadrid.es>
- * @date Aug 9, 2012, 1:01:07 AM
- * @file RSSClientInterface.php , UTF-8
+ * Copyright (c)
+ * Daniel González <daniel.gonzalez@freelancemadrid.es> 
  * 
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * This source file is subject to the MIT license that is bundled
+ * with this package in the file LICENSE.
  */
 
-namespace Desarrolla2\Bundle\RSSClientBundle\Model;
+namespace Desarrolla2\RSSClient;
 
+/**
+ * 
+ * Description of RSSClientInterface
+ *
+ * @author : Daniel González <daniel.gonzalez@freelancemadrid.es> 
+ * @file : ClientInterface.php , UTF-8
+ * @date : Oct 3, 2012 , 2:07:10 AM
+ */
 interface RSSClientInterface
 {
 

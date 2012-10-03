@@ -1,8 +1,9 @@
 # RSSClient
 
+[![Build Status](https://secure.travis-ci.org/desarrolla2/RSSClient.png)](http://travis-ci.org/desarrolla2/RSSClient)
+
 A independent RSS client library.
 
-build status : [![Build Status](https://secure.travis-ci.org/desarrolla2/RSSClient.png)](http://travis-ci.org/desarrolla2/RSSClient)
 
 ## Installation
 
