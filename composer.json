@@ -1,6 +1,6 @@
 {
     "name": "desarrolla2/rss-client",
-    "description": "Provides an cache interface for several adapters",
+    "description": "A independent RSS client manager library.",
     "keywords": ["rss"],
     "type": "library",
     "license": "MIT",
@@ -16,7 +16,8 @@
     "require": 
     {
        "php": ">=5.3.0",
-       "ezyang/htmlpurifier" : "dev-master"
+       "ezyang/htmlpurifier" : "dev-master",
+       "desarrolla2/cache" : "dev-master"
     },
     "autoload": 
     {

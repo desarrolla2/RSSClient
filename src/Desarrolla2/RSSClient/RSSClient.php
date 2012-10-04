@@ -49,8 +49,9 @@ class RSSClient implements RSSClientInterface
     protected $errors = array();
 
     /**
-     * Construnctor
+     * Constructor
      * 
+     * @param \Desarrolla2\RSSClient\Sanitizer\SanitizerInterface $sanitizer
      * @param string $channel
      * @param array $feeds
      */
@@ -263,8 +264,9 @@ class RSSClient implements RSSClientInterface
         if (in_array($channel, $this->feeds)) {
             throw new \Exception('channel not valid (' . $channel . ')');
         }
-        if (!is_integer($limit)) {
-            throw new \Exception('limit not valid (' . gettype($limit) . ')');
+        $limit = (int) $limit;
+        if (!$limit) {
+            throw new \Exception('limit not valid (' . $limit . ')');
         }
         foreach ($this->feeds[$channel] as $feed) {
             $feed = @file_get_contents($feed);
@@ -323,12 +325,11 @@ class RSSClient implements RSSClientInterface
         try {
             $node = array(
                 'title' => $node->getElementsByTagName('title')->item(0)->nodeValue,
-                'desc'  => $node->getElementsByTagName('description')->item(0)->nodeValue,
-                'link'  => $node->getElementsByTagName('link')->item(0)->nodeValue,
-                'date'  => $node->getElementsByTagName('pubDate')->item(0)->nodeValue
+                'desc' => $node->getElementsByTagName('description')->item(0)->nodeValue,
+                'link' => $node->getElementsByTagName('link')->item(0)->nodeValue,
+                'date' => $node->getElementsByTagName('pubDate')->item(0)->nodeValue
             );
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             $this->addError($e->getMessage());
         }
 

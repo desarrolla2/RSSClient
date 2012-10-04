@@ -1,46 +1,17 @@
 {
-    "hash": "fb3e021c3111eff554a7380b7435eddb",
+    "hash": "b6c36abf7542ce97f41f82a3a8ee16c1",
     "packages": [
         {
-            "name": "ezyang/htmlpurifier",
+            "package": "desarrolla2/cache",
             "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "git://github.com/ezyang/htmlpurifier.git",
-                "reference": "8a8b123d3322d24d77114dfa767a5eafbe9ff24b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/ezyang/htmlpurifier/zipball/8a8b123d3322d24d77114dfa767a5eafbe9ff24b",
-                "reference": "8a8b123d3322d24d77114dfa767a5eafbe9ff24b",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2"
-            },
-            "time": "1347811906",
-            "type": "library",
-            "installation-source": "source",
-            "autoload": {
-                "classmap": [
-                    "library/"
-                ]
-            },
-            "license": [
-                "LGPL"
-            ],
-            "authors": [
-                {
-                    "name": "Edward Z. Yang",
-                    "email": "admin@htmlpurifier.org",
-                    "homepage": "http://ezyang.com"
-                }
-            ],
-            "description": "Standards compliant HTML filter written in PHP",
-            "homepage": "http://htmlpurifier.org/",
-            "keywords": [
-                "html"
-            ]
+            "source-reference": "c13e27941691775d3430b0f937318f62fb793c62",
+            "commit-date": "1349222215"
+        },
+        {
+            "package": "ezyang/htmlpurifier",
+            "version": "dev-master",
+            "source-reference": "8a8b123d3322d24d77114dfa767a5eafbe9ff24b",
+            "commit-date": "1347811906"
         }
     ],
     "packages-dev": null,
@@ -49,6 +20,7 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
-        "ezyang/htmlpurifier": 20
+        "ezyang/htmlpurifier": 20,
+        "desarrolla2/cache": 20
     }
 }
