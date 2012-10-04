@@ -20,7 +20,7 @@ by including
     }
 ```
 
-##3 Without Composer
+### Without Composer
 
 You can also download it from [Github] (https://github.com/desarrolla2/RSSClient), 
 but no autoloader is provided so you'll need to register it with your own PSR-0 
