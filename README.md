@@ -7,7 +7,8 @@ A independent RSS client library.
 
 ## Installation
 
-It is best installed it through [packagist](http://packagist.org/packages/desarrolla2/rss-client) by including
+It is best installed it through [packagist](http://packagist.org/packages/desarrolla2/rss-client) 
+by including
 `desarrolla2/rss-client` in your project composer.json require:
 
 ``` json
@@ -16,17 +17,65 @@ It is best installed it through [packagist](http://packagist.org/packages/desarr
     }
 ```
 
-You can also download it from [Github] (https://github.com/desarrolla2/RSSClient), but no autoloader is provided so you'll need to register it with your own PSR-0 compatible autoloader.
+You can also download it from [Github] (https://github.com/desarrolla2/RSSClient), 
+but no autoloader is provided so you'll need to register it with your own PSR-0 
+compatible autoloader.
 
 ## Usage
 
+### Without Cache
+
+This example does not use any cache, so it probably will be too slow to be used on 
+a website, you should implement your system cache, or use the cache system described below
 
 ``` php
 
-    // pending ..
+    use Desarrolla2\RSSClient\RSSClient;
+    use Desarrolla2\RSSClient\Sanitizer\Sanitizer;
+
+    $client = new RSSClient(new Sanitizer());
+
+    $client->addFeeds(array(
+        'http://news.ycombinator.com/rss',
+        'http://feeds.feedburner.com/TechCrunch/',
+        ), 'news'
+    ));
+
+    $feeds = $client->fetch();
 
 ```
 
+### With Cache
+
+This example uses the cache implemented by Seller desarrolla2/cache you must 
+select the adapter depending on your needs, you can find all the info in the 
+repository [Github] (https://github.com/desarrolla2/Cache).
+
+``` php
+
+    use Desarrolla2\RSSClient\RSSCacheClient;
+    use Desarrolla2\RSSClient\Sanitizer\Sanitizer;
+    use Desarrolla2\Cache\Cache;
+    use Desarrolla2\Cache\Adapter\NotCache;
+
+    // It is important that you select and configure your cache adapter
+    $client = new RSSCacheClient(new Cache(new NotCache()), new Sanitizer());
+
+```
+
+The rest of the procedure is exactly the same as if you were using the client without cache.
+
+``` php
+    
+    $client->addFeeds(array(
+        'http://news.ycombinator.com/rss',
+        'http://feeds.feedburner.com/TechCrunch/',
+        ), 'news'
+    ));
+
+    $feeds = $client->fetch();
+
+```
 ## Coming soon
 
 * This client only was tested with RSS2.0 other format not guaranteed.
@@ -34,4 +83,3 @@ You can also download it from [Github] (https://github.com/desarrolla2/RSSClient
 ## Contact
 
 You can contact with me on [twitter](https://twitter.com/desarrolla2).
-
