@@ -13,6 +13,7 @@ by including
 
 ``` json
     "require": {
+        // ...
         "desarrolla2/rss-client":  "dev-master"
     }
 ```
@@ -29,6 +30,7 @@ This example does not use any cache, so it probably will be too slow to be used 
 a website, you should implement your system cache, or use the cache system described below
 
 ``` php
+    <?php
 
     use Desarrolla2\RSSClient\RSSClient;
     use Desarrolla2\RSSClient\Sanitizer\Sanitizer;
@@ -41,7 +43,7 @@ a website, you should implement your system cache, or use the cache system descr
         ), 'news'
     ));
 
-    $feeds = $client->fetch();
+    $feeds = $client->fetch('news');
 
 ```
 
@@ -52,6 +54,7 @@ select the adapter depending on your needs, you can find all the info in the
 repository [Github] (https://github.com/desarrolla2/Cache).
 
 ``` php
+    <?php
 
     use Desarrolla2\RSSClient\RSSCacheClient;
     use Desarrolla2\RSSClient\Sanitizer\Sanitizer;
@@ -66,6 +69,7 @@ repository [Github] (https://github.com/desarrolla2/Cache).
 The rest of the procedure is exactly the same as if you were using the client without cache.
 
 ``` php
+    <?php
     
     $client->addFeeds(array(
         'http://news.ycombinator.com/rss',
@@ -73,7 +77,7 @@ The rest of the procedure is exactly the same as if you were using the client wi
         ), 'news'
     ));
 
-    $feeds = $client->fetch();
+    $feeds = $client->fetch('news');
 
 ```
 ## Coming soon
