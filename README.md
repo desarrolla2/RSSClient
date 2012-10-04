@@ -7,6 +7,8 @@ A independent RSS client library.
 
 ## Installation
 
+### With Composer
+
 It is best installed it through [packagist](http://packagist.org/packages/desarrolla2/rss-client) 
 by including
 `desarrolla2/rss-client` in your project composer.json require:
@@ -17,6 +19,8 @@ by including
         "desarrolla2/rss-client":  "dev-master"
     }
 ```
+
+##3 Without Composer
 
 You can also download it from [Github] (https://github.com/desarrolla2/RSSClient), 
 but no autoloader is provided so you'll need to register it with your own PSR-0 
