@@ -276,7 +276,7 @@ class RSSClient implements RSSClientInterface
                 if ($DOMDocument->loadXML($feed)) {
                     $nodes = $DOMDocument->getElementsByTagName('item');
                     foreach ($nodes as $node) {
-                        $this->addFromNode($node);
+                        $this->addFromNode($node, $channel);
                     }
                 }
             }
@@ -319,8 +319,9 @@ class RSSClient implements RSSClientInterface
 
     /**
      * @param type $node
+     * @param string $channel
      */
-    protected function addFromNode($node)
+    protected function addFromNode($node, $channel)
     {
         try {
             $node = array(
