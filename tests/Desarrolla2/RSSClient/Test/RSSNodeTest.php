@@ -168,7 +168,7 @@ class RSSNodeTest extends \PHPUnit_Framework_TestCase
     public function testTimestampFalse($options)
     {
         $this->node->fromArray($options);
-        $this->assertEquals(false, $this->node->getTimestamp());
+        $this->assertEquals(0, $this->node->getTimestamp());
     }
 
 }

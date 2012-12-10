@@ -139,6 +139,7 @@ class RSSClientTest extends \PHPUnit_Framework_TestCase
             ),
         );
     }
+    
 
     /**
      * @test
@@ -173,6 +174,19 @@ class RSSClientTest extends \PHPUnit_Framework_TestCase
     {
         $this->client->addFeed($this->example_feed2);
         $this->client->setFeeds($data);
+        $this->assertEquals(count($this->client->getFeeds()), 1);
+    }
+    
+        /**
+     * @test
+     * @dataProvider getDataForFeeds
+     */
+    public function testSetFeed($data)
+    {
+        $this->client->addFeed($this->example_feed2);
+        foreach ($data as $feed) {
+            $this->client->setFeed($feed);
+        }
         $this->assertEquals(count($this->client->getFeeds()), 1);
     }
 

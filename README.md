@@ -66,9 +66,11 @@ repository [Github] (https://github.com/desarrolla2/Cache).
     use Desarrolla2\Cache\Adapter\NotCache;
 
     // It is important that you select and configure your cache adapter
-    $client = new RSSCacheClient(new Cache(new NotCache()), new Sanitizer());
+    $client = new RSSCacheClient(new Cache(new File('/tmp')), new Sanitizer());
 
 ```
+
+You can see how to configure desarrolla2/cache in its [README] (https://github.com/desarrolla2/Cache)
 
 The rest of the procedure is exactly the same as if you were using the client without cache.
 

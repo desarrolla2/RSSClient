@@ -269,6 +269,7 @@ class RSSClient implements RSSClientInterface
             throw new \Exception('limit not valid (' . $limit . ')');
         }
         foreach ($this->feeds[$channel] as $feed) {
+            // @TODO: improve this
             $feed = @file_get_contents($feed);
             if ($feed) {
                 $DOMDocument = new \DOMDocument();

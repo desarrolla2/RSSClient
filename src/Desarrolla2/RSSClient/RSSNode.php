@@ -199,7 +199,7 @@ class RSSNode
         if ($this->pubDate) {
             return $this->pubDate->getTimestamp();
         }
-        return false;
+        return 0;
     }
 
     /**

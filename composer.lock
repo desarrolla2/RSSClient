@@ -2,16 +2,96 @@
     "hash": "b6c36abf7542ce97f41f82a3a8ee16c1",
     "packages": [
         {
-            "package": "desarrolla2/cache",
+            "name": "desarrolla2/cache",
             "version": "dev-master",
-            "source-reference": "c13e27941691775d3430b0f937318f62fb793c62",
-            "commit-date": "1349222215"
+            "source": {
+                "type": "git",
+                "url": "https://github.com/desarrolla2/Cache.git",
+                "reference": "8b2cc1349e776df47de755981807735c9e668fef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/desarrolla2/Cache/archive/8b2cc1349e776df47de755981807735c9e668fef.zip",
+                "reference": "8b2cc1349e776df47de755981807735c9e668fef",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "desarrolla2/timer": "dev-master"
+            },
+            "time": "2012-11-30 08:48:37",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Desarrolla2\\Cache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel González",
+                    "homepage": "http://desarrolla2.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Provides an cache interface for several adapters (Apc, File, Mongo, Memcached, Mysql, ... )",
+            "homepage": "https://github.com/desarrolla2/Cache/blob/master/README.md",
+            "keywords": [
+                "redis",
+                "file",
+                "cache",
+                "mysql",
+                "apc",
+                "mongo",
+                "memcached"
+            ]
         },
         {
-            "package": "ezyang/htmlpurifier",
+            "name": "ezyang/htmlpurifier",
             "version": "dev-master",
-            "source-reference": "8a8b123d3322d24d77114dfa767a5eafbe9ff24b",
-            "commit-date": "1347811906"
+            "source": {
+                "type": "git",
+                "url": "git://github.com/ezyang/htmlpurifier.git",
+                "reference": "8a8b123d3322d24d77114dfa767a5eafbe9ff24b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/ezyang/htmlpurifier/zipball/8a8b123d3322d24d77114dfa767a5eafbe9ff24b",
+                "reference": "8a8b123d3322d24d77114dfa767a5eafbe9ff24b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "time": "2012-09-16 16:11:46",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "classmap": [
+                    "library/"
+                ]
+            },
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Edward Z. Yang",
+                    "email": "admin@htmlpurifier.org",
+                    "homepage": "http://ezyang.com"
+                }
+            ],
+            "description": "Standards compliant HTML filter written in PHP",
+            "homepage": "http://htmlpurifier.org/",
+            "keywords": [
+                "html"
+            ]
         }
     ],
     "packages-dev": null,
