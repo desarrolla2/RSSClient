@@ -47,7 +47,7 @@ class HTTPClient implements HTTPClientInterface
      */
     public function get($resource)
     {
-        $request = $this->client->get($feedUrl);
+        $request = $this->client->get($resource);
         $response = $request->send();
         return $response->getBody();
     }

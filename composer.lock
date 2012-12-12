@@ -62,7 +62,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/ezyang/htmlpurifier/archive/8a8b123d3322d24d77114dfa767a5eafbe9ff24b.zip",
+                "url": "https://github.com/ezyang/htmlpurifier/zipball/8a8b123d3322d24d77114dfa767a5eafbe9ff24b",
                 "reference": "8a8b123d3322d24d77114dfa767a5eafbe9ff24b",
                 "shasum": ""
             },
@@ -77,7 +77,6 @@
                     "library/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "LGPL"
             ],
