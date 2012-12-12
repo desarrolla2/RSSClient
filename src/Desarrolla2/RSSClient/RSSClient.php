@@ -77,11 +77,12 @@ class RSSClient implements RSSClientInterface
      * add channels for client
      * 
      * @param type $channels
+     * @throws InvalidArgumentException
      */
     public function addChannels($channels)
     {
         if (!is_array($channels)) {
-            throw new \Exception('channels not valid (' . gettype($channels) . ')');
+            throw new \InvalidArgumentException('channels not valid (' . gettype($channels) . ')');
         }
         foreach ($channels as $channel => $feeds) {
             $this->addFeeds($feeds, $channel);
@@ -173,16 +174,17 @@ class RSSClient implements RSSClientInterface
      * 
      * @param string $feed 
      * @param string $channel
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     public function addFeed($feed, $channel = 'default')
     {
         if (!is_string($feed)) {
-            throw new \Exception('feed not valid (' . gettype($feed) . ')');
+            throw new \InvalidArgumentException('feed not valid (' . gettype($feed) . ')');
         }
         if (!is_string($channel)) {
-            throw new \Exception('channel not valid (' . gettype($channel) . ')');
+            throw new \InvalidArgumentException('channel not valid (' . gettype($channel) . ')');
         }
-
         if ($this->isValidURL($feed)) {
             $this->createChannel($channel);
             if (!in_array($feed, $this->feeds[$channel])) {
@@ -191,7 +193,7 @@ class RSSClient implements RSSClientInterface
                 $this->addError('tryint to add feed (' . $feed . ') that exist in channel (' . $channel . ')');
             }
         } else {
-            throw new \Exception('URL not valid ' . $feed);
+            throw new \InvalidArgumentException('URL not valid ' . $feed);
         }
         return;
     }
@@ -340,7 +342,7 @@ class RSSClient implements RSSClientInterface
         $properties = array('title', 'desc', 'link', 'date');
         foreach ($properties as $property) {
             $node[$property] = $this->getNodeProperty($DOMnode, $property);
-            echo $node[$property] .PHP_EOL;
+            echo $node[$property] . PHP_EOL;
         }
         foreach ($node as $key => $value) {
             $node[$key] = $this->doClean($value);
