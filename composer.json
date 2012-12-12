@@ -5,25 +5,26 @@
     "type": "library",
     "license": "MIT",
     "authors": [
-    {
-        "name": "Daniel González",
-        "homepage": "http://desarrolla2.com/"
-    }
+        {
+            "name": "Daniel González",
+            "homepage": "http://desarrolla2.com/"
+        }
     ],
-    "support" : {
+    "support": {
         "issues": "https://github.com/desarrolla2/RSSClient/issues"
     },
-    "require": 
-    {
-       "php": ">=5.3.0",
-       "ezyang/htmlpurifier" : "dev-master",
-       "desarrolla2/cache" : "dev-master"
-    },
-    "autoload": 
-    {
-        "psr-0": {
-             "Desarrolla2\\RSSClient\\": "src/" 
-        }
-    },
+    "require":
+            {
+                "php": ">=5.3.0",
+                "guzzle/guzzle": "3.0.*",
+                "ezyang/htmlpurifier": "dev-master",
+                "desarrolla2/cache": "dev-master"
+            },
+    "autoload":
+            {
+                "psr-0": {
+                    "Desarrolla2\\RSSClient\\": "src/"
+                }
+            },
     "minimum-stability": "dev"
 }

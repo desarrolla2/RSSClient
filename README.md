@@ -42,10 +42,10 @@ a website, you should implement your system cache, or use the cache system descr
     $client = new RSSClient(new Sanitizer());
 
     $client->addFeeds(array(
-        'http://news.ycombinator.com/rss',
-        'http://feeds.feedburner.com/TechCrunch/',
-        ), 'news'
-    ));
+            'http://news.ycombinator.com/rss',
+            'http://feeds.feedburner.com/TechCrunch/',
+                ), 'news'
+        );
 
     $feeds = $client->fetch('news');
 

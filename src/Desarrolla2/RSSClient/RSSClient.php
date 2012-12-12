@@ -12,6 +12,7 @@
 
 namespace Desarrolla2\RSSClient;
 
+use Guzzle\Http\Client;
 use Desarrolla2\RSSClient\RSSNode;
 use Desarrolla2\RSSClient\RSSClientInterface;
 use Desarrolla2\RSSClient\Sanitizer\SanitizerInterface;
@@ -32,6 +33,12 @@ class RSSClient implements RSSClientInterface
      * @var \Desarrolla2\RSSClient\Sanitizer\SanitizerInterface;
      */
     protected $sanitizer;
+
+    /**
+     *
+     * @var \Guzzle\Http\ClientInterface 
+     */
+    protected $httpClient;
 
     /**
      * @var array 
@@ -57,6 +64,7 @@ class RSSClient implements RSSClientInterface
      */
     public function __construct(SanitizerInterface $sanitizer, $feeds = array(), $channel = 'default')
     {
+        $this->httpClient = new Client();
         $this->sanitizer = $sanitizer;
 
         if (is_array($feeds)) {
@@ -269,16 +277,20 @@ class RSSClient implements RSSClientInterface
             throw new \Exception('limit not valid (' . $limit . ')');
         }
         foreach ($this->feeds[$channel] as $feed) {
-            // @TODO: improve this
-            $feed = @file_get_contents($feed);
+            $feed = $this->fetchResource($feed);
             if ($feed) {
                 $DOMDocument = new \DOMDocument();
                 $DOMDocument->strictErrorChecking = false;
-                if ($DOMDocument->loadXML($feed)) {
-                    $nodes = $DOMDocument->getElementsByTagName('item');
-                    foreach ($nodes as $node) {
-                        $this->addFromNode($node, $channel);
+                try {
+                    if ($DOMDocument->loadXML($feed)) {
+                        $nodes = $DOMDocument->getElementsByTagName('item');
+                        foreach ($nodes as $node) {
+                            $this->parseDOMNode($node, $channel);
+                        }
                     }
+                }
+                catch (Exception $e) {
+                    var_dump($e->getMessage());
                 }
             }
         }
@@ -319,29 +331,24 @@ class RSSClient implements RSSClientInterface
     }
 
     /**
-     * @param type $node
+     * @param \DOMElement $node
      * @param string $channel
      */
-    protected function addFromNode($node, $channel)
+    protected function parseDOMNode(\DOMElement $DOMnode, $channel)
     {
-        try {
-            $node = array(
-                'title' => $node->getElementsByTagName('title')->item(0)->nodeValue,
-                'desc' => $node->getElementsByTagName('description')->item(0)->nodeValue,
-                'link' => $node->getElementsByTagName('link')->item(0)->nodeValue,
-                'date' => $node->getElementsByTagName('pubDate')->item(0)->nodeValue
-            );
-        } catch (Exception $e) {
-            $this->addError($e->getMessage());
+        $node = array();
+        $properties = array('title', 'desc', 'link', 'date');
+        foreach ($properties as $property) {
+            $node[$property] = $this->getNodeProperty($DOMnode, $property);
+            echo $node[$property] .PHP_EOL;
         }
-
         foreach ($node as $key => $value) {
             $node[$key] = $this->doClean($value);
         }
-
         $this->addNode(
                 new RSSNode($node), $channel
         );
+        return;
     }
 
     /**
@@ -413,6 +420,26 @@ class RSSClient implements RSSClientInterface
     }
 
     /**
+     * 
+     * @param \DOMElement $DOMnode
+     * @param string $propertyName
+     * @return string
+     */
+    protected function getNodeProperty(\DOMElement $DOMnode, $propertyName)
+    {
+        try {
+            $propertyValue = $DOMnode->getElementsByTagName($propertyName)->item(0);
+            if ($propertyValue) {
+                return $propertyValue->nodeValue;
+            }
+        }
+        catch (Exception $e) {
+            $this->addError($e->getMessage());
+        }
+        return '';
+    }
+
+    /**
      * Retrieves a $limit number of nodes
      * 
      * @param int $limit
@@ -444,6 +471,24 @@ class RSSClient implements RSSClientInterface
         $this->addError('Not nodes found in ' . $channel);
 
         return false;
+    }
+
+    /**
+     * 
+     * @param string $feedUrl
+     * @return string
+     */
+    protected function fetchResource($feedUrl)
+    {
+        try {
+            $request = $this->httpClient->get($feedUrl);
+            $response = $request->send();
+            return $response->getBody();
+        }
+        catch (Exception $e) {
+            $this->addError($e->getMessage());
+        }
+        return '';
     }
 
     /**
