@@ -25,7 +25,7 @@ class RSSNodeTest extends \PHPUnit_Framework_TestCase
 {
    
     /**
-     * @var Desarrolla2\Bundle\RSSClientBundle\Model\RSSNode
+     * @var Desarrolla2\RSSClient\RSSNode
      */
     protected $node = null;
 

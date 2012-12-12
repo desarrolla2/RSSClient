@@ -26,7 +26,7 @@ class RSSClientTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @var Desarrolla2\Bundle\RSSClientBundle\Service\RSSClient;
+     * @var Desarrolla2\RSSClient\RSSClient;
      */
     protected $client = null;
 
