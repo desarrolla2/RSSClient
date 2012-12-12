@@ -11,12 +11,12 @@
  * @date : Dec 12, 2012 , 7:00:15 PM
  */
 
-namespace Desarrolla2\RSSClient\Test;
+namespace Desarrolla2\RSSClient\Test\RSSClient;
 
 use Desarrolla2\RSSClient\RSSClient;
 use Desarrolla2\RSSClient\Sanitizer\Sanitizer;
 
-class RSSClientExceptionsTest extends \PHPUnit_Framework_TestCase
+class ExceptionsTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
