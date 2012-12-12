@@ -50,10 +50,10 @@ class RSSCacheClient extends RSSClient
      * @param array $feeds
      * @param string $channel
      */
-    public function __construct(CacheInterface $cache, SanitizerInterface $sanitizer, $feeds = array(), $channel = 'default')
+    public function __construct(CacheInterface $cache, $feeds = array(), $channel = 'default')
     {
         $this->cache = $cache;
-        parent::__construct($sanitizer, $feeds, $channel);
+        parent::__construct($feeds, $channel);
     }
 
     /**

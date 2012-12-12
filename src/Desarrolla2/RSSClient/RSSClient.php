@@ -12,9 +12,11 @@
 
 namespace Desarrolla2\RSSClient;
 
-use Guzzle\Http\Client;
 use Desarrolla2\RSSClient\RSSNode;
 use Desarrolla2\RSSClient\RSSClientInterface;
+use Desarrolla2\RSSClient\HTTPClient\HTTPClient;
+use Desarrolla2\RSSClient\HTTPClient\HTTPClientInterface;
+use Desarrolla2\RSSClient\Sanitizer\Sanitizer;
 use Desarrolla2\RSSClient\Sanitizer\SanitizerInterface;
 
 /**
@@ -62,10 +64,10 @@ class RSSClient implements RSSClientInterface
      * @param string $channel
      * @param array $feeds
      */
-    public function __construct(SanitizerInterface $sanitizer, $feeds = array(), $channel = 'default')
+    public function __construct($feeds = array(), $channel = 'default')
     {
-        $this->httpClient = new Client();
-        $this->sanitizer = $sanitizer;
+        $this->httpClient = new HTTPClient();
+        $this->sanitizer = new Sanitizer();
 
         if (is_array($feeds)) {
             $this->setFeeds($feeds, $channel);
@@ -91,30 +93,6 @@ class RSSClient implements RSSClientInterface
     }
 
     /**
-     * Retrieve Channel
-     * 
-     * @return array $channels
-     */
-    public function getChannels()
-    {
-        return $this->feeds;
-    }
-
-    /**
-     * Retrieve Channel Names
-     * 
-     * @return array $channels
-     */
-    public function getChannelsNames()
-    {
-        $channels = array();
-        foreach ($this->feeds as $channel => $feed) {
-            array_push($channels, $channel);
-        }
-        return $channels;
-    }
-
-    /**
      * Retrieve feeds from a channel
      * 
      * @param string $channel
@@ -124,49 +102,6 @@ class RSSClient implements RSSClientInterface
     {
         $this->createChannel($channel);
         return $this->feeds[$channel];
-    }
-
-    /**
-     * Set feed in a hacnnel
-     * 
-     * @param string $feed 
-     * @param string $channel
-     */
-    public function setFeed($feed, $channel = 'default')
-    {
-        $this->clearFeeds($channel);
-        $this->addFeed($feed, $channel);
-        return;
-    }
-
-    /**
-     * set the channels for client
-     * 
-     * @param type $channels
-     */
-    public function setChannels($channels)
-    {
-        $this->clearChannels();
-        $this->addChannels($channels);
-        return;
-    }
-
-    /**
-     * Set feeds in a channel
-     * 
-     * @param array $feeds
-     * @param string $channel 
-     */
-    public function setFeeds($feeds, $channel = 'default')
-    {
-        if (!is_array($feeds)) {
-            throw new \Exception('feeds not valid (' . gettype($feeds) . ')');
-        }
-        if (count($feeds)) {
-            $this->clearFeeds($channel);
-            $this->addFeeds($feeds, $channel);
-        }
-        return;
     }
 
     /**
@@ -279,7 +214,7 @@ class RSSClient implements RSSClientInterface
             throw new \Exception('limit not valid (' . $limit . ')');
         }
         foreach ($this->feeds[$channel] as $feed) {
-            $feed = $this->fetchResource($feed);
+            $feed = $this->fetchHTTP($feed);
             if ($feed) {
                 $DOMDocument = new \DOMDocument();
                 $DOMDocument->strictErrorChecking = false;
@@ -302,6 +237,30 @@ class RSSClient implements RSSClientInterface
     }
 
     /**
+     * Retrieve Channel
+     * 
+     * @return array $channels
+     */
+    public function getChannels()
+    {
+        return $this->feeds;
+    }
+
+    /**
+     * Retrieve Channel Names
+     * 
+     * @return array $channels
+     */
+    public function getChannelsNames()
+    {
+        $channels = array();
+        foreach ($this->feeds as $channel => $feed) {
+            array_push($channels, $channel);
+        }
+        return $channels;
+    }
+
+    /**
      * Retrieve errors stack
      * 
      * @return array
@@ -318,6 +277,72 @@ class RSSClient implements RSSClientInterface
     public function hasErrors()
     {
         return count($this->errors) ? true : false;
+    }
+
+    /**
+     * set the channels for client
+     * 
+     * @param type $channels
+     */
+    public function setChannels($channels)
+    {
+        $this->clearChannels();
+        $this->addChannels($channels);
+        return;
+    }
+
+    /**
+     * Set feed in a hacnnel
+     * 
+     * @param string $feed 
+     * @param string $channel
+     */
+    public function setFeed($feed, $channel = 'default')
+    {
+        $this->clearFeeds($channel);
+        $this->addFeed($feed, $channel);
+        return;
+    }
+
+    /**
+     * Set feeds in a channel
+     * 
+     * @param array $feeds
+     * @param string $channel 
+     */
+    public function setFeeds($feeds, $channel = 'default')
+    {
+        if (!is_array($feeds)) {
+            throw new \Exception('feeds not valid (' . gettype($feeds) . ')');
+        }
+        if (count($feeds)) {
+            $this->clearFeeds($channel);
+            $this->addFeeds($feeds, $channel);
+        }
+        return;
+    }
+
+    /**
+     * set HTTPClient
+     * 
+     * @param \Desarrolla2\RSSClient\HTTPClient\HTTPClientInterface $client
+     * @return type
+     */
+    public function setHTTPClient(HTTPClientInterface $client)
+    {
+        $this->httpClient = $client;
+        return;
+    }
+
+    /**
+     * Set Sanitizer
+     * 
+     * @param \Desarrolla2\RSSClient\Sanitizer\SanitizerInterface $sanitizer
+     */
+    public function setSanitizer(SanitizerInterface $sanitizer)
+    {
+        $this->sanitizer = $sanitizer;
+        return;
     }
 
     /**
@@ -480,12 +505,10 @@ class RSSClient implements RSSClientInterface
      * @param string $feedUrl
      * @return string
      */
-    protected function fetchResource($feedUrl)
+    protected function fetchHTTP($feedUrl)
     {
-        try {
-            $request = $this->httpClient->get($feedUrl);
-            $response = $request->send();
-            return $response->getBody();
+        try {            
+            return $this->httpClient->get($feedUrl);
         }
         catch (Exception $e) {
             $this->addError($e->getMessage());

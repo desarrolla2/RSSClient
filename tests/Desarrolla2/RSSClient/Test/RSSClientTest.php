@@ -45,7 +45,7 @@ class RSSClientTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->client = new RSSClient(new Sanitizer());
+        $this->client = new RSSClient();
     }
 
     /**

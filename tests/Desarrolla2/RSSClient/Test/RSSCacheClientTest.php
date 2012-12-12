@@ -37,7 +37,7 @@ class RSSCacheClientTest extends RSSClientTest
      */
     public function setUp()
     {
-        $this->client = new RSSCacheClient(new Cache(new NotCache), new Sanitizer());
+        $this->client = new RSSCacheClient(new Cache(new NotCache));
     }
 
 }
