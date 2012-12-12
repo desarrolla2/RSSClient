@@ -39,7 +39,7 @@ a website, you should implement your system cache, or use the cache system descr
     use Desarrolla2\RSSClient\RSSClient;
     use Desarrolla2\RSSClient\Sanitizer\Sanitizer;
 
-    $client = new RSSClient(new Sanitizer());
+    $client = new RSSClient();
 
     $client->addFeeds(array(
             'http://news.ycombinator.com/rss',
@@ -66,7 +66,7 @@ repository [Github] (https://github.com/desarrolla2/Cache).
     use Desarrolla2\Cache\Adapter\NotCache;
 
     // It is important that you select and configure your cache adapter
-    $client = new RSSCacheClient(new Cache(new File('/tmp')), new Sanitizer());
+    $client = new RSSCacheClient(new Cache(new File('/tmp')));
 
 ```
 

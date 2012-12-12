@@ -51,20 +51,25 @@ class HttpTest extends \PHPUnit_Framework_TestCase
         <lastBuildDate>Mon, 06 Sep 2010 00:01:00 +0000 </lastBuildDate>
         <pubDate>Mon, 06 Sep 2009 16:45:00 +0000 </pubDate>
         <ttl>1800</ttl>
- 
         <item>
                 <title>Example entry</title>
                 <description>Here is some text containing an interesting description.</description>
                 <link>http://www.wikipedia.org/</link>
                 <guid>unique string per item</guid>
                 <pubDate>Mon, 06 Sep 2009 16:45:00 +0000 </pubDate>
-        </item>
- 
+        </item> 
+        <item>
+                <title>Example entry</title>
+                <description>Here is some text containing an interesting description.</description>
+                <link>http://www.wikipedia.org/</link>
+                <guid>unique string per item</guid>
+                <pubDate>Mon, 06 Sep 2009 16:45:00 +0000 </pubDate>
+        </item> 
 </channel>
 </rss>'));
         $this->client->setHTTPClient($stub);
         $nodes = $this->client->fetch();
-        $this->assertEquals(count($nodes), 1);
+        $this->assertEquals(count($nodes), 2);
     }
 
 }
