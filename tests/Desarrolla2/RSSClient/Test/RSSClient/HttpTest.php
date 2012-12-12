@@ -22,6 +22,11 @@ class HttpTest extends \PHPUnit_Framework_TestCase
      * @var \Desarrolla2\RSSClient\RSSClient
      */
     protected $client;
+    
+        /**
+     * @var string
+     */
+    protected $example_feed = 'http://desarrolla2.com/feed/';
 
     /**
      * 
@@ -29,6 +34,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->client = new RSSClient();
+        $this->client->addFeed($this->example_feed);
     }
 
     public function testFetch()
@@ -36,8 +42,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
         $stub = $this->getMock('\Desarrolla2\RSSClient\HTTPClient\HTTPClient');
         $stub->expects($this->any())
                 ->method('get')
-                ->will($this->returnValue('
-<?xml version="1.0" encoding="UTF-8" ?>
+                ->will($this->returnValue('<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
 <channel>
         <title>RSS Title</title>

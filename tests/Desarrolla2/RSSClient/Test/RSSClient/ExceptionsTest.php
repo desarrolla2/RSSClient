@@ -20,9 +20,14 @@ class ExceptionsTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @var Desarrolla2\Bundle\RSSClientBundle\Service\RSSClient;
+     * @var Desarrolla2\RSSClien\RSSClient;
      */
     protected $client = null;
+    
+        /**
+     * @var string
+     */
+    protected $example_feed = 'http://desarrolla2.com/feed/';
 
     /**
      * 
@@ -62,6 +67,47 @@ class ExceptionsTest extends \PHPUnit_Framework_TestCase
     public function testAddFeedExceptionC()
     {
         $this->client->addFeed('string');
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testAddFeedsA()
+    {
+        $this->client->addFeeds('string');
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testAddFeedsB()
+    {
+        $this->client->addFeeds(array(), array());
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testFetchA()
+    {
+        $this->client->fetch(array());
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testFetchB()
+    {
+        $this->client->fetch('string');
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testFetchC()
+    {
+        $this->client->setFeed($this->example_feed, 'string');
+        $this->client->fetch('string', 0);
     }
 
 }

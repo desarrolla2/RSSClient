@@ -130,7 +130,6 @@ class RSSClient implements RSSClientInterface
         } else {
             throw new \InvalidArgumentException('URL not valid ' . $feed);
         }
-        return;
     }
 
     /**
@@ -138,19 +137,19 @@ class RSSClient implements RSSClientInterface
      *       
      * @param array $feeds 
      * @param string $channel
+     * @throws \InvalidArgumentException
      */
     public function addFeeds($feeds, $channel = 'default')
     {
         if (!is_array($feeds)) {
-            throw new \Exception('feeds not valid (' . gettype($feeds) . ')');
+            throw new \InvalidArgumentException('feeds not valid (' . gettype($feeds) . ')');
         }
         if (!is_string($channel)) {
-            throw new \Exception('channel not valid (' . gettype($channel) . ')');
+            throw new \InvalidArgumentException('channel not valid (' . gettype($channel) . ')');
         }
         foreach ($feeds as $feed) {
             $this->addFeed($feed, $channel);
         }
-        return;
     }
 
     /**
@@ -188,9 +187,6 @@ class RSSClient implements RSSClientInterface
         if (!isset($this->nodes[$channel])) {
             $this->nodes[$channel] = array();
         }
-        if (!is_array($this->nodes[$channel])) {
-            $this->nodes[$channel] = array();
-        }
         return count($this->nodes[$channel]);
     }
 
@@ -199,19 +195,20 @@ class RSSClient implements RSSClientInterface
      * 
      * @param int $limit
      * @param string $channel
-     * @return int $nodes
+     * @return array $nodes
+     * @throws \InvalidArgumentException
      */
     public function fetch($channel = 'default', $limit = 20)
     {
         if (!is_string($channel)) {
-            throw new \Exception('channel not valid (' . gettype($channel) . ')');
+            throw new \InvalidArgumentException('channel not valid (' . gettype($channel) . ')');
         }
-        if (in_array($channel, $this->feeds)) {
-            throw new \Exception('channel not valid (' . $channel . ')');
+        if (!isset($this->feeds[$channel])) {
+            throw new \InvalidArgumentException('channel not valid (' . $channel . ')');
         }
         $limit = (int) $limit;
         if (!$limit) {
-            throw new \Exception('limit not valid (' . $limit . ')');
+            throw new \InvalidArgumentException('limit not valid (' . $limit . ')');
         }
         foreach ($this->feeds[$channel] as $feed) {
             $feed = $this->fetchHTTP($feed);
@@ -227,7 +224,7 @@ class RSSClient implements RSSClientInterface
                     }
                 }
                 catch (Exception $e) {
-                    var_dump($e->getMessage());
+                    $this->addError($e->getMessage());
                 }
             }
         }
@@ -367,7 +364,6 @@ class RSSClient implements RSSClientInterface
         $properties = array('title', 'desc', 'link', 'date');
         foreach ($properties as $property) {
             $node[$property] = $this->getNodeProperty($DOMnode, $property);
-            echo $node[$property] . PHP_EOL;
         }
         foreach ($node as $key => $value) {
             $node[$key] = $this->doClean($value);
@@ -507,7 +503,7 @@ class RSSClient implements RSSClientInterface
      */
     protected function fetchHTTP($feedUrl)
     {
-        try {            
+        try {
             return $this->httpClient->get($feedUrl);
         }
         catch (Exception $e) {
