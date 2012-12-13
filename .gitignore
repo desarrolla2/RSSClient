@@ -1,6 +1,6 @@
 /cache
 /build
-/composer.phar
+/composer.lock
 /vendor
 /nbproject
 *~
