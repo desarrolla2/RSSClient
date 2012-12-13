@@ -72,7 +72,6 @@ class RSSClient implements RSSClientInterface
         if (is_array($feeds)) {
             $this->setFeeds($feeds, $channel);
         }
-        return;
     }
 
     /**
@@ -89,7 +88,6 @@ class RSSClient implements RSSClientInterface
         foreach ($channels as $channel => $feeds) {
             $this->addFeeds($feeds, $channel);
         }
-        return;
     }
 
     /**
@@ -285,7 +283,6 @@ class RSSClient implements RSSClientInterface
     {
         $this->clearChannels();
         $this->addChannels($channels);
-        return;
     }
 
     /**
@@ -298,7 +295,6 @@ class RSSClient implements RSSClientInterface
     {
         $this->clearFeeds($channel);
         $this->addFeed($feed, $channel);
-        return;
     }
 
     /**
@@ -316,7 +312,6 @@ class RSSClient implements RSSClientInterface
             $this->clearFeeds($channel);
             $this->addFeeds($feeds, $channel);
         }
-        return;
     }
 
     /**
@@ -328,7 +323,6 @@ class RSSClient implements RSSClientInterface
     public function setHTTPClient(HTTPClientInterface $client)
     {
         $this->httpClient = $client;
-        return;
     }
 
     /**
@@ -339,7 +333,6 @@ class RSSClient implements RSSClientInterface
     public function setSanitizer(SanitizerInterface $sanitizer)
     {
         $this->sanitizer = $sanitizer;
-        return;
     }
 
     /**
@@ -351,7 +344,6 @@ class RSSClient implements RSSClientInterface
     {
         $message = (string) $message;
         array_push($this->errors, $message);
-        return;
     }
 
     /**
@@ -371,7 +363,6 @@ class RSSClient implements RSSClientInterface
         $this->addNode(
                 new RSSNode($node), $channel
         );
-        return;
     }
 
     /**
@@ -389,7 +380,6 @@ class RSSClient implements RSSClientInterface
             $this->nodes[$channel] = array();
         }
         array_push($this->nodes[$channel], $node);
-        return;
     }
 
     /**
@@ -400,7 +390,6 @@ class RSSClient implements RSSClientInterface
     protected function clearChannels()
     {
         $this->feeds = array();
-        return;
     }
 
     /**
@@ -411,7 +400,6 @@ class RSSClient implements RSSClientInterface
     protected function clearFeeds($channel = 'default')
     {
         $this->feeds[$channel] = array();
-        return;
     }
 
     /**
@@ -423,13 +411,10 @@ class RSSClient implements RSSClientInterface
     {
         if (!isset($this->feeds[$channel])) {
             $this->feeds[$channel] = array();
-            return;
         }
         if (!is_array($this->feeds[$channel])) {
             $this->feeds[$channel] = array();
-            return;
         }
-        return;
     }
 
     /**
@@ -539,7 +524,6 @@ class RSSClient implements RSSClientInterface
                 }
             }
         }
-        return;
     }
 
 }

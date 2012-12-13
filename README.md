@@ -37,7 +37,6 @@ a website, you should implement your system cache, or use the cache system descr
     <?php
 
     use Desarrolla2\RSSClient\RSSClient;
-    use Desarrolla2\RSSClient\Sanitizer\Sanitizer;
 
     $client = new RSSClient();
 
