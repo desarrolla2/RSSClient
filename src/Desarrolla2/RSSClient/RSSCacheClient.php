@@ -72,6 +72,16 @@ class RSSCacheClient extends RSSClient
     }
 
     /**
+     * Set cache
+     *
+     * @param \Desarrolla2\Cache\CacheInterface $cache
+     */
+    public function setCache(CacheInterface $cache = null)
+    {
+        $this->cache = $cache;
+    }
+
+    /**
      * Generate a unique hash for Cache
      * 
      * @param string $channel
