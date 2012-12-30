@@ -38,11 +38,6 @@ class RSSNode
     /**
      * @var string
      */
-    protected $content = null;
-
-    /**
-     * @var string
-     */
     protected $link = null;
 
     /**
@@ -79,14 +74,14 @@ class RSSNode
             if (isset($options['title'])) {
                 $this->setTitle($options['title']);
             }
-            if (isset($options['desc'])) {
-                $this->setDesc($options['desc']);
+            if (isset($options['description'])) {
+                $this->setDesc($options['description']);
             }
             if (isset($options['link'])) {
                 $this->setLink($options['link']);
             }
-            if (isset($options['date'])) {
-                $this->setPubDate($options['date']);
+            if (isset($options['pubDate'])) {
+                $this->setPubDate($options['pubDate']);
             }
         }
     }
@@ -129,24 +124,6 @@ class RSSNode
 
     /**
      *
-     * @param string $content
-     */
-    public function setContent($content)
-    {
-        $this->content = $this->doClean($content);
-    }
-
-    /**
-     *
-     * @return string $content
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
-     *
      * @param string $link 
      */
     public function setLink($link)
@@ -175,7 +152,6 @@ class RSSNode
             $this->pubDate = false;
         }
     }
-
     /**
      * Retrieve Pub date
      * 
