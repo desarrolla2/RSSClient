@@ -82,9 +82,6 @@ class RSSNode
             if (isset($options['desc'])) {
                 $this->setDesc($options['desc']);
             }
-            if (isset($options['content'])) {
-                $this->setContent($options['content']);
-            }
             if (isset($options['link'])) {
                 $this->setLink($options['link']);
             }
