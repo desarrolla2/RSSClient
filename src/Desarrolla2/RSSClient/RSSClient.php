@@ -353,7 +353,7 @@ class RSSClient implements RSSClientInterface
     protected function parseDOMNode(\DOMElement $DOMnode, $channel)
     {
         $node = array();
-        $properties = array('title', 'desc', 'link', 'date');
+        $properties = array('title', 'description', 'link', 'date');
         foreach ($properties as $property) {
             $node[$property] = $this->getNodeProperty($DOMnode, $property);
         }
