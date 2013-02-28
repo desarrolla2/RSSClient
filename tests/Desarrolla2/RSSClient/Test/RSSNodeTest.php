@@ -87,7 +87,7 @@ class RSSNodeTest extends \PHPUnit_Framework_TestCase
     public function testDesc($options)
     {
         $this->node->fromArray($options);
-        $this->assertEquals($options['description'], $this->node->getDesc());
+        $this->assertEquals($options['description'], $this->node->getDescription());
     }
     
     /**

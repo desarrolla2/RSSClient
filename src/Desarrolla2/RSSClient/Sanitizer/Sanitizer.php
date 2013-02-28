@@ -46,9 +46,10 @@ class Sanitizer implements SanitizerInterface
     }
 
     /**
+     * Sanitize html text
      * 
-     * @param type $text
-     * @return type
+     * @param string $text
+     * @return string
      */
     public function doClean($text)
     {

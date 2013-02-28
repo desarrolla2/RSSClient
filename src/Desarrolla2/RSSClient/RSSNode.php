@@ -22,8 +22,10 @@ use DateTime;
  * @file : Node.php , UTF-8
  * @date : Oct 3, 2012 , 2:06:56 AM
  */
-class RSSNode
-{
+class RSSNode {
+//    'title', 'link', 'description', 'author',
+//            'category', 'comments', 'enclosure', 'guid',
+//            'pubDate', 'source'
 
     /**
      * @var string
@@ -33,12 +35,37 @@ class RSSNode
     /**
      * @var string
      */
-    protected $desc = null;
+    protected $link = null;
 
     /**
      * @var string
      */
-    protected $link = null;
+    protected $description = null;
+
+    /**
+     * @var string
+     */
+    protected $author = null;
+
+    /**
+     * @var string
+     */
+    protected $category = null;
+
+    /**
+     * @var string
+     */
+    protected $comments = null;
+
+    /**
+     * @var string
+     */
+    protected $enclosure = null;
+
+    /**
+     * @var string
+     */
+    protected $guid = null;
 
     /**
      * @var \DateTime
@@ -49,8 +76,7 @@ class RSSNode
      *
      * @param array $options 
      */
-    public function __construct($options = array())
-    {
+    public function __construct($options = array()) {
         $this->fromArray($options);
     }
 
@@ -59,23 +85,21 @@ class RSSNode
      * 
      * @return string
      */
-    public function __toString()
-    {
-        return $this->getDesc();
+    public function __toString() {
+        return $this->getDescription();
     }
 
     /**
      *
      * @param array $options 
      */
-    public function fromArray($options = array())
-    {
+    public function fromArray($options = array()) {
         if (is_array($options)) {
             if (isset($options['title'])) {
                 $this->setTitle($options['title']);
             }
             if (isset($options['description'])) {
-                $this->setDesc($options['description']);
+                $this->setDescription($options['description']);
             }
             if (isset($options['link'])) {
                 $this->setLink($options['link']);
@@ -90,8 +114,7 @@ class RSSNode
      *
      * @param string $title 
      */
-    public function setTitle($title)
-    {
+    public function setTitle($title) {
         $this->title = $this->doClean($title);
     }
 
@@ -99,8 +122,7 @@ class RSSNode
      *
      * @return string $title 
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -108,26 +130,32 @@ class RSSNode
      *
      * @param string $desc 
      */
-    public function setDesc($desc)
-    {
-        $this->desc = $this->doClean($desc);
+    public function setDescription($desc) {
+        $this->description = $this->doClean($desc);
+    }
+
+    /**
+     * Backguard
+     * 
+     * @return string $desc  
+     */
+    public function getDesc() {
+        return $this->description;
     }
 
     /**
      *
      * @return string $desc  
      */
-    public function getDesc()
-    {
-        return $this->desc;
+    public function getDescription() {
+        return $this->description;
     }
 
     /**
      *
      * @param string $link 
      */
-    public function setLink($link)
-    {
+    public function setLink($link) {
         $this->link = $this->doClean($link);
     }
 
@@ -135,8 +163,7 @@ class RSSNode
      *
      * @return string $link  
      */
-    public function getLink()
-    {
+    public function getLink() {
         return $this->link;
     }
 
@@ -144,21 +171,20 @@ class RSSNode
      *
      * @param  string $date 
      */
-    public function setPubDate($date)
-    {
+    public function setPubDate($date) {
         if (strtotime($date)) {
             $this->pubDate = new DateTime($date);
         } else {
             $this->pubDate = false;
         }
     }
+
     /**
      * Retrieve Pub date
      * 
      * @return DateTime $date 
      */
-    public function getPubDate()
-    {
+    public function getPubDate() {
         return $this->pubDate;
     }
 
@@ -167,12 +193,51 @@ class RSSNode
      * 
      * @return int
      */
-    public function getTimestamp()
-    {
+    public function getTimestamp() {
         if ($this->pubDate) {
             return $this->pubDate->getTimestamp();
         }
         return 0;
+    }
+
+    public function getAuthor() {
+        return $this->author;
+    }
+
+    public function setAuthor($author) {
+        $this->author = $this->doClean($author);
+    }
+
+    public function getCategory() {
+        return $this->category;
+    }
+
+    public function setCategory($category) {
+        $this->category = $this->doClean($category);
+    }
+
+    public function getComments() {
+        return $this->comments;
+    }
+
+    public function setComments($comments) {
+        $this->comments = $this->doClean($comments);
+    }
+
+    public function getEnclosure() {
+        return $this->enclosure;
+    }
+
+    public function setEnclosure($enclosure) {
+        $this->enclosure = $this->doClean($enclosure);
+    }
+
+    public function getGuid() {
+        return $this->guid;
+    }
+
+    public function setGuid($guid) {
+        $this->guid = $this->doClean($guid);
     }
 
     /**
@@ -181,8 +246,7 @@ class RSSNode
      * @param string $string
      * @return string $string 
      */
-    protected function doClean($string)
-    {
+    protected function doClean($string) {
         return (string) $string;
     }
 

@@ -2,7 +2,9 @@
 
 [![Build Status](https://secure.travis-ci.org/desarrolla2/RSSClient.png)](http://travis-ci.org/desarrolla2/RSSClient)
 
-A independent RSS client library.
+A simple to use RSS client library.
+
+You can read the RSS specification on [RFC](http://cyber.law.harvard.edu/rss/rss.html)
 
 
 ## Installation
