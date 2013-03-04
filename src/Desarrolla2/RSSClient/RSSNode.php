@@ -73,6 +73,11 @@ class RSSNode {
     protected $pubDate = null;
 
     /**
+     * @var string
+     */
+    protected $source = null;
+
+    /**
      *
      * @param array $options 
      */
@@ -94,19 +99,42 @@ class RSSNode {
      * @param array $options 
      */
     public function fromArray($options = array()) {
+        $properties = array('title', 'link', 'description', 'author',
+            'category', 'comments', 'enclosure', 'guid',
+            'pubDate', 'source');
+
         if (is_array($options)) {
             if (isset($options['title'])) {
                 $this->setTitle($options['title']);
             }
+            if (isset($options['link'])) {
+                $this->setLink($options['link']);
+            }
             if (isset($options['description'])) {
                 $this->setDescription($options['description']);
             }
-            if (isset($options['link'])) {
-                $this->setLink($options['link']);
+            if (isset($options['author'])) {
+                $this->setAuthor($options['author']);
+            }
+            if (isset($options['category'])) {
+                $this->setCategory($options['category']);
+            }
+            if (isset($options['enclosure'])) {
+                $this->setEnclosure($options['enclosure']);
+            }
+            if (isset($options['guid'])) {
+                $this->setGuid($options['guid']);
+            }
+            if (isset($options['source'])) {
+                $this->setSource($options['source']);
             }
             if (isset($options['pubDate'])) {
                 $this->setPubDate($options['pubDate']);
             }
+        }
+
+        if (!$this->getGuid()) {
+            $this->setGuid('rss-client-' . md5($this->getTitle() . $this->getSource()));
         }
     }
 
@@ -238,6 +266,14 @@ class RSSNode {
 
     public function setGuid($guid) {
         $this->guid = $this->doClean($guid);
+    }
+
+    public function getSource() {
+        return $this->source;
+    }
+
+    public function setSource($source) {
+        $this->source = $this->doClean($source);
     }
 
     /**
