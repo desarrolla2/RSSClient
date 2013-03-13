@@ -23,9 +23,6 @@ use DateTime;
  * @date : Oct 3, 2012 , 2:06:56 AM
  */
 class RSSNode {
-//    'title', 'link', 'description', 'author',
-//            'category', 'comments', 'enclosure', 'guid',
-//            'pubDate', 'source'
 
     /**
      * @var string
@@ -48,9 +45,9 @@ class RSSNode {
     protected $author = null;
 
     /**
-     * @var string
+     * @var array
      */
-    protected $category = null;
+    protected $categories = array();
 
     /**
      * @var string
@@ -99,9 +96,6 @@ class RSSNode {
      * @param array $options 
      */
     public function fromArray($options = array()) {
-        $properties = array('title', 'link', 'description', 'author',
-            'category', 'comments', 'enclosure', 'guid',
-            'pubDate', 'source');
 
         if (is_array($options)) {
             if (isset($options['title'])) {
@@ -117,8 +111,11 @@ class RSSNode {
                 $this->setAuthor($options['author']);
             }
             if (isset($options['category'])) {
-                $this->setCategory($options['category']);
+                $this->addCategory($options['category']);
             }
+            if (isset($options['categories'])) {
+                $this->setCategories($options['categories']);
+            }          
             if (isset($options['enclosure'])) {
                 $this->setEnclosure($options['enclosure']);
             }
@@ -236,12 +233,19 @@ class RSSNode {
         $this->author = $this->doClean($author);
     }
 
-    public function getCategory() {
-        return $this->category;
+    public function getCategories() {
+        return $this->categories;
     }
 
-    public function setCategory($category) {
-        $this->category = $this->doClean($category);
+    public function addCategory($category) {
+        $this->categories[] = $this->doClean($category);
+    }
+
+    public function setCategories($categories) {
+        $this->categories = array();
+        foreach ($categories as $category) {
+            $this->addCategory($category);
+        }
     }
 
     public function getComments() {

@@ -338,6 +338,10 @@ class RSSClient implements RSSClientInterface {
             $node[$property] = $this->getNodeProperty($DOMnode, $property);
         }
         foreach ($node as $key => $value) {
+            if ($key == 'category') {
+                $node['categories'][] = $this->doClean($value);
+                continue;
+            }
             $node[$key] = $this->doClean($value);
         }
         $this->addNode(
