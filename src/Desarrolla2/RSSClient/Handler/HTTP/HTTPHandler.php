@@ -12,9 +12,10 @@
 
 namespace Desarrolla2\RSSClient\Handler\HTTP;
 
-use Guzzle\Http\Client;
-use Guzzle\Service\ClientInterface;
-use Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerInterface;
+use \Guzzle\Http\Client;
+use \Guzzle\Http\ClientInterface;
+use \Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerInterface;
+use Desarrolla2\RSSClient\Exception\RuntimeException;
 
 /**
  * 
@@ -55,7 +56,10 @@ class HTTPHandler implements HTTPHandlerInterface {
     public function get($resource) {
         $request = $this->client->get($resource);
         $response = $request->send();
-        return $response->getBody();
+        if ($response->getStatusCode() == 200) {
+            return $response->getBody();
+        }
+        throw new RuntimeException('Error on HTTP request');
     }
 
 }

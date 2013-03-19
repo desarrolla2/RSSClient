@@ -6,7 +6,7 @@
  * 
  * This file is part of the RSSClient proyect.
  *
- * @author : Daniel González Cerviño <daniel.gonzalez@externos.seap.minhap.es> 
+ * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es> 
  * @file : RSSClientExceptionsTest.php , UTF-8
  * @date : Dec 12, 2012 , 7:00:15 PM
  */
