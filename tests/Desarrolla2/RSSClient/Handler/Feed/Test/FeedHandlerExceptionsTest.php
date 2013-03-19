@@ -10,9 +10,9 @@
  * with this package in the file LICENSE.
  */
 
-namespace Desarrolla2\RSSClient\Handler\Test;
+namespace Desarrolla2\RSSClient\Handler\Feed\Test;
 
-use \Desarrolla2\RSSClient\Handler\FeedHandler;
+use \Desarrolla2\RSSClient\Handler\Feed\FeedHandler;
 
 /**
  * 

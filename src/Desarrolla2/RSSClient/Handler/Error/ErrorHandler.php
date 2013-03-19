@@ -10,7 +10,7 @@
  * with this package in the file LICENSE.
  */
 
-namespace Desarrolla2\RSSClient\Handler;
+namespace Desarrolla2\RSSClient\Handler\Error;
 
 /**
  * 
@@ -20,12 +20,29 @@ namespace Desarrolla2\RSSClient\Handler;
  * @file : ErrorHandler.php , UTF-8
  * @date : Mar 19, 2013 , 4:13:03 PM
  */
-abstract class ErrorHandler {
+class ErrorHandler {
 
     /**
      * @var array 
      */
     protected $errors = array();
+
+    /**
+     * Retrieve errors stack
+     * 
+     * @return array
+     */
+    public function getErrors() {
+        return $this->errors;
+    }
+
+    /**
+     * Retrieve if any errors ocurred
+     * @return boolean
+     */
+    public function hasErrors() {
+        return count($this->errors) ? true : false;
+    }
 
     /**
      * Add Error to stack

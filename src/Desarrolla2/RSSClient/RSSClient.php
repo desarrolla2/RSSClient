@@ -58,6 +58,25 @@ class RSSClient implements RSSClientInterface {
     }
 
     /**
+     * set HTTPClient
+     * 
+     * @param \Desarrolla2\RSSClient\HTTPClient\HTTPClientInterface $client
+     * @return type
+     */
+    public function setHTTPClient(HTTPClientInterface $client) {
+        $this->httpClient = $client;
+    }
+
+    /**
+     * Set Sanitizer
+     * 
+     * @param \Desarrolla2\RSSClient\Sanitizer\SanitizerInterface $sanitizer
+     */
+    public function setSanitizer(SanitizerInterface $sanitizer) {
+        $this->sanitizer = $sanitizer;
+    }
+
+    /**
      * Retrieve the number of nodes from a chanel
      * 
      * @param string $channel
@@ -110,48 +129,6 @@ class RSSClient implements RSSClientInterface {
 
         return $this->getNodes($channel, $limit);
     }
-
-  
-
-    /**
-     * Retrieve errors stack
-     * 
-     * @return array
-     */
-    public function getErrors() {
-        return $this->errors;
-    }
-
-    /**
-     * Retrieve if any errors ocurred
-     * @return boolean
-     */
-    public function hasErrors() {
-        return count($this->errors) ? true : false;
-    }
-
- 
-
-    /**
-     * set HTTPClient
-     * 
-     * @param \Desarrolla2\RSSClient\HTTPClient\HTTPClientInterface $client
-     * @return type
-     */
-    public function setHTTPClient(HTTPClientInterface $client) {
-        $this->httpClient = $client;
-    }
-
-    /**
-     * Set Sanitizer
-     * 
-     * @param \Desarrolla2\RSSClient\Sanitizer\SanitizerInterface $sanitizer
-     */
-    public function setSanitizer(SanitizerInterface $sanitizer) {
-        $this->sanitizer = $sanitizer;
-    }
-
-
 
     /**
      * @param \DOMElement $node

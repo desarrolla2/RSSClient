@@ -10,10 +10,9 @@
  * with this package in the file LICENSE.
  */
 
-namespace Desarrolla2\RSSClient\Handler;
+namespace Desarrolla2\RSSClient\Handler\Feed;
 
-use Desarrolla2\RSSClient\Handler\ErrorHandler;
-use Desarrolla2\RSSClient\Handler\FeedHandlerInterface;
+use Desarrolla2\RSSClient\Handler\Error\ErrorHandler;
 use Desarrolla2\RSSClient\Exception\InvalidArgumentException;
 
 /**
@@ -24,7 +23,7 @@ use Desarrolla2\RSSClient\Exception\InvalidArgumentException;
  * @file : Feed.php , UTF-8
  * @date : Mar 15, 2013 , 11:49:39 AM
  */
-class FeedHandler extends ErrorHandler implements FeedHandlerInterface {
+class FeedHandler extends ErrorHandler {
 
     /**
      * @var array 

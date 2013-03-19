@@ -10,9 +10,9 @@
  * with this package in the file LICENSE.
  */
 
-namespace Desarrolla2\RSSClient\Handler\Test;
+namespace Desarrolla2\RSSClient\Handler\Feed\Test;
 
-use \Desarrolla2\RSSClient\Handler\FeedHandler;
+use \Desarrolla2\RSSClient\Handler\Feed\FeedHandler;
 
 /**
  * 
@@ -40,7 +40,7 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase {
     protected $example_feed2 = 'http://blog.desarrolla2.com/feed/';
 
     /**
-     * 
+     * Setup
      */
     public function setUp() {
         $this->handler = new FeedHandler();
@@ -241,5 +241,7 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase {
         $this->handler->setChannels($data);
         $this->assertEquals(count($data), $this->handler->countChannels());
     }
+    
+    
 
 }

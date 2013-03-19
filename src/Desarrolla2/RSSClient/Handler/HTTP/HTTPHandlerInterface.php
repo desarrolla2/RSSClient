@@ -10,7 +10,7 @@
  * with this package in the file LICENSE.
  */
 
-namespace Desarrolla2\RSSClient\HTTPClient;
+namespace Desarrolla2\RSSClient\Handler\HTTP;
 
 /**
  * 
@@ -20,8 +20,7 @@ namespace Desarrolla2\RSSClient\HTTPClient;
  * @file : HTTPClientInterface.php , UTF-8
  * @date : Dec 12, 2012 , 9:06:59 PM
  */
-interface HTTPClientInterface
-{
+interface HTTPHandlerInterface {
 
     /**
      * Retrieve a resource in plain text from a url
