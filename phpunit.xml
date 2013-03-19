@@ -13,6 +13,7 @@
             <directory>./Test</directory>
         </whitelist>
         <blacklist>
+            <directory>/usr</directory>
             <directory>./vendor</directory>
             <directory>./build</directory>
         </blacklist>  
