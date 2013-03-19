@@ -32,12 +32,12 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase {
     /**
      * @var string
      */
-    protected $example_feed1 = 'http://desarrolla2.com/feed/';
+    protected $example_feed1 = 'http://example.com/feed/';
 
     /**
      * @var string
      */
-    protected $example_feed2 = 'http://blog.desarrolla2.com/feed/';
+    protected $example_feed2 = 'http://example2.com/feed/';
 
     /**
      * Setup
@@ -140,8 +140,20 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase {
      * @test
      * @dataProvider getDataForFeeds
      */
-    public function testAddFeed($data) {
+    public function testAddFeed1($data) {
         $this->handler->addFeed($this->example_feed1);
+        foreach ($data as $feed) {
+            $this->handler->addFeed($feed);
+        }
+        $this->assertEquals(count($this->handler->getFeeds()), 1);
+    }
+
+    /**
+     * @test
+     * @dataProvider getDataForFeeds
+     */
+    public function testAddFeed2($data) {
+        $this->handler->addFeed($this->example_feed1, 'new_channel');
         foreach ($data as $feed) {
             $this->handler->addFeed($feed);
         }
@@ -241,7 +253,5 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase {
         $this->handler->setChannels($data);
         $this->assertEquals(count($data), $this->handler->countChannels());
     }
-    
-    
 
 }

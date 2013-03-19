@@ -29,6 +29,8 @@ use Desarrolla2\RSSClient\Sanitizer\SanitizerInterface;
  */
 class RSSClient implements RSSClientInterface {
 
+    const MAX_NODES_DEFAULT = 100;
+
     /**
      *
      * @var \Desarrolla2\RSSClient\Sanitizer\SanitizerInterface;
@@ -97,7 +99,7 @@ class RSSClient implements RSSClientInterface {
      * @return array $nodes
      * @throws \InvalidArgumentException
      */
-    public function fetch($channel = 'default', $limit = 20) {
+    public function fetch($channel = 'default', $limit = self::MAX_NODES_DEFAULT) {
         if (!is_string($channel)) {
             throw new \InvalidArgumentException('channel not valid (' . gettype($channel) . ')');
         }
@@ -204,7 +206,7 @@ class RSSClient implements RSSClientInterface {
      * @param string $channel
      * @return array $nodes
      */
-    protected function getNodes($channel = 'default', $limit = 20) {
+    protected function getNodes($channel = 'default', $limit = self::MAX_NODES_DEFAULT) {
         if (!is_string($channel)) {
             throw new \Exception('channel not valid (' . gettype($channel) . ')');
         }
