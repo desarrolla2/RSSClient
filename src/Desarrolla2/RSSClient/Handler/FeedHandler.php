@@ -12,6 +12,10 @@
 
 namespace Desarrolla2\RSSClient\Handler;
 
+use Desarrolla2\RSSClient\Handler\ErrorHandler;
+use Desarrolla2\RSSClient\Handler\FeedHandlerInterface;
+use Desarrolla2\RSSClient\Exception\InvalidArgumentException;
+
 /**
  * 
  * Description of Feed
@@ -20,8 +24,11 @@ namespace Desarrolla2\RSSClient\Handler;
  * @file : Feed.php , UTF-8
  * @date : Mar 15, 2013 , 11:49:39 AM
  */
-class Feed {
+class FeedHandler extends ErrorHandler implements FeedHandlerInterface {
 
+    /**
+     * @var array 
+     */
     protected $channels;
 
     /**
@@ -32,7 +39,7 @@ class Feed {
      */
     public function addChannels($channels) {
         if (!is_array($channels)) {
-            throw new \InvalidArgumentException('channels not valid (' . gettype($channels) . ')');
+            throw new InvalidArgumentException('channels not valid (' . gettype($channels) . ')');
         }
         foreach ($channels as $channel => $feeds) {
             $this->addFeeds($feeds, $channel);
@@ -55,15 +62,15 @@ class Feed {
      * 
      * @param string $feed 
      * @param string $channel
-     * @throws \InvalidArgumentException
-     * @throws \Exception
+     * @throws InvalidArgumentException
+     * @throws Exception
      */
     public function addFeed($feed, $channel = 'default') {
         if (!is_string($feed)) {
-            throw new \InvalidArgumentException('feed not valid (' . gettype($feed) . ')');
+            throw new InvalidArgumentException('feed not valid (' . gettype($feed) . ')');
         }
         if (!is_string($channel)) {
-            throw new \InvalidArgumentException('channel not valid (' . gettype($channel) . ')');
+            throw new InvalidArgumentException('channel not valid (' . gettype($channel) . ')');
         }
         if ($this->isValidURL($feed)) {
             $this->createChannel($channel);
@@ -73,7 +80,7 @@ class Feed {
                 $this->addError('tryint to add feed (' . $feed . ') that exist in channel (' . $channel . ')');
             }
         } else {
-            throw new \InvalidArgumentException('URL not valid ' . $feed);
+            throw new InvalidArgumentException('URL not valid ' . $feed);
         }
     }
 
@@ -82,14 +89,14 @@ class Feed {
      *       
      * @param array $feeds 
      * @param string $channel
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function addFeeds($feeds, $channel = 'default') {
         if (!is_array($feeds)) {
-            throw new \InvalidArgumentException('feeds not valid (' . gettype($feeds) . ')');
+            throw new InvalidArgumentException('feeds not valid (' . gettype($feeds) . ')');
         }
         if (!is_string($channel)) {
-            throw new \InvalidArgumentException('channel not valid (' . gettype($channel) . ')');
+            throw new InvalidArgumentException('channel not valid (' . gettype($channel) . ')');
         }
         foreach ($feeds as $feed) {
             $this->addFeed($feed, $channel);
@@ -169,7 +176,7 @@ class Feed {
      */
     public function setFeeds($feeds, $channel = 'default') {
         if (!is_array($feeds)) {
-            throw new \Exception('feeds not valid (' . gettype($feeds) . ')');
+            throw new InvalidArgumentException('feeds not valid (' . gettype($feeds) . ')');
         }
         if (count($feeds)) {
             $this->clearFeeds($channel);

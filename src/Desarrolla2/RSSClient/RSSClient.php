@@ -42,11 +42,6 @@ class RSSClient implements RSSClientInterface {
     protected $httpClient;
 
     /**
-     * @var array 
-     */
-    protected $errors = array();
-
-    /**
      * Constructor
      * 
      * @param \Desarrolla2\RSSClient\Sanitizer\SanitizerInterface $sanitizer
@@ -156,15 +151,7 @@ class RSSClient implements RSSClientInterface {
         $this->sanitizer = $sanitizer;
     }
 
-    /**
-     * Add Error to stack
-     * 
-     * @param string $message
-     */
-    protected function addError($message) {
-        $message = (string) $message;
-        array_push($this->errors, $message);
-    }
+
 
     /**
      * @param \DOMElement $node
