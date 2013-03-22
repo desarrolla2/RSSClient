@@ -14,34 +14,35 @@ namespace Desarrolla2\RSSClient;
 
 use Desarrolla2\RSSClient\RSSNode;
 use Desarrolla2\RSSClient\RSSClientInterface;
-use Desarrolla2\RSSClient\HTTPClient\HTTPClient;
-use Desarrolla2\RSSClient\HTTPClient\HTTPClientInterface;
-use Desarrolla2\RSSClient\Sanitizer\Sanitizer;
-use Desarrolla2\RSSClient\Sanitizer\SanitizerInterface;
+use Desarrolla2\RSSClient\Handler\HTTP\HTTPHandler;
+use Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerInterface;
+use Desarrolla2\RSSClient\Handler\Feed\FeedHandler;
+use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandler;
+use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface;
 
 /**
  * 
- * Description of Client
+ * Description of RSSClient
  *
  * @author : Daniel González <daniel.gonzalez@freelancemadrid.es> 
  * @file : Client.php , UTF-8
  * @date : Oct 3, 2012 , 2:07:02 AM
  */
-class RSSClient implements RSSClientInterface {
+class RSSClient extends FeedHandler implements RSSClientInterface {
 
-    const MAX_NODES_DEFAULT = 100;
+    const MAX_NODES_DEFAULT = 200;
 
     /**
      *
-     * @var \Desarrolla2\RSSClient\Sanitizer\SanitizerInterface;
+     * @var \Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface;
      */
-    protected $sanitizer;
+    protected $sanitizerHandler;
 
     /**
      *
      * @var \Guzzle\Http\ClientInterface 
      */
-    protected $httpClient;
+    protected $httpHandler;
 
     /**
      * Constructor
@@ -50,32 +51,29 @@ class RSSClient implements RSSClientInterface {
      * @param string $channel
      * @param array $feeds
      */
-    public function __construct($feeds = array(), $channel = 'default') {
-        $this->httpClient = new HTTPClient();
-        $this->sanitizer = new Sanitizer();
-
-        if (is_array($feeds)) {
-            $this->setFeeds($feeds, $channel);
-        }
+    public function __construct(array $feeds = array(), $channel = 'default') {
+        $this->httpHandler = new HTTPHandler();
+        $this->sanitizerHandler = new SanitizerHandler();
+        $this->setFeeds($feeds, $channel);
     }
 
     /**
      * set HTTPClient
      * 
-     * @param \Desarrolla2\RSSClient\HTTPClient\HTTPClientInterface $client
+     * @param \Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerInterface $handler
      * @return type
      */
-    public function setHTTPClient(HTTPClientInterface $client) {
-        $this->httpClient = $client;
+    public function setHTTPHandler(HTTPHandlerInterface $handler) {
+        $this->httpHandler = $handler;
     }
 
     /**
      * Set Sanitizer
      * 
-     * @param \Desarrolla2\RSSClient\Sanitizer\SanitizerInterface $sanitizer
+     * @param \Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface $handler
      */
-    public function setSanitizer(SanitizerInterface $sanitizer) {
-        $this->sanitizer = $sanitizer;
+    public function setSanitizerHandler(SanitizerHandlerInterface $handler) {
+        $this->sanitizerHandler = $handler;
     }
 
     /**
@@ -239,7 +237,7 @@ class RSSClient implements RSSClientInterface {
      */
     protected function fetchHTTP($feedUrl) {
         try {
-            return $this->httpClient->get($feedUrl);
+            return $this->httpHandler->get($feedUrl);
         } catch (Exception $e) {
             $this->addError($e->getMessage());
         }

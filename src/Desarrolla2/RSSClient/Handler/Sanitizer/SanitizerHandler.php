@@ -10,9 +10,10 @@
  * with this package in the file LICENSE.
  */
 
-namespace Desarrolla2\RSSClient\Sanitizer;
+namespace Desarrolla2\RSSClient\Handler\Sanitizer;
 
-use Desarrolla2\RSSClient\Sanitizer\SanitizerInterface;
+use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface;
+use Desarrolla2\RSSClient\Exception\InvalidArgumentException;
 
 /**
  * 
@@ -22,8 +23,7 @@ use Desarrolla2\RSSClient\Sanitizer\SanitizerInterface;
  * @file : Sanitizer.php , UTF-8
  * @date : Oct 3, 2012 , 11:14:19 AM
  */
-class Sanitizer implements SanitizerInterface
-{
+class SanitizerHandler implements SanitizerHandlerInterface {
 
     /**
      * @var HTMLPurifier
@@ -34,13 +34,14 @@ class Sanitizer implements SanitizerInterface
      * 
      * @param type $cacheDirectory
      */
-    public function __construct($cacheDirectory = '/tmp')
-    {
+    public function __construct($cacheDirectory = '/tmp') {
+
+        if (!is_writable($cacheDirectory)) {
+            throw new InvalidArgumentException($cacheDirectory . ' is not writable');
+        }
         // require to configure some CONSTANST
         new \HTMLPurifier_Bootstrap();
         $config = \HTMLPurifier_Config::createDefault();
-
-        // require that it is writable
         $config->set('Cache.SerializerPath', $cacheDirectory);
         $this->purifier = new \HTMLPurifier($config);
     }
@@ -51,8 +52,7 @@ class Sanitizer implements SanitizerInterface
      * @param string $text
      * @return string
      */
-    public function doClean($text)
-    {
+    public function doClean($text) {
         return $this->purifier->purify($text);
     }
 

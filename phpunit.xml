@@ -13,7 +13,7 @@
             <directory>./Test</directory>
         </whitelist>
         <blacklist>
-            <directory>/usr/share/pear/PHP</directory>
+            <directory>/usr/share/pear/</directory>
             <directory>./vendor</directory>
             <directory>./build</directory>
         </blacklist>  

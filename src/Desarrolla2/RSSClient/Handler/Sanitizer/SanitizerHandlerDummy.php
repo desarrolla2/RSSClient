@@ -10,9 +10,9 @@
  * with this package in the file LICENSE.
  */
 
-namespace Desarrolla2\RSSClient\Sanitizer;
+namespace Desarrolla2\RSSClient\Handler\Sanitizer;
 
-use Desarrolla2\RSSClient\Sanitizer\SanitizerInterface;
+use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface;
 
 /**
  * 
@@ -22,7 +22,7 @@ use Desarrolla2\RSSClient\Sanitizer\SanitizerInterface;
  * @file : NoneSanitizer.php , UTF-8
  * @date : Feb 28, 2013 , 12:27:15 PM
  */
-class NoneSanitizer implements SanitizerInterface {
+class SanitizerHandlerDummy implements SanitizerHandlerInterface {
 
     /**
      * Not Sanitize

@@ -10,7 +10,7 @@
  * with this package in the file LICENSE.
  */
 
-namespace Desarrolla2\RSSClient\Sanitizer;
+namespace Desarrolla2\RSSClient\Handler\Sanitizer;
 
 /**
  * 
@@ -20,7 +20,7 @@ namespace Desarrolla2\RSSClient\Sanitizer;
  * @file : SanitizerInterface.php , UTF-8
  * @date : Oct 3, 2012 , 11:25:08 AM
  */
-interface SanitizerInterface 
+interface SanitizerHandlerInterface 
 {
     /**
      * 
