@@ -12,6 +12,9 @@
 
 namespace Desarrolla2\RSSClient;
 
+
+use Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerInterface;
+use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface;
 /**
  * 
  * Description of RSSClientInterface
