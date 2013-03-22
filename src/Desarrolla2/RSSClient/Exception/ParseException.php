@@ -9,16 +9,19 @@
  * This source file is subject to the MIT license that is bundled
  * with this package in the file LICENSE.
  */
-namespace;
+
+namespace Desarrolla2\RSSClient\Exception;
+
+use Desarrolla2\RSSClient\Exception\RuntimeException;
 
 /**
  * 
- * Description of Atom
+ * Description of ParseException
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>  
- * @file : Atom.php , UTF-8
- * @date : Mar 15, 2013 , 11:50:00 AM
+ * @file : ParseException.php , UTF-8
+ * @date : Mar 22, 2013 , 2:40:58 PM
  */
-class Atom {
+class ParseException extends RuntimeException {
     //put your code here
 }

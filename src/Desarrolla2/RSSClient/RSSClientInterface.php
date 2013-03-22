@@ -20,6 +20,6 @@ namespace Desarrolla2\RSSClient;
  * @file : ClientInterface.php , UTF-8
  * @date : Oct 3, 2012 , 2:07:10 AM
  */
-interface RSSClientInterface
-{
+interface RSSClientInterface {
+    
 }

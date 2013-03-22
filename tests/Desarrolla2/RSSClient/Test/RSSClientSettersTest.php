@@ -4,7 +4,7 @@
  * This file is part of the RSSClient proyect.
  * 
  * Copyright (c)
- * Daniel González Cerviño <daniel.gonzalez@externos.seap.minhap.es>  
+ * Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>  
  * 
  * This source file is subject to the MIT license that is bundled
  * with this package in the file LICENSE.
@@ -20,7 +20,7 @@ use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerDummy;
  * 
  * Description of RSSClientTest
  *
- * @author : Daniel González Cerviño <daniel.gonzalez@externos.seap.minhap.es>  
+ * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>  
  * @file : RSSClientTest.php , UTF-8
  * @date : Mar 19, 2013 , 6:23:26 PM
  */

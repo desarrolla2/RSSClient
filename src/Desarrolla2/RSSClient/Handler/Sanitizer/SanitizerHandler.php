@@ -53,7 +53,7 @@ class SanitizerHandler implements SanitizerHandlerInterface {
      * @return string
      */
     public function doClean($text) {
-        return $this->purifier->purify($text);
+        return trim($this->purifier->purify($text));
     }
 
 }

@@ -14,6 +14,7 @@ namespace Desarrolla2\RSSClient;
 
 use Desarrolla2\RSSClient\RSSNode;
 use Desarrolla2\RSSClient\RSSClientInterface;
+use Desarrolla2\RSSClient\Parser\FeedParser;
 use Desarrolla2\RSSClient\Handler\HTTP\HTTPHandler;
 use Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerInterface;
 use Desarrolla2\RSSClient\Handler\Feed\FeedHandler;
@@ -45,6 +46,12 @@ class RSSClient extends FeedHandler implements RSSClientInterface {
     protected $httpHandler;
 
     /**
+     *
+     * @var \Desarrolla2\RSSClient\Parser\FeedParser
+     */
+    protected $parser;
+
+    /**
      * Constructor
      * 
      * @param \Desarrolla2\RSSClient\Sanitizer\SanitizerInterface $sanitizer
@@ -54,6 +61,7 @@ class RSSClient extends FeedHandler implements RSSClientInterface {
     public function __construct(array $feeds = array(), $channel = 'default') {
         $this->httpHandler = new HTTPHandler();
         $this->sanitizerHandler = new SanitizerHandler();
+        $this->parser = new FeedParser();
         $this->setFeeds($feeds, $channel);
     }
 
@@ -109,92 +117,18 @@ class RSSClient extends FeedHandler implements RSSClientInterface {
             throw new \InvalidArgumentException('limit not valid (' . $limit . ')');
         }
         foreach ($this->feeds[$channel] as $feed) {
-            $feed = $this->fetchHTTP($feed);
-            if ($feed) {
-                $DOMDocument = new \DOMDocument();
-                $DOMDocument->strictErrorChecking = false;
-                try {
-                    if ($DOMDocument->loadXML($feed)) {
-                        $nodes = $DOMDocument->getElementsByTagName('item');
-                        foreach ($nodes as $node) {
-                            $this->parseDOMNode($node, $channel);
-                        }
-                    }
-                } catch (Exception $e) {
-                    $this->addError($e->getMessage());
+            try {
+                $feed = $this->fetchHTTP($feed);
+                if ($feed) {
+                    $nodes = $this->parser->parse($feed, $this->sanitizerHandler);
                 }
+            } catch (Exception $e) {
+                $this->addError($e->getMessage());
             }
         }
         $this->sort($channel);
 
         return $this->getNodes($channel, $limit);
-    }
-
-    /**
-     * @param \DOMElement $node
-     * @param string $channel
-     */
-    protected function parseDOMNode(\DOMElement $DOMnode, $channel) {
-        $node = array();
-        $properties = array('title', 'link', 'description', 'author',
-            'category', 'comments', 'enclosure', 'guid',
-            'pubDate', 'source');
-        foreach ($properties as $property) {
-            $node[$property] = $this->getNodeProperty($DOMnode, $property);
-        }
-        foreach ($node as $key => $value) {
-            if ($key == 'category') {
-                $node['categories'][] = $this->doClean($value);
-                continue;
-            }
-            $node[$key] = $this->doClean($value);
-        }
-        $this->addNode(
-                new RSSNode($node), $channel
-        );
-    }
-
-    /**
-     * Add node
-     * 
-     * @param RSSNode $node
-     * @param string $channel
-     */
-    protected function addNode(RSSNode $node, $channel = 'default') {
-        if (!isset($this->nodes[$channel])) {
-            $this->nodes[$channel] = array();
-        }
-        if (!is_array($this->nodes[$channel])) {
-            $this->nodes[$channel] = array();
-        }
-        array_push($this->nodes[$channel], $node);
-    }
-
-    /**
-     * 
-     * @param string $text
-     * @return string
-     */
-    protected function doClean($text) {
-        return $this->sanitizer->doClean($text);
-    }
-
-    /**
-     * 
-     * @param \DOMElement $DOMnode
-     * @param string $propertyName
-     * @return string
-     */
-    protected function getNodeProperty(\DOMElement $DOMnode, $propertyName) {
-        try {
-            $propertyValue = $DOMnode->getElementsByTagName($propertyName)->item(0);
-            if ($propertyValue) {
-                return $propertyValue->nodeValue;
-            }
-        } catch (Exception $e) {
-            $this->addError($e->getMessage());
-        }
-        return '';
     }
 
     /**

@@ -9,7 +9,10 @@
  * This source file is subject to the MIT license that is bundled
  * with this package in the file LICENSE.
  */
-namespace;
+
+namespace Desarrolla2\RSSClient\Node;
+
+use Desarrolla2\RSSClient\Node\Node;
 
 /**
  * 
@@ -17,8 +20,8 @@ namespace;
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>  
  * @file : RSS.php , UTF-8
- * @date : Mar 15, 2013 , 11:49:56 AM
+ * @date : Mar 15, 2013 , 11:49:45 AM
  */
-class RSS {
-    //put your code here
+class RSS20 extends Node {
+    
 }
