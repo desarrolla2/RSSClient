@@ -15,9 +15,9 @@ namespace Desarrolla2\RSSClient\Parser;
 use \DOMDocument;
 use Desarrolla2\RSSClient\Parser\ParserInterface;
 use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface;
-use Desarrolla2\RSSClient\Exception\RuntimeException;
 use Desarrolla2\RSSClient\Node\NodeCollection;
 use Desarrolla2\RSSClient\Factory\RSS20NodeFactory;
+use Desarrolla2\RSSClient\Exception\ParseException;
 
 /**
  * 
@@ -53,21 +53,23 @@ class FeedParser implements ParserInterface {
         try {
             $this->xml->loadXML($feed);
         } catch (\Exception $e) {
-            throw new RuntimeException($e->getMessage());
+            throw new ParseException($e->getMessage());
         }
 
         switch ($this->getSchema()) {
             case 'RSS20':
                 $factory = new RSS20NodeFactory($sanitizer);
                 $items = $this->xml->getElementsByTagName('item');
-                foreach ($items as $item) {
-                    try {
-                        $node = $factory->create($item);
-                        if ($node) {
-                            $this->nodes->append($node);
+                if ($items->length) {
+                    foreach ($items as $item) {
+                        try {
+                            $node = $factory->create($item);
+                            if ($node) {
+                                $this->nodes->append($node);
+                            }
+                        } catch (\Exception $e) {
+                            throw new ParseException($e->getMessage());
                         }
-                    } catch (\Exception $e) {
-                        
                     }
                 }
                 break;

@@ -69,19 +69,18 @@ abstract class AbstractNodeFactory {
      * @return array
      */
     protected function getNodeValues(\DOMElement $DOMnode, $propertyName) {
-        try {
+        $values = array();
+        try {            
             $results = $DOMnode->getElementsByTagName($propertyName);
-            if ($results->length) {
-                $values = array();
+            if ($results->length) {                
                 foreach ($results as $result) {
-                    $values = $result->nodeValue;
+                    $values[] = $result->nodeValue;
                 }
-                return $values;
-            }
+            }            
         } catch (\Exception $e) {
             throw new ParseException($e->getMessage());
         }
-        return false;
+        return $values;
     }
 
 }

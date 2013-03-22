@@ -15,6 +15,7 @@ namespace Desarrolla2\RSSClient\Factory;
 use Desarrolla2\RSSClient\Factory\AbstractNodeFactory;
 use Desarrolla2\RSSClient\Node\RSS20;
 use \DOMElement;
+use \DateTime;
 
 /**
  * 
@@ -37,8 +38,8 @@ class RSS20NodeFactory extends AbstractNodeFactory {
         $properties = array(
             'title', 'link', 'description', 'author',
             'comments', 'enclosure', 'guid',
-            'pubDate', 'source'
-        );
+            'source'
+        );        
         foreach ($properties as $propertyName) {
             $value = $this->getNodeValue($item, $propertyName);
             if ($value) {
@@ -47,13 +48,19 @@ class RSS20NodeFactory extends AbstractNodeFactory {
                         $this->doClean($value)
                 );
             }
-        }
+        }    
+        
         $categories = $this->getNodeValues($item, 'category');
-        var_dump($categories);
         foreach ($categories as $category) {
-            $node->setCategory(
+            $node->addCategory(
                     $this->doClean($category)
             );
+        }
+        $value = $this->getNodeValue($item, 'pubDate');
+        if ($value) {
+            if (strtotime($value)) {
+                $node->setPubDate(new DateTime($value));
+            }
         }
         return $node;
     }
