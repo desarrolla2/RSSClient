@@ -12,7 +12,6 @@
 
 namespace Desarrolla2\RSSClient;
 
-use Desarrolla2\RSSClient\RSSNode;
 use Desarrolla2\RSSClient\RSSClientInterface;
 use Desarrolla2\RSSClient\Parser\FeedParser;
 use Desarrolla2\RSSClient\Handler\HTTP\HTTPHandler;
