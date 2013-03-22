@@ -21,5 +21,10 @@ namespace Desarrolla2\RSSClient;
  * @date : Oct 3, 2012 , 2:07:10 AM
  */
 interface RSSClientInterface {
-    
+
+    public function setHTTPHandler(HTTPHandlerInterface $handler);
+
+    public function setSanitizerHandler(SanitizerHandlerInterface $handler);
+
+    public function fetch($channel = 'default');
 }

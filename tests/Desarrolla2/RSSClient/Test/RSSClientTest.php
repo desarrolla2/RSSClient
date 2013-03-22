@@ -24,7 +24,7 @@ use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerDummy;
  * @file : RSSClientTest.php , UTF-8
  * @date : Mar 19, 2013 , 6:23:26 PM
  */
-class RSSClientSettersTest extends \PHPUnit_Framework_TestCase {
+class RSSClientTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @var \Desarrolla2\RSSClient\Handler\RSSClient;
@@ -52,6 +52,13 @@ class RSSClientSettersTest extends \PHPUnit_Framework_TestCase {
     public function testSetSanitizerHandler() {
         $this->client->setSanitizerHandler(new SanitizerHandlerDummy());
         $this->assertTrue(true);
+    }
+    /**
+     * @test
+     */
+    public function testFetch() {
+        $nodes = $this->client->fetch();
+        $this->assertEquals($nodes->count(), 0);
     }
 
 }
