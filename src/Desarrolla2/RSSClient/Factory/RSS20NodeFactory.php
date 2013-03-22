@@ -12,6 +12,7 @@
 
 namespace Desarrolla2\RSSClient\Factory;
 
+use Desarrolla2\RSSClient\Exception\ParseException;
 use Desarrolla2\RSSClient\Factory\AbstractNodeFactory;
 use Desarrolla2\RSSClient\Node\RSS20;
 use \DOMElement;
@@ -34,12 +35,11 @@ class RSS20NodeFactory extends AbstractNodeFactory {
      */
     public function create(DOMElement $item) {
         $node = new RSS20;
-
         $properties = array(
             'title', 'link', 'description', 'author',
             'comments', 'enclosure', 'guid',
             'source'
-        );        
+        );
         foreach ($properties as $propertyName) {
             $value = $this->getNodeValue($item, $propertyName);
             if ($value) {
@@ -48,8 +48,8 @@ class RSS20NodeFactory extends AbstractNodeFactory {
                         $this->doClean($value)
                 );
             }
-        }    
-        
+        }
+
         $categories = $this->getNodeValues($item, 'category');
         foreach ($categories as $category) {
             $node->addCategory(
@@ -61,6 +61,9 @@ class RSS20NodeFactory extends AbstractNodeFactory {
             if (strtotime($value)) {
                 $node->setPubDate(new DateTime($value));
             }
+        }
+        if (!$node->getGuid()) {
+            throw new ParseException('Guid not found');
         }
         return $node;
     }

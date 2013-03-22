@@ -47,13 +47,4 @@ class FeedParserTest extends \PHPUnit_Framework_TestCase {
         $this->parser->parse('my string', $this->sanitizer);
     }
 
-    /**
-     * @test
-     */
-    public function parseNYTTest() {
-        $feed = file_get_contents(__DIR__ . '/data/nyt.xml');
-        $nodes = $this->parser->parse($feed, $this->sanitizer);
-        $this->assertEquals($nodes->count(), 25);
-    }
-
 }

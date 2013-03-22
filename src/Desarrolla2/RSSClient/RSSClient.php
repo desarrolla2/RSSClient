@@ -20,6 +20,7 @@ use Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerInterface;
 use Desarrolla2\RSSClient\Handler\Feed\FeedHandler;
 use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandler;
 use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface;
+use Desarrolla2\RSSClient\Node\NodeCollection;
 
 /**
  * 
@@ -30,8 +31,6 @@ use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface;
  * @date : Oct 3, 2012 , 2:07:02 AM
  */
 class RSSClient extends FeedHandler implements RSSClientInterface {
-
-    const MAX_NODES_DEFAULT = 200;
 
     /**
      *
@@ -85,19 +84,6 @@ class RSSClient extends FeedHandler implements RSSClientInterface {
     }
 
     /**
-     * Retrieve the number of nodes from a chanel
-     * 
-     * @param string $channel
-     * @return int count $nodes
-     */
-    public function countNodes($channel = 'default') {
-        if (!isset($this->nodes[$channel])) {
-            $this->nodes[$channel] = array();
-        }
-        return count($this->nodes[$channel]);
-    }
-
-    /**
      * Retrieve nodes from a chanel
      * 
      * @param int $limit
@@ -105,7 +91,7 @@ class RSSClient extends FeedHandler implements RSSClientInterface {
      * @return array $nodes
      * @throws \InvalidArgumentException
      */
-    public function fetch($channel = 'default', $limit = self::MAX_NODES_DEFAULT) {
+    public function fetch($channel = 'default') {
         if (!is_string($channel)) {
             throw new \InvalidArgumentException('channel not valid (' . gettype($channel) . ')');
         }
@@ -116,52 +102,22 @@ class RSSClient extends FeedHandler implements RSSClientInterface {
         if (!$limit) {
             throw new \InvalidArgumentException('limit not valid (' . $limit . ')');
         }
+        $this->nodes = new NodeCollection();
         foreach ($this->feeds[$channel] as $feed) {
             try {
                 $feed = $this->fetchHTTP($feed);
                 if ($feed) {
                     $nodes = $this->parser->parse($feed, $this->sanitizerHandler);
+                    foreach ($nodes as $node) {
+                        $this->nodes->append($node);
+                    }
                 }
             } catch (Exception $e) {
                 $this->addError($e->getMessage());
             }
         }
-        $this->sort($channel);
-
-        return $this->getNodes($channel, $limit);
-    }
-
-    /**
-     * Retrieves a $limit number of nodes
-     * 
-     * @param int $limit
-     * @param string $channel
-     * @return array $nodes
-     */
-    protected function getNodes($channel = 'default', $limit = self::MAX_NODES_DEFAULT) {
-        if (!is_string($channel)) {
-            throw new \Exception('channel not valid (' . gettype($channel) . ')');
-        }
-        if (in_array($channel, $this->feeds)) {
-            throw new \Exception('channel not valid (' . $channel . ')');
-        }
-        if (!is_integer($limit)) {
-            throw new \Exception('limit not valid (' . gettype($limit) . ')');
-        }
-        if (is_array($this->nodes[$channel])) {
-            if (count($this->nodes[$channel])) {
-                $response = array();
-                for ($i = 0; $i < $limit; $i++) {
-                    if (isset($this->nodes[$channel][$i])) {
-                        array_push($response, $this->nodes[$channel][$i]);
-                    }
-                }
-                return $response;
-            }
-        }
-        $this->addError('Not nodes found in ' . $channel);
-
-        return false;
+        $this->nodes->short();
+        return $this->nodes;
     }
 
     /**
@@ -176,24 +132,6 @@ class RSSClient extends FeedHandler implements RSSClientInterface {
             $this->addError($e->getMessage());
         }
         return '';
-    }
-
-    /**
-     * Sort by buuble method
-     * 
-     * @param string $channel
-     */
-    protected function sort($channel = 'default') {
-        $countNodes = $this->countNodes($channel);
-        for ($i = 1; $i < $countNodes; $i++) {
-            for ($j = 0; $j < $countNodes - $i; $j++) {
-                if ($this->nodes[$channel][$j]->getTimestamp() < $this->nodes[$channel][$j + 1]->getTimestamp()) {
-                    $k = $this->nodes[$channel][$j + 1];
-                    $this->nodes[$channel][$j + 1] = $this->nodes[$channel][$j];
-                    $this->nodes[$channel][$j] = $k;
-                }
-            }
-        }
     }
 
 }
