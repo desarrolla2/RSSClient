@@ -64,14 +64,37 @@ class NYTTest extends \PHPUnit_Framework_TestCase {
     /**
      * @test
      */
-    public function firstItemTest() {
-        $this->assertEquals($this->first->getTitle(), 'At Yad Vashem in Israel, Obama Urges Action Against Racism');
-        $this->assertEquals($this->first->getGuid(), 'http://www.nytimes.com/2013/03/23/world/middleeast/president-obama-israel.html');        
-        $this->assertEquals($this->first->getDescription(), 'Short description');
-        $this->assertEquals($this->first->getLink(), 'http://www.nytimes.com/2013/03/23/world/middleeast/president-obama-israel.html?partner=rss&amp;emc=rss');
+    public function firstItemLinkTest() {
+        $this->assertEquals($this->first->getLink(), 'http://www.nytimes.com/2013/03/23/world/middleeast/president-obama-israel.html?partner=rss&emc=rss');
+//        $this->assertEquals(count($this->first->getCategories()), '4');
+    }
+
+    /**
+     * @test
+     */
+    public function firstItemPubDateTest() {
         $this->assertEquals($this->first->getPubDate()->format('d'), '22');
-        $this->assertEquals(count($this->first->getCategories()), '4');
-        
+    }
+
+    /**
+     * @test
+     */
+    public function firstItemTitleTest() {
+        $this->assertEquals($this->first->getTitle(), 'At Yad Vashem in Israel, Obama Urges Action Against Racism');
+    }
+
+    /**
+     * @test
+     */
+    public function firstItemGUIDTest() {
+        $this->assertEquals($this->first->getGuid(), 'http://www.nytimes.com/2013/03/23/world/middleeast/president-obama-israel.html');
+    }
+
+    /**
+     * @test
+     */
+    public function firstItemDescriptionTest() {
+        $this->assertEquals($this->first->getDescription(), 'Short description');
     }
 
 }

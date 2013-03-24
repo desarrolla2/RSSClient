@@ -53,12 +53,5 @@ class RSSClientTest extends \PHPUnit_Framework_TestCase {
         $this->client->setSanitizerHandler(new SanitizerHandlerDummy());
         $this->assertTrue(true);
     }
-    /**
-     * @test
-     */
-    public function testFetch() {
-        $nodes = $this->client->fetch();
-        $this->assertEquals($nodes->count(), 0);
-    }
 
 }

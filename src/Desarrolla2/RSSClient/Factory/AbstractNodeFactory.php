@@ -52,8 +52,12 @@ abstract class AbstractNodeFactory {
      */
     protected function getNodeValue(\DOMElement $DOMnode, $propertyName) {
         try {
-            $result = $DOMnode->getElementsByTagName($propertyName)->item(0);
-            if ($result) {
+            $list = $DOMnode->getElementsByTagName($propertyName);
+            for ($i = 0; $i < $list->length; $i++) {
+                $result = $list->item($i);
+                if (!$result->nodeValue) {
+                    continue;
+                }
                 return $result->nodeValue;
             }
         } catch (\Exception $e) {
@@ -70,13 +74,15 @@ abstract class AbstractNodeFactory {
      */
     protected function getNodeValues(\DOMElement $DOMnode, $propertyName) {
         $values = array();
-        try {            
+        try {
             $results = $DOMnode->getElementsByTagName($propertyName);
-            if ($results->length) {                
+            if ($results->length) {
                 foreach ($results as $result) {
-                    $values[] = $result->nodeValue;
+                    if ($result->nodeValue) {
+                        $values[] = $result->nodeValue;
+                    }
                 }
-            }            
+            }
         } catch (\Exception $e) {
             throw new ParseException($e->getMessage());
         }
