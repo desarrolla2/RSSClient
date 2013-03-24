@@ -47,6 +47,10 @@ class RSS20NodeFactory extends AbstractNodeFactory {
         return $node;
     }
 
+    /**
+     * 
+     * @return \Desarrolla2\RSSClient\Node\RSS20
+     */
     protected function getNode() {
         return new RSS20();
     }

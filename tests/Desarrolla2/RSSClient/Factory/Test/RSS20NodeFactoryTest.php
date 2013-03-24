@@ -27,10 +27,19 @@ use \DOMDocument;
 class RSS20NodeFactoryTest extends \PHPUnit_Framework_TestCase {
 
     /**
-     *
+     * @var \Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerDummy
+     */
+    protected $sanitizer;
+
+    /**
      * @var \Desarrolla2\RSSClient\Factory\RSS20NodeFactory
      */
     protected $factory;
+
+    /**
+     * @var \Desarrolla2\RSSClient\Node\RSS20
+     */
+    protected $node;
 
     /**
      * Setup
@@ -38,7 +47,6 @@ class RSS20NodeFactoryTest extends \PHPUnit_Framework_TestCase {
     public function setUp() {
         $this->sanitizer = new SanitizerHandlerDummy();
         $this->factory = new RSS20NodeFactory($this->sanitizer);
-        $this->sanitizer = new SanitizerHandlerDummy();
         $sting = file_get_contents(__DIR__ . '/data/rss20_item.xml');
         $doc = DOMDocument::loadXML($sting);
         $item = $doc->getElementsByTagName('item')->item(0);
