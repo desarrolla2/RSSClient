@@ -47,17 +47,8 @@ class RSS20NodeFactory extends AbstractNodeFactory {
         return $node;
     }
 
-    /**
-     * 
-     * @return \Desarrolla2\RSSClient\Node\RSS20
-     */
-    protected function getNode() {
-        return new RSS20();
-    }
-
     protected function setPubDate(DOMElement $item, RSS20 $node) {
-
-        $value = $this->getNodeValue($item, 'pubDate');
+        $value = $this->getNodeValueByTagName($item, 'pubDate');
         if ($value) {
             if (strtotime($value)) {
                 $node->setPubDate(new DateTime($value));
@@ -72,7 +63,7 @@ class RSS20NodeFactory extends AbstractNodeFactory {
             'guid', 'source'
         );
         foreach ($properties as $propertyName) {
-            $value = $this->getNodeValue($item, $propertyName);
+            $value = $this->getNodeValueByTagName($item, $propertyName);
             if ($value) {
                 $method = 'set' . $propertyName;
                 $node->$method(
@@ -83,7 +74,7 @@ class RSS20NodeFactory extends AbstractNodeFactory {
     }
 
     protected function setCategories(DOMElement $item, RSS20 $node) {
-        $categories = $this->getNodeValues($item, 'category');
+        $categories = $this->getNodeValuesByTagName($item, 'category');
         foreach ($categories as $category) {
             $node->addCategory(
                     $this->doClean($category)
@@ -92,7 +83,7 @@ class RSS20NodeFactory extends AbstractNodeFactory {
     }
 
     protected function setLink(DOMElement $item, RSS20 $node) {
-        $value = $this->getNodeValue($item, 'link');
+        $value = $this->getNodeValueByTagName($item, 'link');
         if ($this->isValidURL($value)) {
             $node->setLink(
                     $this->doClean($value)
@@ -101,9 +92,12 @@ class RSS20NodeFactory extends AbstractNodeFactory {
         }
     }
 
-    protected function isValidURL() {
-        // @TODO
-        return true;
+    /**
+     * 
+     * @return \Desarrolla2\RSSClient\Node\RSS20
+     */
+    protected function getNode() {
+        return new RSS20();
     }
 
 }

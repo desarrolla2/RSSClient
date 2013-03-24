@@ -14,6 +14,8 @@ namespace Desarrolla2\RSSClient\Factory;
 
 use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface;
 use Desarrolla2\RSSClient\Exception\ParseException;
+use Desarrolla2\RSSClient\Node\Node;
+use \DOMElement;
 
 /**
  * 
@@ -47,12 +49,12 @@ abstract class AbstractNodeFactory {
     /**
      * 
      * @param \DOMElement $DOMnode
-     * @param string $propertyName
+     * @param string $tagName
      * @return string
      */
-    protected function getNodeValue(\DOMElement $DOMnode, $propertyName) {
+    protected function getNodeValueByTagName(\DOMElement $DOMnode, $tagName) {
         try {
-            $list = $DOMnode->getElementsByTagName($propertyName);
+            $list = $DOMnode->getElementsByTagName($tagName);
             for ($i = 0; $i < $list->length; $i++) {
                 $result = $list->item($i);
                 if (!$result->nodeValue) {
@@ -64,18 +66,43 @@ abstract class AbstractNodeFactory {
             throw new ParseException($e->getMessage());
         }
         return false;
+    }   
+
+    /**
+     * 
+     * @param \DOMElement $DOMnode
+     * @param type $tagName
+     * @param type $propertyName
+     * @return type
+     * @throws ParseException
+     */
+    protected function getNodePropertiesByTagName(\DOMElement $DOMnode, $tagName, $propertyName) {
+        $values = array();
+        try {
+            $results = $DOMnode->getElementsByTagName($tagName);
+            if ($results->length) {
+                foreach ($results as $result) {
+                    if ($result->getAttribute($propertyName)) {
+                        $values[] = $result->getAttribute($propertyName);
+                    }
+                }
+            }
+        } catch (\Exception $e) {
+            throw new ParseException($e->getMessage());
+        }
+        return $values;
     }
 
     /**
      * 
      * @param \DOMElement $DOMnode
-     * @param string $propertyName
+     * @param string $tagName
      * @return array
      */
-    protected function getNodeValues(\DOMElement $DOMnode, $propertyName) {
+    protected function getNodeValuesByTagName(\DOMElement $DOMnode, $tagName) {
         $values = array();
         try {
-            $results = $DOMnode->getElementsByTagName($propertyName);
+            $results = $DOMnode->getElementsByTagName($tagName);
             if ($results->length) {
                 foreach ($results as $result) {
                     if ($result->nodeValue) {
@@ -87,6 +114,11 @@ abstract class AbstractNodeFactory {
             throw new ParseException($e->getMessage());
         }
         return $values;
+    }
+
+    protected function isValidURL() {
+        // @TODO
+        return true;
     }
 
 }
