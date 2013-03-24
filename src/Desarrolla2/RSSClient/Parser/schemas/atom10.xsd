@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <xs:schema targetNamespace="http://www.w3.org/2005/Atom" elementFormDefault="qualified" 
            attributeFormDefault="unqualified"
-           xmlns:atom="http://www.w3.org/2005/Atom" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+           xmlns:atom="http://www.w3.org/2005/Atom" xmlns:xs="http://www.w3.org/2001/XMLSchema">    
     <xs:annotation>
         <xs:documentation>
             This version of the Atom schema is based on version 1.0 of the format specifications,

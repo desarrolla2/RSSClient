@@ -17,6 +17,7 @@ use Desarrolla2\RSSClient\Parser\ParserInterface;
 use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface;
 use Desarrolla2\RSSClient\Node\NodeCollection;
 use Desarrolla2\RSSClient\Factory\RSS20NodeFactory;
+use Desarrolla2\RSSClient\Factory\Atom10NodeFactory;
 use Desarrolla2\RSSClient\Exception\ParseException;
 
 /**
@@ -29,7 +30,8 @@ use Desarrolla2\RSSClient\Exception\ParseException;
  */
 class FeedParser implements ParserInterface {
 
-    const RSS20_SCHEMA_FILE = '/schemas/rss20.xsd';
+    const RSS20_SCHEMA_FILE = 'rss20.xsd';
+    const ATOM10_SCHEMA_FILE = 'atom10.xsd';
 
     /**
      *
@@ -43,9 +45,15 @@ class FeedParser implements ParserInterface {
      */
     protected $nodes = array();
 
+    /**
+     * @var string
+     */
+    protected $schemaPath;
+
     public function __construct() {
         $this->xml = new DOMDocument();
         $this->xml->strictErrorChecking = false;
+        $this->schemaPath = __DIR__ . '/schemas/';
     }
 
     public function parse($feed, SanitizerHandlerInterface $sanitizer) {
@@ -59,19 +67,12 @@ class FeedParser implements ParserInterface {
         switch ($this->getSchema()) {
             case 'RSS20':
                 $factory = new RSS20NodeFactory($sanitizer);
-                $items = $this->xml->getElementsByTagName('item');
-                if ($items->length) {
-                    foreach ($items as $item) {
-                        try {
-                            $node = $factory->create($item);
-                            if ($node) {
-                                $this->nodes->append($node);
-                            }
-                        } catch (\Exception $e) {
-                            throw new ParseException($e->getMessage());
-                        }
-                    }
-                }
+                $this->parseTagsWithFactory('item', $factory);
+
+                break;
+            case 'ATOM10':
+                $factory = new Atom10NodeFactory($sanitizer);
+                $this->parseTagsWithFactory('entry', $factory);
                 break;
             default:
                 break;
@@ -80,9 +81,55 @@ class FeedParser implements ParserInterface {
         return $this->nodes;
     }
 
+    protected function parseTagsWithFactory($tagName, $factory) {
+        $items = $this->xml->getElementsByTagName($tagName);
+        if ($items->length) {
+            foreach ($items as $item) {
+                try {
+                    $node = $factory->create($item);
+                    if ($node) {
+                        $this->nodes->append($node);
+                    }
+                } catch (\Exception $e) {
+                    throw new ParseException($e->getMessage());
+                }
+            }
+        }
+    }
+
+    protected function isAtom10() {
+        try {
+            $nodes = $this->xml->getElementsByTagName('feed');
+            if ($nodes->length == 1) {
+                $feed = $nodes->item(0);
+                if ($feed->getAttribute('xmlns') == 'http://www.w3.org/2005/Atom') {
+                    return true;
+                }
+            }
+        } catch (Exception $e) {
+            
+        }
+        return false;
+    }
+
     protected function getSchema() {
-        if ($this->xml->schemaValidate(__DIR__ . self::RSS20_SCHEMA_FILE)) {
+        if ($this->trySchema(self::RSS20_SCHEMA_FILE)) {
             return 'RSS20';
+        }
+        //if ($this->trySchema(self::ATOM10_SCHEMA_FILE)) {
+        if ($this->isAtom10()) {
+            return 'ATOM10';
+        }
+        return false;
+    }
+
+    protected function trySchema($schema) {
+        try {
+            if ($this->xml->schemaValidate($this->schemaPath . $schema)) {
+                return true;
+            }
+        } catch (\Exception $e) {
+            //throw $e;
         }
         return false;
     }

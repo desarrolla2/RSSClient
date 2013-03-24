@@ -12,6 +12,8 @@
 
 namespace Desarrolla2\RSSClient\Node;
 
+use Desarrolla2\RSSClient\Node\Node;
+
 /**
  * 
  * Description of NodeCollection
@@ -22,31 +24,47 @@ namespace Desarrolla2\RSSClient\Node;
  */
 class NodeCollection extends \ArrayObject {
 
-    public function getFirst() {
-        return $this[0];
-    }
-
-    public function getLast() {
-        return $this[$this->count() - 1];
-    }
-
-    public function short() {
-        
+    /**
+     * 
+     * @param \Desarrolla2\RSSClient\Node\Node $node
+     */
+    public function append(Node $node) {
+        parent::append($node);
     }
 
     /**
-     * Sort by buuble method
      * 
-     * @param string $channel
+     * @return \Desarrolla2\RSSClient\Node\Node | boolean
      */
-    protected function AUXsort($channel = 'default') {
-        $countNodes = $this->countNodes($channel);
-        for ($i = 1; $i < $countNodes; $i++) {
-            for ($j = 0; $j < $countNodes - $i; $j++) {
-                if ($this->nodes[$channel][$j]->getTimestamp() < $this->nodes[$channel][$j + 1]->getTimestamp()) {
-                    $k = $this->nodes[$channel][$j + 1];
-                    $this->nodes[$channel][$j + 1] = $this->nodes[$channel][$j];
-                    $this->nodes[$channel][$j] = $k;
+    public function getFirst() {
+        if (isset($this[0])) {
+            return $this[0];
+        }
+        return false;
+    }
+
+    /**
+     * 
+     * @return \Desarrolla2\RSSClient\Node\Node | boolean
+     */
+    public function getLast() {
+        if (isset($this[$this->count() - 1])) {
+            return $this[$this->count() - 1];
+        }
+        return false;
+    }
+
+    /**
+     * Sort by bubble method
+     */
+    public function short() {
+        $total = $this->count();
+        for ($i = 1; $i < $total; $i++) {
+            for ($j = 0; $j < $total - $i; $j++) {
+                if ($this[$j]->getPubDate()->getTimestamp() < $this[$j + 1]->getPubDate()->getTimestamp()) {
+                    $aux = $this[$j + 1];
+                    $this[$j + 1] = $this[$j];
+                    $this[$j] = $aux;
                 }
             }
         }
