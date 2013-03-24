@@ -12,8 +12,6 @@
 
 namespace Desarrolla2\RSSClient\Node;
 
-use Desarrolla2\RSSClient\Node\Node;
-
 /**
  * 
  * Description of NodeCollection
@@ -28,7 +26,8 @@ class NodeCollection extends \ArrayObject {
      * 
      * @param \Desarrolla2\RSSClient\Node\Node $node
      */
-    public function append(Node $node) {
+    public function append($node) {
+        // @TODO: validate $node is valid Node
         parent::append($node);
     }
 

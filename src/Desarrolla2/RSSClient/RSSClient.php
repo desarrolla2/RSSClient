@@ -52,7 +52,6 @@ class RSSClient extends FeedHandler implements RSSClientInterface {
     /**
      * Constructor
      * 
-     * @param \Desarrolla2\RSSClient\Sanitizer\SanitizerInterface $sanitizer
      * @param string $channel
      * @param array $feeds
      */
@@ -96,10 +95,6 @@ class RSSClient extends FeedHandler implements RSSClientInterface {
         }
         if (!isset($this->feeds[$channel])) {
             throw new \InvalidArgumentException('channel not valid (' . $channel . ')');
-        }
-        $limit = (int) $limit;
-        if (!$limit) {
-            throw new \InvalidArgumentException('limit not valid (' . $limit . ')');
         }
         $this->nodes = new NodeCollection();
         foreach ($this->feeds[$channel] as $feed) {
