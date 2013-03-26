@@ -9,14 +9,10 @@
  * This source file is subject to the MIT license that is bundled
  * with this package in the file LICENSE.
  */
-
-namespace Desarrolla2\RSSClient\Cache;
-<<<<<<< HEAD
-
 use Desarrolla2\RSSClient\Cache\RSSClient as BaseClient;
 use Desarrolla2\Cache\CacheInterface;
-=======
->>>>>>> 419b0284fe7646ec7bd66ff7e382da8ed6693bb7
+use Desarrolla2\Cache\Cache;
+use Desarrolla2\Cache\Adapter\NotCache;
 
 /**
  * 
@@ -50,7 +46,7 @@ class RSSClient extends BaseClient {
      * @param string $channel
      */
     public function __construct($feeds = array(), $channel = 'default') {
-        $this->cache = $cache;
+        $this->cache = new Cache(new NotCache());
         parent::__construct($feeds, $channel);
     }
 

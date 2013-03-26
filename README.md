@@ -61,13 +61,12 @@ repository [Github] (https://github.com/desarrolla2/Cache).
 ``` php
     <?php
 
-    use Desarrolla2\RSSClient\RSSCacheClient;
-    use Desarrolla2\RSSClient\Sanitizer\Sanitizer;
+    use Desarrolla2\RSSClient\Cache\RSSClient;
     use Desarrolla2\Cache\Cache;
     use Desarrolla2\Cache\Adapter\NotCache;
 
     // It is important that you select and configure your cache adapter
-    $client = new RSSCacheClient(new Cache(new File('/tmp')));
+    $client = new RSSCacheClient());
 
 ```
 
