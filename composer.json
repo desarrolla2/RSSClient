@@ -1,7 +1,7 @@
 {
     "name": "desarrolla2/rss-client",
-    "description": "A independent RSS client manager library.",
-    "keywords": ["rss"],
+    "description": "A simple to use RSS client library.",
+    "keywords": ["rss", "rss20", "feed", "feed parser", "atom10"],
     "type": "library",
     "license": "MIT",
     "authors": [
