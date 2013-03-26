@@ -2,9 +2,12 @@
 
 [![Build Status](https://secure.travis-ci.org/desarrolla2/RSSClient.png)](http://travis-ci.org/desarrolla2/RSSClient)
 
-A simple to use RSS client library.
+RSSClient is a simple to use RSS library to fetch and use RSS feeds.
+RSSClient is very fast!
 
 You can read the RSS specification on [RFC](http://cyber.law.harvard.edu/rss/rss.html)
+
+RSSClient Support Atom1.0 now.
 
 
 ## Installation
@@ -63,10 +66,11 @@ repository [Github] (https://github.com/desarrolla2/Cache).
 
     use Desarrolla2\RSSClient\Cache\RSSClient;
     use Desarrolla2\Cache\Cache;
-    use Desarrolla2\Cache\Adapter\NotCache;
+    use Desarrolla2\Cache\Adapter\File;
 
     // It is important that you select and configure your cache adapter
-    $client = new RSSCacheClient());
+    $client = new RSSClient());
+    $client->setCache(new Cache(new File('tmp')));
 
 ```
 
@@ -86,9 +90,6 @@ The rest of the procedure is exactly the same as if you were using the client wi
     $feeds = $client->fetch('news');
 
 ```
-## Coming soon
-
-* This client only was tested with RSS2.0 other format not guaranteed.
 
 ## Contact
 
