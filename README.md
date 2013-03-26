@@ -91,6 +91,11 @@ The rest of the procedure is exactly the same as if you were using the client wi
 
 ```
 
+## Formats
+
+* RSS20
+* Atom10
+
 ## Contact
 
 You can contact with me on [twitter](https://twitter.com/desarrolla2).
