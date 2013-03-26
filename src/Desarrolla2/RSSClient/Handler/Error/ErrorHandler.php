@@ -28,6 +28,27 @@ class ErrorHandler {
     protected $errors = array();
 
     /**
+     * Retrieve last Error
+     * 
+     * @return string $lastError | false
+     */
+    public function getLastError() {
+        if ($this->hasErrors()) {
+            if (isset($errors[count($errors) - 1])) {
+                return $errors[count($errors) - 1];
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Clear error Stack
+     */
+    public function clearErrors() {
+        $this->errors = array();
+    }
+
+    /**
      * Retrieve errors stack
      * 
      * @return array
@@ -47,11 +68,10 @@ class ErrorHandler {
     /**
      * Add Error to stack
      * 
-     * @param string $message
+     * @param string $errorString
      */
-    protected function addError($message) {
-        $message = (string) $message;
-        array_push($this->errors, $message);
+    protected function addError($errorString) {
+        $this->errors[] = (string) $errorString;
     }
 
 }
