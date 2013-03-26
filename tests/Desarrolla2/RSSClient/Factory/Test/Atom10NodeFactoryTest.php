@@ -48,17 +48,18 @@ class Atom10NodeFactoryTest extends \PHPUnit_Framework_TestCase {
         $this->sanitizer = new SanitizerHandlerDummy();
         $this->factory = new Atom10NodeFactory($this->sanitizer);
         $sting = file_get_contents(__DIR__ . '/data/atom10_item.xml');
-        $doc = DOMDocument::loadXML($sting);
-        $item = $doc->getElementsByTagName('entry')->item(0);
+        $dom = new DOMDocument();
+        $dom->loadXML($sting);
+        $item = $dom->getElementsByTagName('entry')->item(0);
         $this->node = $this->factory->create($item);
     }
-        /**
+
+    /**
      * @test
      */
     public function testLink() {
         $this->assertEquals('http://www.ubuntuleon.com/2013/03/gps-para-seres-humanos-ii-instalando.html', $this->node->getLink());
     }
-    
 
     /**
      * @test

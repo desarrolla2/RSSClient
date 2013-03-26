@@ -48,8 +48,9 @@ class RSS20NodeFactoryTest extends \PHPUnit_Framework_TestCase {
         $this->sanitizer = new SanitizerHandlerDummy();
         $this->factory = new RSS20NodeFactory($this->sanitizer);
         $sting = file_get_contents(__DIR__ . '/data/rss20_item.xml');
-        $doc = DOMDocument::loadXML($sting);
-        $item = $doc->getElementsByTagName('item')->item(0);
+        $dom = new DOMDocument();
+        $dom->loadXML($sting);
+        $item = $dom->getElementsByTagName('item')->item(0);
         $this->node = $this->factory->create($item);
     }
 
