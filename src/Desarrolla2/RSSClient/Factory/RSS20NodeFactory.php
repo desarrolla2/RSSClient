@@ -34,14 +34,36 @@ class RSS20NodeFactory extends AbstractNodeFactory {
      * @return \Desarrolla2\RSSClient\Node\RSS20
      */
     public function create(DOMElement $item) {
-        $node = new RSS20;
+        $node = $this->getNode();
+
+        $this->setProperties($item, $node);
+        $this->setLink($item, $node);
+        $this->setCategories($item, $node);
+        $this->setPubDate($item, $node);
+
+        if (!$node->getGuid()) {
+            throw new ParseException('Guid not found');
+        }
+        return $node;
+    }
+
+    protected function setPubDate(DOMElement $item, RSS20 $node) {
+        $value = $this->getNodeValueByTagName($item, 'pubDate');
+        if ($value) {
+            if (strtotime($value)) {
+                $node->setPubDate(new DateTime($value));
+            }
+        }
+    }
+
+    protected function setProperties(DOMElement $item, RSS20 $node) {
         $properties = array(
-            'title', 'link', 'description', 'author',
-            'comments', 'enclosure', 'guid',
-            'source'
+            'title', 'description',
+            'author', 'comments', 'enclosure',
+            'guid', 'source'
         );
         foreach ($properties as $propertyName) {
-            $value = $this->getNodeValue($item, $propertyName);
+            $value = $this->getNodeValueByTagName($item, $propertyName);
             if ($value) {
                 $method = 'set' . $propertyName;
                 $node->$method(
@@ -49,23 +71,33 @@ class RSS20NodeFactory extends AbstractNodeFactory {
                 );
             }
         }
+    }
 
-        $categories = $this->getNodeValues($item, 'category');
+    protected function setCategories(DOMElement $item, RSS20 $node) {
+        $categories = $this->getNodeValuesByTagName($item, 'category');
         foreach ($categories as $category) {
             $node->addCategory(
                     $this->doClean($category)
             );
         }
-        $value = $this->getNodeValue($item, 'pubDate');
-        if ($value) {
-            if (strtotime($value)) {
-                $node->setPubDate(new DateTime($value));
-            }
+    }
+
+    protected function setLink(DOMElement $item, RSS20 $node) {
+        $value = $this->getNodeValueByTagName($item, 'link');
+        if ($this->isValidURL($value)) {
+            $node->setLink(
+                    $this->doClean($value)
+            );
+            return;
         }
-        if (!$node->getGuid()) {
-            throw new ParseException('Guid not found');
-        }
-        return $node;
+    }
+
+    /**
+     * 
+     * @return \Desarrolla2\RSSClient\Node\RSS20
+     */
+    protected function getNode() {
+        return new RSS20();
     }
 
 }

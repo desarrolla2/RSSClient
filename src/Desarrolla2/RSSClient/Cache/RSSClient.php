@@ -11,9 +11,12 @@
  */
 
 namespace Desarrolla2\RSSClient\Cache;
+<<<<<<< HEAD
 
 use Desarrolla2\RSSClient\Cache\RSSClient as BaseClient;
 use Desarrolla2\Cache\CacheInterface;
+=======
+>>>>>>> 419b0284fe7646ec7bd66ff7e382da8ed6693bb7
 
 /**
  * 
