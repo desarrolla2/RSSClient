@@ -60,7 +60,16 @@ class Atom10NodeFactoryTest extends \PHPUnit_Framework_TestCase {
                 'En el primer artículo de la serie ...',
                 '19',
                 6,
-            )
+            ),
+            array(
+                '/data/atom10/unawebmaslibre.xml',
+                'LibreOffice 4 desde PPA',
+                'tag:blogger.com,1999:blog-1362653382943359046.post-748547809104154036',
+                'http://unawebmaslibre.blogspot.com/2013/03/libreoffice-4-desde-ppa.html',
+                'Al fin llegamos a la versión 4 ...',
+                '11',
+                4,
+            ),
         );
     }
 

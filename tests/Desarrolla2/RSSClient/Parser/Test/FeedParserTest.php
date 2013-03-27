@@ -50,6 +50,10 @@ class FeedParserTest extends \PHPUnit_Framework_TestCase {
                 25,
             ),
             array(
+                '/data/unawebmaslibre.atom',
+                25,
+            ),
+            array(
                 '/data/nyt.rss',
                 25,
             ),

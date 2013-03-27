@@ -65,7 +65,7 @@ class RSS20NodeFactoryTest extends \PHPUnit_Framework_TestCase {
                 4,
             ),
             array(
-                '/data/rss20/ubuntuleon.rss',
+                '/data/rss20/ubuntuleon.xml',
                 'GPS para seres humanos II. Instalando cartografía digital',
                 'tag:blogger.com,1999:blog-2720232213758762610.post-661750892382071101',
                 'http://www.ubuntuleon.com/2013/03/gps-para-seres-humanos-ii-instalando.html',
