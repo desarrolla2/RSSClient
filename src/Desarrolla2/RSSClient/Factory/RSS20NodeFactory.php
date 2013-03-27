@@ -88,7 +88,6 @@ class RSS20NodeFactory extends AbstractNodeFactory {
             $node->setLink(
                     $this->doClean($value)
             );
-            return;
         }
     }
 

@@ -68,7 +68,6 @@ class FeedParser implements ParserInterface {
             case 'RSS20':
                 $factory = new RSS20NodeFactory($sanitizer);
                 $this->parseTagsWithFactory('item', $factory);
-
                 break;
             case 'ATOM10':
                 $factory = new Atom10NodeFactory($sanitizer);
@@ -138,7 +137,7 @@ class FeedParser implements ParserInterface {
                 return true;
             }
         } catch (\Exception $e) {
-            //throw new ParseException($e->getMessage());
+            throw new ParseException($e->getMessage());
         }
         return false;
     }

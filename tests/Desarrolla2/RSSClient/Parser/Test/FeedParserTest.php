@@ -61,6 +61,14 @@ class FeedParserTest extends \PHPUnit_Framework_TestCase {
                 '/data/ubuntuleon.rss',
                 25,
             ),
+            array(
+                '/data/jhosmanlirazo.rss',
+                25,
+            ),
+            array(
+                '/data/ubuntuespana.rss',
+                7,
+            ),
         );
     }
 
