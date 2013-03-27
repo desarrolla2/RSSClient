@@ -46,10 +46,9 @@ class Atom10NodeFactoryTest extends \PHPUnit_Framework_TestCase {
      */
     public function setUp() {
         $this->sanitizer = new SanitizerHandlerDummy();
-        $this->factory = new Atom10NodeFactory($this->sanitizer);        
+        $this->factory = new Atom10NodeFactory($this->sanitizer);
     }
-    
-    
+
     public function dataProvider() {
         return array(
             array(
@@ -69,6 +68,15 @@ class Atom10NodeFactoryTest extends \PHPUnit_Framework_TestCase {
                 'Al fin llegamos a la versión 4 ...',
                 '11',
                 4,
+            ),
+            array(
+                '/data/atom10/elblogdediego.xml',
+                'Ubuntu tendrá su propio servidor gráfico y Unity volverá a Qt [Actualizada]',
+                'tag:blogger.com,1999:blog-432243268593805349.post-1743194106039184020',
+                'http://diegohacking.blogspot.com/2013/03/ubuntu-tendra-su-propio-servidor.html',
+                '<div dir="ltr" style="text-align: left;" trbidi="on"><span style="font-size: large;">Con más retraso del ...',
+                '8',
+                3,
             ),
         );
     }

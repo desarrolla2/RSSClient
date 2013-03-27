@@ -98,19 +98,37 @@ class FeedParser implements ParserInterface {
     }
 
     protected function getSchema() {
-        if ($this->trySchema(self::RSS20_SCHEMA_FILE)) {
-            return 'RSS20';
-        }
+//        if ($this->trySchema(self::RSS20_SCHEMA_FILE)) {
+//            return 'RSS20';
+//        }
 //        if ($this->trySchema(self::ATOM10_SCHEMA_FILE)) {
 //            return 'ATOM10';
 //        }
+        if ($this->isRSS20()) {
+            return 'RSS20';
+        }
         if ($this->isAtom10()) {
             return 'ATOM10';
         }
         return false;
     }
-    
-        protected function isAtom10() {
+
+    protected function isRSS20() {
+        try {
+            $nodes = $this->xml->getElementsByTagName('rss');
+            if ($nodes->length == 1) {
+                $feed = $nodes->item(0);
+                if ($feed->getAttribute('version') == '2.0') {
+                    return true;
+                }
+            }
+        } catch (Exception $e) {
+            throw new ParseException($e->getMessage());
+        }
+        return false;
+    }
+
+    protected function isAtom10() {
         try {
             $nodes = $this->xml->getElementsByTagName('feed');
             if ($nodes->length == 1) {
@@ -120,7 +138,7 @@ class FeedParser implements ParserInterface {
                 }
             }
         } catch (Exception $e) {
-            
+            throw new ParseException($e->getMessage());
         }
         return false;
     }

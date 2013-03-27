@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2enclosuresfull.xsl"?>
+<?xml-stylesheet type="text/css" media="screen" href="http://feeds.feedburner.com/~d/styles/itemcontent.css"?><!-- generator="FeedCreator 1.8.0-dev (info@mypapit.net)" -->
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+    <channel>
+        <title>Jhosman.com</title>
+        <description>Website con noticias y tips tecnológicos que seguro te serviran, sigueme!</description>
+        <link>http://jhosman.com/</link>
+        <lastBuildDate>Wed, 27 Mar 2013 13:40:50 GMT</lastBuildDate>
+        <generator>FeedCreator 1.8.0-dev (info@mypapit.net)</generator>
+        <atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/JhosmanLizarazo" />
+        <feedburner:info xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" uri="jhosmanlizarazo" />
+        <atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" />
+        <itunes:explicit>no</itunes:explicit>
+        <itunes:subtitle></itunes:subtitle>
+        <image>
+            <link>www.jhosman.com</link>
+            <url>http://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/273997_569819935_6878916_n.jpg</url>
+            <title>Jhosman.com</title>
+        </image>
+        <item>
+            <title>Como instalar #LibreOffice4 en #Ubuntu</title>
+            <link>http://jhosman.com/es/documentacion-ubuntu/oficina6/289-como-instalar-libreoffice-4-en-ubuntu.html</link>
+            <description>&lt;div class="wp-caption aligncenter" style="margin-right: auto;</description>
+            <author> yo@jhosman.com (Administrator)</author>
+            <pubDate>Thu, 07 Feb 2013 18:38:50 GMT</pubDate>
+            <guid isPermaLink="false">http://jhosman.com/es/documentacion-ubuntu/oficina6/289-como-instalar-libreoffice-4-en-ubuntu.html</guid>
+        </item>
+        <language>en-us</language>
+        <media:rating>nonadult</media:rating>
+    </channel>
+</rss>

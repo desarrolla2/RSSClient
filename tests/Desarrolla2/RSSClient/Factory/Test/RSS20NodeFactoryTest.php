@@ -73,6 +73,24 @@ class RSS20NodeFactoryTest extends \PHPUnit_Framework_TestCase {
                 '19',
                 6,
             ),
+            array(
+                '/data/rss20/ubuntuespana.xml',
+                'Ubuntu Phone: Premio a la Mejor Innovación del MWC 2013',
+                '133 at http://xn--ubuntu-espaa-khb.org',
+                'http://xn--ubuntu-espaa-khb.org/content/ubuntu-phone-premio-la-mejor-innovaci%C3%B3n-del-mwc-2013',
+                ' <p>La <a href="http://www.ubuntu.com/devices/phone">versión para móviles de Ubuntu</a> se ha hecho con ...',
+                '28',
+                0,
+            ),
+            array(
+                '/data/rss20/jhosmanlirazo.xml',
+                'Como instalar #LibreOffice4 en #Ubuntu',
+                'http://jhosman.com/es/documentacion-ubuntu/oficina6/289-como-instalar-libreoffice-4-en-ubuntu.html',
+                'http://jhosman.com/es/documentacion-ubuntu/oficina6/289-como-instalar-libreoffice-4-en-ubuntu.html',
+                '<div class="wp-caption aligncenter" style="margin-right: auto;',
+                '7',
+                0,
+            ),
         );
     }
 

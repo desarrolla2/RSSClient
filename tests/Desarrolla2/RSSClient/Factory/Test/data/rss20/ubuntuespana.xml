@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xml:base="http://xn--ubuntu-espaa-khb.org"  xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel>
+        <title>Ubuntu España</title>
+        <link>http://xn--ubuntu-espaa-khb.org</link>
+        <description></description>
+        <language>es</language>
+        <item>
+            <title>Ubuntu Phone: Premio a la Mejor Innovación del MWC 2013</title>
+            <link>http://xn--ubuntu-espaa-khb.org/content/ubuntu-phone-premio-la-mejor-innovaci%C3%B3n-del-mwc-2013</link>
+            <description> &lt;p&gt;La &lt;a href=&quot;http://www.ubuntu.com/devices/phone&quot;&gt;versión para móviles de Ubuntu&lt;/a&gt; se ha hecho con ...</description>
+            <comments>http://xn--ubuntu-espaa-khb.org/content/ubuntu-phone-premio-la-mejor-innovaci%C3%B3n-del-mwc-2013#comments</comments>
+            <pubDate>Thu, 28 Feb 2013 17:40:23 +0000</pubDate>
+            <dc:creator>costales</dc:creator>
+            <guid isPermaLink="false">133 at http://xn--ubuntu-espaa-khb.org</guid>
+        </item>
+    </channel>
+</rss>

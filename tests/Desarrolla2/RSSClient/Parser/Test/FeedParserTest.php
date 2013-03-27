@@ -46,28 +46,25 @@ class FeedParserTest extends \PHPUnit_Framework_TestCase {
     public function dataProvider() {
         return array(
             array(
-                '/data/ubuntuleon.atom',
-                25,
+                '/data/rss20/nyt.xml', 25,
             ),
             array(
-                '/data/unawebmaslibre.atom',
-                25,
+                '/data/rss20/ubuntuleon.xml', 25,
             ),
             array(
-                '/data/nyt.rss',
-                25,
+                '/data/rss20/jhosmanlirazo.xml', 15,
             ),
             array(
-                '/data/ubuntuleon.rss',
-                25,
+                '/data/rss20/ubuntuespana.xml', 7,
             ),
             array(
-                '/data/jhosmanlirazo.rss',
-                25,
+                '/data/atom10/ubuntuleon.xml', 25,
             ),
             array(
-                '/data/ubuntuespana.rss',
-                7,
+                '/data/atom10/unawebmaslibre.xml', 25,
+            ),
+            array(
+                '/data/atom10/elblogdediego.xml', 25,
             ),
         );
     }

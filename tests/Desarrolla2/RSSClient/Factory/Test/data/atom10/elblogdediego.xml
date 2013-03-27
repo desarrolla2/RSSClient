@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8'?><?xml-stylesheet href="http://www.blogger.com/styles/atom.css" type="text/css"?>
+<feed xmlns='http://www.w3.org/2005/Atom' xmlns:openSearch='http://a9.com/-/spec/opensearchrss/1.0/' xmlns:blogger='http://schemas.google.com/blogger/2008' xmlns:georss='http://www.georss.org/georss' xmlns:gd='http://schemas.google.com/g/2005' xmlns:thr='http://purl.org/syndication/thread/1.0'>
+    <id>tag:blogger.com,1999:blog-432243268593805349</id>
+    <updated>2013-03-21T08:16:32.084-07:00</updated>
+    <category term='Redes'/>
+    <category term='Software Libre'/>
+    <category term='amenazas'/>
+    <category term='Ley (SOPA)'/>
+    <category term='Repositorios'/>
+    <category term='LibreOffice'/>
+    <category term='CISCO'/>
+    <category term='web'/>
+    <category term='seguridad'/>
+    <category term='apple'/>
+    <category term='Mozilla Firefox'/>
+    <category term='tecnologia'/>
+    <category term='Geek'/>
+    <category term='Kernel'/>
+    <category term='youtube'/>
+    <category term='Tutorial'/>
+    <category term='ganar dinero'/>
+    <category term='Backtrack 5'/>
+    <category term='Wallpapers'/>
+    <category term='Richard Stallman'/>
+    <category term='Steve Jobs'/>
+    <category term='Flash'/>
+    <category term='Ubuntu 12.04'/>
+    <category term='libros'/>
+    <category term='Canaima'/>
+    <category term='Mozilla'/>
+    <category term='Noticias'/>
+    <category term='Virus'/>
+    <category term='Proggramacion'/>
+    <category term='La muerte de Megauppload'/>
+    <category term='Unity'/>
+    <category term='html 5'/>
+    <category term='Eventos'/>
+    <category term='windows'/>
+    <category term='Otros'/>
+    <category term='PRIMER AÑO DEL BLOG'/>
+    <category term='Trisquel'/>
+    <category term='Spam'/>
+    <category term='Android'/>
+    <category term='humor'/>
+    <category term='KDE'/>
+    <category term='Blackbuntu'/>
+    <category term='Curiosidad'/>
+    <category term='Revistas'/>
+    <category term='ps3'/>
+    <category term='Navegadores'/>
+    <category term='Herramientas'/>
+    <category term='Internet'/>
+    <category term='desarrollo web'/>
+    <category term='Debian'/>
+    <category term='wifi'/>
+    <category term='GNU/Linux'/>
+    <category term='Cracking WEP'/>
+    <category term='informatica'/>
+    <category term='videos'/>
+    <category term='programacion'/>
+    <category term='Guias'/>
+    <category term='Descargas'/>
+    <category term='Ubuntu 12.10'/>
+    <category term='Gnome'/>
+    <category term='hacker'/>
+    <category term='Venezuela'/>
+    <category term='usuarios'/>
+    <category term='Juegos'/>
+    <category term='Ruby'/>
+    <category term='Mega'/>
+    <category term='Redes Sociales'/>
+    <category term='Linux'/>
+    <category term='Turpial'/>
+    <category term='Hardware'/>
+    <category term='programacion web'/>
+    <category term='Ubuntu'/>
+    <category term='Instalando PASO A PASO Ubuntu Oneiric Ocelot (11.10)'/>
+    <category term='Aplicaciones'/>
+    <category term='venebux'/>
+    <title type='text'>El Blog del Diego</title>
+    <subtitle type='html'></subtitle>
+    <link rel='http://schemas.google.com/g/2005#feed' type='application/atom+xml' href='http://diegohacking.blogspot.com/feeds/posts/default'/>
+    <link rel='self' type='application/atom+xml' href='http://www.blogger.com/feeds/432243268593805349/posts/default/-/Ubuntu'/>
+    <link rel='alternate' type='text/html' href='http://diegohacking.blogspot.com/search/label/Ubuntu'/>
+    <link rel='hub' href='http://pubsubhubbub.appspot.com/'/>
+    <link rel='next' type='application/atom+xml' href='http://www.blogger.com/feeds/432243268593805349/posts/default/-/Ubuntu/-/Ubuntu?start-index=26&amp;max-results=25'/>
+    <author>
+        <name>elblogdeldiego</name>
+        <uri>http://www.blogger.com/profile/01397922013369113649</uri>
+        <email>noreply@blogger.com</email>
+        <gd:image rel='http://schemas.google.com/g/2005#thumbnail' width='16' height='16' src='http://img2.blogblog.com/img/b16-rounded.gif'/>
+    </author>
+    <generator version='7.00' uri='http://www.blogger.com'>Blogger</generator>
+    <openSearch:totalResults>50</openSearch:totalResults>
+    <openSearch:startIndex>1</openSearch:startIndex>
+    <openSearch:itemsPerPage>25</openSearch:itemsPerPage>
+    <entry>
+        <id>tag:blogger.com,1999:blog-432243268593805349.post-1743194106039184020</id>
+        <published>2013-03-08T06:06:00.000-08:00</published>
+        <updated>2013-03-08T06:06:30.978-08:00</updated>
+        <category scheme='http://www.blogger.com/atom/ns#' term='Noticias'/>
+        <category scheme='http://www.blogger.com/atom/ns#' term='GNU/Linux'/>
+        <category scheme='http://www.blogger.com/atom/ns#' term='Ubuntu'/>
+        <title type='text'>Ubuntu tendrá su propio servidor gráfico y Unity volverá a Qt [Actualizada]</title>
+        <content type='html'>&lt;div dir="ltr" style="text-align: left;" trbidi="on"&gt;&lt;span style="font-size: large;"&gt;Con más retraso del ...</content>
+        <link rel='edit' type='application/atom+xml' href='http://www.blogger.com/feeds/432243268593805349/posts/default/1743194106039184020'/>
+        <link rel='self' type='application/atom+xml' href='http://www.blogger.com/feeds/432243268593805349/posts/default/1743194106039184020'/>
+        <link rel='alternate' type='text/html' href='http://diegohacking.blogspot.com/2013/03/ubuntu-tendra-su-propio-servidor.html' title='Ubuntu tendrá su propio servidor gráfico y Unity volverá a Qt [Actualizada]'/>
+        <author>
+            <name>diego perez</name>
+            <uri>https://plus.google.com/116854177535724247843</uri>
+            <email>noreply@blogger.com</email>
+            <gd:image rel='http://schemas.google.com/g/2005#thumbnail' width='32' height='32' src='//lh5.googleusercontent.com/-t8SDNXMq_EI/AAAAAAAAAAI/AAAAAAAAAUM/MnhE5VHyCwc/s512-c/photo.jpg'/>
+        </author>
+    </entry>
+</feed>
