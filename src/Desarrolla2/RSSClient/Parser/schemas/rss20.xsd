@@ -81,7 +81,7 @@ The terms "reproduce," "reproduction," "derivative works," and "distribution" ha
                         <xs:documentation>The URL of the item.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
-                <xs:element name="author" type="EmailAddress" minOccurs="0">
+                <xs:element name="author" type="xs:string" minOccurs="0">
                     <xs:annotation>
                         <xs:documentation>Email address of the author of the item.</xs:documentation>
                     </xs:annotation>
@@ -153,12 +153,12 @@ The terms "reproduce," "reproduction," "derivative works," and "distribution" ha
                         <xs:documentation>Copyright notice for content in the channel.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
-                <xs:element name="managingEditor" type="EmailAddress" minOccurs="0">
+                <xs:element name="managingEditor" type="xs:string" minOccurs="0">
                     <xs:annotation>
                         <xs:documentation>Email address for person responsible for editorial content.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
-                <xs:element name="webMaster" type="EmailAddress" minOccurs="0">
+                <xs:element name="webMaster" type="xs:string" minOccurs="0">
                     <xs:annotation>
                         <xs:documentation>Email address for person responsible for technical issues relating to channel.</xs:documentation>
                     </xs:annotation>

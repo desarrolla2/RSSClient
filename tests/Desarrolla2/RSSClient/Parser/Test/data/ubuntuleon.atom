@@ -1,6 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?xml-stylesheet href="http://www.blogger.com/styles/atom.css" type="text/css"?>
-<feed xmlns='http://www.w3.org/2005/Atom' xmlns:openSearch='http://a9.com/-/spec/opensearchrss/1.0/' xmlns:blogger='http://schemas.google.com/blogger/2008' xmlns:georss='http://www.georss.org/georss' xmlns:gd='http://schemas.google.com/g/2005' xmlns:thr='http://purl.org/syndication/thread/1.0'>
+<feed xmlns='http://www.w3.org/2005/Atom' 
+      xmlns:openSearch='http://a9.com/-/spec/opensearchrss/1.0/' 
+      xmlns:blogger='http://schemas.google.com/blogger/2008' 
+      xmlns:georss='http://www.georss.org/georss' 
+      xmlns:gd='http://schemas.google.com/g/2005' 
+      xmlns:thr='http://purl.org/syndication/thread/1.0'>
     <id>tag:blogger.com,1999:blog-2720232213758762610</id>
     <updated>2013-03-23T08:18:09.108+01:00</updated>
     <category term='dark'/>

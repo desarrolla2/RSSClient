@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rss xmlns:atom='http://www.w3.org/2005/Atom' xmlns:openSearch='http://a9.com/-/spec/opensearchrss/1.0/' xmlns:blogger='http://schemas.google.com/blogger/2008' xmlns:georss='http://www.georss.org/georss' xmlns:gd='http://schemas.google.com/g/2005' xmlns:thr='http://purl.org/syndication/thread/1.0' version='2.0'>
+    <channel>    
+        <item>
+            <guid isPermaLink='false'>tag:blogger.com,1999:blog-2720232213758762610.post-661750892382071101</guid>
+            <pubDate>Tue, 19 Mar 2013 18:12:00 +0000</pubDate>
+            <atom:updated>2013-03-19T09:02:20.060+01:00</atom:updated>
+            <category domain='http://www.blogger.com/atom/ns#'>GIS</category>
+            <category domain='http://www.blogger.com/atom/ns#'>QLandkarte</category>
+            <category domain='http://www.blogger.com/atom/ns#'>pnoa</category>
+            <category domain='http://www.blogger.com/atom/ns#'>GT</category>
+            <category domain='http://www.blogger.com/atom/ns#'>GPS</category>
+            <category domain='http://www.blogger.com/atom/ns#'>topohispania</category>
+            <title>GPS para seres humanos II. Instalando cartografía digital</title>
+            <description>En el primer artículo de la serie ...</description>
+            <link>http://www.ubuntuleon.com/2013/03/gps-para-seres-humanos-ii-instalando.html</link>
+            <author>noreply@blogger.com (Fernando Lanero Barbero)</author>
+            <media:thumbnail xmlns:media='http://search.yahoo.com/mrss/' url='http://4.bp.blogspot.com/-izewUUv20a8/UT4HDYlhkmI/AAAAAAAACAg/NeDFVRe3jMo/s72-c/Captura+de+pantalla+de+2013-03-11+17:30:08.png' height='72' width='72'/>
+            <thr:total>2</thr:total>
+        </item>
+    </channel>
+</rss>

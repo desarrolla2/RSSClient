@@ -59,7 +59,7 @@ class FeedParser implements ParserInterface {
     public function parse($feed, SanitizerHandlerInterface $sanitizer) {
         $this->nodes = new NodeCollection();
         try {
-            $this->xml->loadXML($feed);
+            $this->xml->loadXML(trim($feed));
         } catch (\Exception $e) {
             throw new ParseException($e->getMessage());
         }
@@ -75,6 +75,7 @@ class FeedParser implements ParserInterface {
                 $this->parseTagsWithFactory('entry', $factory);
                 break;
             default:
+                throw new ParseException('Schema not supported');
                 break;
         }
 
@@ -97,7 +98,20 @@ class FeedParser implements ParserInterface {
         }
     }
 
-    protected function isAtom10() {
+    protected function getSchema() {
+        if ($this->trySchema(self::RSS20_SCHEMA_FILE)) {
+            return 'RSS20';
+        }
+//        if ($this->trySchema(self::ATOM10_SCHEMA_FILE)) {
+//            return 'ATOM10';
+//        }
+        if ($this->isAtom10()) {
+            return 'ATOM10';
+        }
+        return false;
+    }
+    
+        protected function isAtom10() {
         try {
             $nodes = $this->xml->getElementsByTagName('feed');
             if ($nodes->length == 1) {
@@ -112,24 +126,19 @@ class FeedParser implements ParserInterface {
         return false;
     }
 
-    protected function getSchema() {
-        if ($this->trySchema(self::RSS20_SCHEMA_FILE)) {
-            return 'RSS20';
-        }
-        //if ($this->trySchema(self::ATOM10_SCHEMA_FILE)) {
-        if ($this->isAtom10()) {
-            return 'ATOM10';
-        }
-        return false;
-    }
-
+    /**
+     * 
+     * @param type $schema
+     * @return boolean
+     * @throws \Desarrolla2\RSSClient\Exception\ParseException
+     */
     protected function trySchema($schema) {
         try {
             if ($this->xml->schemaValidate($this->schemaPath . $schema)) {
                 return true;
             }
         } catch (\Exception $e) {
-            //throw $e;
+            //throw new ParseException($e->getMessage());
         }
         return false;
     }

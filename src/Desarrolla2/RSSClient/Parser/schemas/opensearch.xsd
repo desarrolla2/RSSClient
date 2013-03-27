@@ -1,0 +1,5 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://a9.com/-/spec/opensearchrss/1.0/" xmlns:xs="http://www.w3.org/2001/XMLSchema" >
+  <xs:element name="totalResults" type="xs:string" />
+  <xs:element name="startIndex"  type="xs:string" />
+  <xs:element name="itemsPerPage"  type="xs:string" />
+</xs:schema>

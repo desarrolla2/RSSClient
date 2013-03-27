@@ -47,53 +47,59 @@ class RSS20NodeFactoryTest extends \PHPUnit_Framework_TestCase {
     public function setUp() {
         $this->sanitizer = new SanitizerHandlerDummy();
         $this->factory = new RSS20NodeFactory($this->sanitizer);
-        $sting = file_get_contents(__DIR__ . '/data/rss20_item.xml');
+    }
+
+    /**
+     * 
+     * @return array
+     */
+    public function dataProvider() {
+        return array(
+            array(
+                '/data/rss20/nyt.xml',
+                'At Yad Vashem in Israel, Obama Urges Action Against Racism',
+                'http://www.nytimes.com/2013/03/23/world/middleeast/president-obama-israel.html',
+                'http://www.nytimes.com/2013/03/23/world/middleeast/president-obama-israel.html?partner=rss&emc=rss',
+                'Short description',
+                '22',
+                4,
+            ),
+            array(
+                '/data/rss20/ubuntuleon.rss',
+                'GPS para seres humanos II. Instalando cartografía digital',
+                'tag:blogger.com,1999:blog-2720232213758762610.post-661750892382071101',
+                'http://www.ubuntuleon.com/2013/03/gps-para-seres-humanos-ii-instalando.html',
+                'En el primer artículo de la serie ...',
+                '19',
+                6,
+            ),
+        );
+    }
+
+    /**
+     * @test
+     * @dataProvider dataProvider
+     * @param type $file
+     * @param type $title
+     * @param type $guid
+     * @param type $link
+     * @param type $description
+     * @param type $pubDay
+     * @param type $categories
+     */
+    public function testRSS20NodeFactory($file, $title, $guid, $link, $description, $pubDay, $categories) {
+        $sting = file_get_contents(__DIR__ . $file);
         $dom = new DOMDocument();
         $dom->loadXML($sting);
         $item = $dom->getElementsByTagName('item')->item(0);
         $this->node = $this->factory->create($item);
-    }
 
-    /**
-     * @test
-     */
-    public function testTitle() {
-        $this->assertEquals($this->node->getTitle(), 'At Yad Vashem in Israel, Obama Urges Action Against Racism');
-    }
-
-    /**
-     * @test
-     */
-    public function testGUID() {
-        $this->assertEquals($this->node->getGuid(), 'http://www.nytimes.com/2013/03/23/world/middleeast/president-obama-israel.html');
-    }
-
-    /**
-     * @test
-     */
-    public function testCategories() {
-        $this->assertEquals(count($this->node->getCategories()), '4');
-    }
-
-    /**
-     * @test
-     */
-    public function testLink() {
-        $this->assertEquals($this->node->getLink(), 'http://www.nytimes.com/2013/03/23/world/middleeast/president-obama-israel.html?partner=rss&emc=rss');
-    }
-
-    /**
-     * @test
-     */
-    public function testDescription() {
-        $this->assertEquals($this->node->getDescription(), 'Short description');
-    }
-
-    /**
-     * @test
-     */
-    public function testPubDate() {
-        $this->assertEquals($this->node->getPubDate()->format('d'), '22');
+        $this->assertEquals($title, $this->node->getTitle());
+        $this->assertEquals($guid, $this->node->getGuid());
+        $this->assertEquals($link, $this->node->getLink());
+        $this->assertEquals($description, $this->node->getDescription());
+        $this->assertEquals($pubDay, $this->node->getPubDate()->format('d'));
+        $this->assertEquals($categories, count($this->node->getCategories()));
     }
 
 }
