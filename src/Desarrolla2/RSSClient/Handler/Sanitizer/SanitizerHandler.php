@@ -34,7 +34,11 @@ class SanitizerHandler implements SanitizerHandlerInterface {
      * 
      * @param type $cacheDirectory
      */
-    public function __construct($cacheDirectory = '/tmp') {
+    public function __construct($cacheDirectory = null ) {
+        
+        if(!$cacheDirectory){
+            $cacheDirectory = sys_get_temp_dir();
+        }
 
         if (!is_writable($cacheDirectory)) {
             throw new InvalidArgumentException($cacheDirectory . ' is not writable');
