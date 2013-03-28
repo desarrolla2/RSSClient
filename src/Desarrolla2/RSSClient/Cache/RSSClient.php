@@ -9,7 +9,10 @@
  * This source file is subject to the MIT license that is bundled
  * with this package in the file LICENSE.
  */
-use Desarrolla2\RSSClient\Cache\RSSClient as BaseClient;
+
+namespace Desarrolla2\RSSClient\Cache;
+ 
+use Desarrolla2\RSSClient\RSSClient as BaseClient;
 use Desarrolla2\Cache\CacheInterface;
 use Desarrolla2\Cache\Cache;
 use Desarrolla2\Cache\Adapter\NotCache;
