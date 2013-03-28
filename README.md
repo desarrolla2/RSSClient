@@ -70,7 +70,7 @@ repository [Github] (https://github.com/desarrolla2/Cache).
 
     // It is important that you select and configure your cache adapter
     $client = new RSSClient());
-    $client->setCache(new Cache(new File('tmp')));
+    $client->setCache(new Cache(new File('/tmp')));
 
 ```
 
