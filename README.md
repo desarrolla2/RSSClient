@@ -96,6 +96,10 @@ The rest of the procedure is exactly the same as if you were using the client wi
 * RSS20
 * Atom10
 
+## Code Coverage
+
+Do you want to see RSSClient Code Coverage see [here](http://rssclient.desarrolla2.com/coverage/index.html)
+
 ## Contact
 
 You can contact with me on [twitter](https://twitter.com/desarrolla2).
