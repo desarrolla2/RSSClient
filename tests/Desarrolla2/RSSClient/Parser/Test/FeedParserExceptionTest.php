@@ -2,10 +2,10 @@
 
 /**
  * This file is part of the RSSClient proyect.
- * 
+ *
  * Copyright (c)
- * Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>  
- * 
+ * Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
+ *
  * This source file is subject to the MIT license that is bundled
  * with this package in the file LICENSE.
  */
@@ -16,15 +16,15 @@ use Desarrolla2\RSSClient\Parser\FeedParser;
 use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerDummy;
 
 /**
- * 
+ *
  * Description of FeedParserTest
  *
- * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>  
+ * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
  * @file : FeedParserTest.php , UTF-8
  * @date : Mar 22, 2013 , 12:47:12 PM
  */
-class FeedParserExceptionTest extends \PHPUnit_Framework_TestCase {
-
+class FeedParserExceptionTest extends \PHPUnit_Framework_TestCase
+{
     /**
      *
      * @var \Desarrolla2\RSSClient\Parser\FeedParser
@@ -34,7 +34,8 @@ class FeedParserExceptionTest extends \PHPUnit_Framework_TestCase {
     /**
      * Setup
      */
-    public function setUp() {
+    public function setUp()
+    {
         $this->parser = new FeedParser();
         $this->sanitizer = new SanitizerHandlerDummy();
     }
@@ -43,7 +44,8 @@ class FeedParserExceptionTest extends \PHPUnit_Framework_TestCase {
      * @test
      * @expectedException \Desarrolla2\RSSClient\Exception\RuntimeException
      */
-    public function parseStringTest() {
+    public function parseStringTest()
+    {
         $this->parser->parse('my string', $this->sanitizer);
     }
 

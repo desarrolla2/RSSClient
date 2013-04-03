@@ -2,10 +2,10 @@
 
 /**
  * This file is part of the RSSClient proyect.
- * 
+ *
  * Copyright (c)
- * Daniel González <daniel.gonzalez@freelancemadrid.es> 
- * 
+ * Daniel González <daniel.gonzalez@freelancemadrid.es>
+ *
  * This source file is subject to the MIT license that is bundled
  * with this package in the file LICENSE.
  */
@@ -19,21 +19,22 @@ use \DOMElement;
 use \DateTime;
 
 /**
- * 
+ *
  * Description of Atom10NodeFactory
  *
- * @author : Daniel González <daniel.gonzalez@freelancemadrid.es> 
+ * @author : Daniel González <daniel.gonzalez@freelancemadrid.es>
  * @file : Atom10NodeFactory.php , UTF-8
  * @date : Mar 24, 2013 , 7:12:06 PM
  */
-class Atom10NodeFactory extends AbstractNodeFactory {
-
+class Atom10NodeFactory extends AbstractNodeFactory
+{
     /**
-     * 
-     * @param DOMElement $entry
+     *
+     * @param  DOMElement                         $entry
      * @return \Desarrolla2\RSSClient\Node\Atom10
      */
-    public function create(DOMElement $entry) {
+    public function create(DOMElement $entry)
+    {
         $node = $this->getNode();
         $this->setProperties($entry, $node);
         $this->setCategories($entry, $node);
@@ -43,10 +44,12 @@ class Atom10NodeFactory extends AbstractNodeFactory {
         if (!$node->getGuid()) {
             throw new ParseException('Guid not found');
         }
+
         return $node;
     }
 
-    protected function setLink(DOMElement $entry, Atom10 $node) {
+    protected function setLink(DOMElement $entry, Atom10 $node)
+    {
         try {
             $results = $entry->getElementsByTagName('link');
             if ($results->length) {
@@ -57,6 +60,7 @@ class Atom10NodeFactory extends AbstractNodeFactory {
                             $node->setLink(
                                     $this->doClean($value)
                             );
+
                             return;
                         }
                     }
@@ -67,7 +71,8 @@ class Atom10NodeFactory extends AbstractNodeFactory {
         }
     }
 
-    protected function setPubDate(DOMElement $entry, Atom10 $node) {
+    protected function setPubDate(DOMElement $entry, Atom10 $node)
+    {
         $value = $this->getNodeValueByTagName($entry, 'published');
         if ($value) {
             if (strtotime($value)) {
@@ -76,7 +81,8 @@ class Atom10NodeFactory extends AbstractNodeFactory {
         }
     }
 
-    protected function setProperties(DOMElement $entry, Atom10 $node) {
+    protected function setProperties(DOMElement $entry, Atom10 $node)
+    {
         $properties = array(
             'id' => 'setGUID',
             'title' => 'setTitle',
@@ -92,7 +98,8 @@ class Atom10NodeFactory extends AbstractNodeFactory {
         }
     }
 
-    protected function setCategories(DOMElement $entry, Atom10 $node) {
+    protected function setCategories(DOMElement $entry, Atom10 $node)
+    {
         $categories = $this->getNodePropertiesByTagName($entry, 'category', 'term');
         foreach ($categories as $category) {
             $node->addCategory(
@@ -102,10 +109,11 @@ class Atom10NodeFactory extends AbstractNodeFactory {
     }
 
     /**
-     * 
+     *
      * @return \Desarrolla2\RSSClient\Node\Atom10
      */
-    protected function getNode() {
+    protected function getNode()
+    {
         return new Atom10();
     }
 

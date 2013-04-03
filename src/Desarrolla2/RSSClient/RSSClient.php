@@ -2,10 +2,10 @@
 
 /**
  * This file is part of the RSSClient proyect.
- * 
+ *
  * Copyright (c)
- * Daniel González <daniel.gonzalez@freelancemadrid.es> 
- * 
+ * Daniel González <daniel.gonzalez@freelancemadrid.es>
+ *
  * This source file is subject to the MIT license that is bundled
  * with this package in the file LICENSE.
  */
@@ -22,15 +22,15 @@ use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface;
 use Desarrolla2\RSSClient\Node\NodeCollection;
 
 /**
- * 
+ *
  * Description of RSSClient
  *
- * @author : Daniel González <daniel.gonzalez@freelancemadrid.es> 
+ * @author : Daniel González <daniel.gonzalez@freelancemadrid.es>
  * @file : Client.php , UTF-8
  * @date : Oct 3, 2012 , 2:07:02 AM
  */
-class RSSClient extends FeedHandler implements RSSClientInterface {
-
+class RSSClient extends FeedHandler implements RSSClientInterface
+{
     /**
      *
      * @var \Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface;
@@ -39,7 +39,7 @@ class RSSClient extends FeedHandler implements RSSClientInterface {
 
     /**
      *
-     * @var \Guzzle\Http\ClientInterface 
+     * @var \Guzzle\Http\ClientInterface
      */
     protected $httpHandler;
 
@@ -51,11 +51,12 @@ class RSSClient extends FeedHandler implements RSSClientInterface {
 
     /**
      * Constructor
-     * 
+     *
      * @param string $channel
-     * @param array $feeds
+     * @param array  $feeds
      */
-    public function __construct(array $feeds = array(), $channel = 'default') {
+    public function __construct(array $feeds = array(), $channel = 'default')
+    {
         $this->httpHandler = new HTTPHandler();
         $this->sanitizerHandler = new SanitizerHandler();
         $this->parser = new FeedParser();
@@ -64,32 +65,35 @@ class RSSClient extends FeedHandler implements RSSClientInterface {
 
     /**
      * set HTTPClient
-     * 
-     * @param \Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerInterface $handler
+     *
+     * @param  \Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerInterface $handler
      * @return type
      */
-    public function setHTTPHandler(HTTPHandlerInterface $handler) {
+    public function setHTTPHandler(HTTPHandlerInterface $handler)
+    {
         $this->httpHandler = $handler;
     }
 
     /**
      * Set Sanitizer
-     * 
+     *
      * @param \Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface $handler
      */
-    public function setSanitizerHandler(SanitizerHandlerInterface $handler) {
+    public function setSanitizerHandler(SanitizerHandlerInterface $handler)
+    {
         $this->sanitizerHandler = $handler;
     }
 
     /**
      * Retrieve nodes from a chanel
-     * 
-     * @param int $limit
-     * @param string $channel
-     * @return array $nodes
+     *
+     * @param  int                       $limit
+     * @param  string                    $channel
+     * @return array                     $nodes
      * @throws \InvalidArgumentException
      */
-    public function fetch($channel = 'default') {
+    public function fetch($channel = 'default')
+    {
         if (!is_string($channel)) {
             throw new \InvalidArgumentException('channel not valid (' . gettype($channel) . ')');
         }
@@ -111,20 +115,23 @@ class RSSClient extends FeedHandler implements RSSClientInterface {
             }
         }
         $this->nodes->short();
+
         return $this->nodes;
     }
 
     /**
-     * 
-     * @param string $feedUrl
+     *
+     * @param  string $feedUrl
      * @return string
      */
-    protected function fetchHTTP($feedUrl) {
+    protected function fetchHTTP($feedUrl)
+    {
         try {
             return $this->httpHandler->get($feedUrl);
         } catch (Exception $e) {
             $this->addError($e->getMessage());
         }
+
         return '';
     }
 

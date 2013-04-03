@@ -2,10 +2,10 @@
 
 /**
  * This file is part of the RSSClient proyect.
- * 
+ *
  * Copyright (c)
- * Daniel González <daniel.gonzalez@freelancemadrid.es> 
- * 
+ * Daniel González <daniel.gonzalez@freelancemadrid.es>
+ *
  * This source file is subject to the MIT license that is bundled
  * with this package in the file LICENSE.
  */
@@ -16,27 +16,27 @@ use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface;
 use Desarrolla2\RSSClient\Exception\InvalidArgumentException;
 
 /**
- * 
+ *
  * Description of Sanitizer
  *
- * @author : Daniel González <daniel.gonzalez@freelancemadrid.es> 
+ * @author : Daniel González <daniel.gonzalez@freelancemadrid.es>
  * @file : Sanitizer.php , UTF-8
  * @date : Oct 3, 2012 , 11:14:19 AM
  */
-class SanitizerHandler implements SanitizerHandlerInterface {
-
+class SanitizerHandler implements SanitizerHandlerInterface
+{
     /**
      * @var HTMLPurifier
      */
     protected $purifier;
 
     /**
-     * 
+     *
      * @param type $cacheDirectory
      */
-    public function __construct($cacheDirectory = null ) {
-        
-        if(!$cacheDirectory){
+    public function __construct($cacheDirectory = null )
+    {
+        if (!$cacheDirectory) {
             $cacheDirectory = sys_get_temp_dir();
         }
 
@@ -52,11 +52,12 @@ class SanitizerHandler implements SanitizerHandlerInterface {
 
     /**
      * Sanitize html text
-     * 
-     * @param string $text
+     *
+     * @param  string $text
      * @return string
      */
-    public function doClean($text) {
+    public function doClean($text)
+    {
         return trim($this->purifier->purify($text));
     }
 

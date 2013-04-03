@@ -2,10 +2,10 @@
 
 /**
  * This file is part of the RSSClient proyect.
- * 
+ *
  * Copyright (c)
- * Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>  
- * 
+ * Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
+ *
  * This source file is subject to the MIT license that is bundled
  * with this package in the file LICENSE.
  */
@@ -17,34 +17,36 @@ use \Guzzle\Http\Message\Response;
 use \Guzzle\Http\Message\Request;
 
 /**
- * 
+ *
  * Description of HTTPHandlerTest
  *
- * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>  
+ * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
  * @file : HTTPHandlerTest.php , UTF-8
  * @date : Mar 19, 2013 , 5:18:58 PM
  */
-class HTTPHandlerTest extends \PHPUnit_Framework_TestCase {
-
+class HTTPHandlerTest extends \PHPUnit_Framework_TestCase
+{
     const HTTP_BODY_EXAMPLE = '<html><body><h1>my body</h1></body></html>';
 
     /**
      *
-     * @var \Desarrolla2\RSSClient\Handler\HTTP\HTTPHandler 
+     * @var \Desarrolla2\RSSClient\Handler\HTTP\HTTPHandler
      */
     protected $client = null;
 
     /**
      * Setup
      */
-    public function setUp() {
+    public function setUp()
+    {
         $this->client = new HTTPHandler();
     }
 
     /**
      * @test
      */
-    public function testGetHttp200() {
+    public function testGetHttp200()
+    {
         $response = new Response(200, null, self::HTTP_BODY_EXAMPLE);
 
         $httpRequestMock = $this->getMock(
@@ -53,7 +55,6 @@ class HTTPHandlerTest extends \PHPUnit_Framework_TestCase {
         $httpRequestMock->expects($this->any())
                 ->method('send')
                 ->will($this->returnValue($response));
-
 
         $httpClientMock = $this->getMock('\Guzzle\Http\Client');
         $httpClientMock->expects($this->any())
@@ -67,9 +68,10 @@ class HTTPHandlerTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @test
-     * @expectedException \Desarrolla2\RSSClient\Exception\RuntimeException    
+     * @expectedException \Desarrolla2\RSSClient\Exception\RuntimeException
      */
-    public function testGetHttp500() {
+    public function testGetHttp500()
+    {
         $response = new Response(500, null, self::HTTP_BODY_EXAMPLE);
 
         $httpRequestMock = $this->getMock(
@@ -78,7 +80,6 @@ class HTTPHandlerTest extends \PHPUnit_Framework_TestCase {
         $httpRequestMock->expects($this->any())
                 ->method('send')
                 ->will($this->returnValue($response));
-
 
         $httpClientMock = $this->getMock('\Guzzle\Http\Client');
         $httpClientMock->expects($this->any())

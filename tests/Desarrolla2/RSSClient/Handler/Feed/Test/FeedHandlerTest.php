@@ -2,10 +2,10 @@
 
 /**
  * This file is part of the RSSClient proyect.
- * 
+ *
  * Copyright (c)
- * Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>  
- * 
+ * Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
+ *
  * This source file is subject to the MIT license that is bundled
  * with this package in the file LICENSE.
  */
@@ -15,15 +15,15 @@ namespace Desarrolla2\RSSClient\Handler\Feed\Test;
 use \Desarrolla2\RSSClient\Handler\Feed\FeedHandler;
 
 /**
- * 
+ *
  * Description of FeedHandlerTest
  *
- * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>  
+ * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
  * @file : FeedHandlerTest.php , UTF-8
  * @date : Mar 19, 2013 , 4:05:10 PM
  */
-class FeedHandlerTest extends \PHPUnit_Framework_TestCase {
-
+class FeedHandlerTest extends \PHPUnit_Framework_TestCase
+{
     /**
      * @var \Desarrolla2\RSSClient\Handler\FeedHandler;
      */
@@ -42,15 +42,17 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase {
     /**
      * Setup
      */
-    public function setUp() {
+    public function setUp()
+    {
         $this->handler = new FeedHandler();
     }
 
     /**
-     * 
+     *
      * @return type
      */
-    public function getDataForFeeds() {
+    public function getDataForFeeds()
+    {
         return array(
             array(
                 array(
@@ -86,7 +88,8 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase {
     /**
      * @return array
      */
-    public function getDataForChannels() {
+    public function getDataForChannels()
+    {
         return array(
             array(
                 array(
@@ -140,7 +143,8 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase {
      * @test
      * @dataProvider getDataForFeeds
      */
-    public function testAddFeed1($data) {
+    public function testAddFeed1($data)
+    {
         $this->handler->addFeed($this->example_feed1);
         foreach ($data as $feed) {
             $this->handler->addFeed($feed);
@@ -152,7 +156,8 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase {
      * @test
      * @dataProvider getDataForFeeds
      */
-    public function testAddFeed2($data) {
+    public function testAddFeed2($data)
+    {
         $this->handler->addFeed($this->example_feed1, 'new_channel');
         foreach ($data as $feed) {
             $this->handler->addFeed($feed);
@@ -164,7 +169,8 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase {
      * @test
      * @dataProvider getDataForFeeds
      */
-    public function testAddFeeds($data) {
+    public function testAddFeeds($data)
+    {
         $this->handler->addFeed($this->example_feed2);
         $this->handler->addFeeds($data);
         $this->handler->addFeeds($data);
@@ -175,7 +181,8 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase {
      * @test
      * @dataProvider getDataForFeeds
      */
-    public function testSetFeeds($data) {
+    public function testSetFeeds($data)
+    {
         $this->handler->addFeed($this->example_feed2);
         $this->handler->setFeeds($data);
         $this->assertEquals(count($this->handler->getFeeds()), 1);
@@ -185,7 +192,8 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase {
      * @test
      * @dataProvider getDataForFeeds
      */
-    public function testSetFeed($data) {
+    public function testSetFeed($data)
+    {
         $this->handler->addFeed($this->example_feed2);
         foreach ($data as $feed) {
             $this->handler->setFeed($feed);
@@ -197,7 +205,8 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase {
      * @test
      * @dataProvider getDataForFeeds
      */
-    public function countFeeds($data) {
+    public function countFeeds($data)
+    {
         $this->handler->addFeed($this->example_feed2);
         $this->handler->addFeeds($data);
         $this->assertEquals($this->handler->countFeeds(), 2);
@@ -207,7 +216,8 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase {
      * @test
      * @dataProvider getDataForChannels
      */
-    public function testCountChannels($data) {
+    public function testCountChannels($data)
+    {
         $this->handler->setChannels($data);
         $this->assertEquals(count($data), $this->handler->countChannels());
     }
@@ -216,7 +226,8 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase {
      * @test
      * @dataProvider getDataForChannels
      */
-    public function testGetChannels($data) {
+    public function testGetChannels($data)
+    {
         $this->handler->setChannels($data);
         $this->assertEquals(count($data), count($this->handler->getChannels()));
     }
@@ -225,7 +236,8 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase {
      * @test
      * @dataProvider getDataForChannels
      */
-    public function testGetChannelsNames($data) {
+    public function testGetChannelsNames($data)
+    {
         $this->handler->setChannels($data);
         $this->assertEquals(array_keys($data), $this->handler->getChannelsNames());
     }
@@ -234,7 +246,8 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase {
      * @test
      * @dataProvider getDataForChannels
      */
-    public function testAddChannels($data) {
+    public function testAddChannels($data)
+    {
         $this->handler->addChannels(array(
             'test1' => array(
                 $this->example_feed1,
@@ -248,7 +261,8 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase {
      * @test
      * @dataProvider getDataForChannels
      */
-    public function testClearChannels($data) {
+    public function testClearChannels($data)
+    {
         $this->handler->setChannels($data);
         $this->handler->setChannels($data);
         $this->assertEquals(count($data), $this->handler->countChannels());

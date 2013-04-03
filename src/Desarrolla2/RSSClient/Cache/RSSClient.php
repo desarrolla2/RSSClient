@@ -2,35 +2,35 @@
 
 /**
  * This file is part of the RSSClient proyect.
- * 
+ *
  * Copyright (c)
- * Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>  
- * 
+ * Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
+ *
  * This source file is subject to the MIT license that is bundled
  * with this package in the file LICENSE.
  */
 
 namespace Desarrolla2\RSSClient\Cache;
- 
+
 use Desarrolla2\RSSClient\RSSClient as BaseClient;
 use Desarrolla2\Cache\CacheInterface;
 use Desarrolla2\Cache\Cache;
 use Desarrolla2\Cache\Adapter\NotCache;
 
 /**
- * 
+ *
  * Description of RSSClient
  *
- * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>  
+ * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
  * @file : RSSClient.php , UTF-8
  * @date : Mar 15, 2013 , 2:34:16 PM
  */
-class RSSClient extends BaseClient {
-
+class RSSClient extends BaseClient
+{
     /**
      * @var string This key is used as a pronoun to cache objects generated
      */
-    static private $CACHE_KEY = 'rss_cache_client';
+    private static $CACHE_KEY = 'rss_cache_client';
 
     /**
      * @var \Desarrolla2\Cache\Cache Cache Handler
@@ -44,26 +44,29 @@ class RSSClient extends BaseClient {
 
     /**
      * Constructor
-     * 
-     * @param array $feeds
+     *
+     * @param array  $feeds
      * @param string $channel
      */
-    public function __construct($feeds = array(), $channel = 'default') {
+    public function __construct($feeds = array(), $channel = 'default')
+    {
         $this->cache = new Cache(new NotCache());
         parent::__construct($feeds, $channel);
     }
 
     /**
-     * 
+     *
      * @param type $channel
      * @param type $limit
      */
-    public function fetch($channel = 'default', $limit = 20) {
+    public function fetch($channel = 'default', $limit = 20)
+    {
         $nodes = $this->getFromCache($channel);
         if (!$nodes) {
             $nodes = parent::fetch($channel, $limit);
             $this->setToCache($nodes, $channel);
         }
+
         return $nodes;
     }
 
@@ -72,55 +75,63 @@ class RSSClient extends BaseClient {
      *
      * @param \Desarrolla2\Cache\CacheInterface $cache
      */
-    public function setCache(CacheInterface $cache = null) {
+    public function setCache(CacheInterface $cache = null)
+    {
         $this->cache = $cache;
     }
 
     /**
      * Generate a unique hash for Cache
-     * 
-     * @param string $channel
-     * @return string 
+     *
+     * @param  string $channel
+     * @return string
      */
-    protected function getCacheKey($channel = 'default') {
+    protected function getCacheKey($channel = 'default')
+    {
         if (!isset($this->cacheHash[$channel])) {
             $this->cacheHash[$channel] = self::$CACHE_KEY . '_' . md5(implode('|', $this->getFeeds($channel)));
         }
+
         return $this->cacheHash[$channel];
     }
 
     /**
-     * 
+     *
      * @return type
      * @throws \Exception
      */
-    protected function getCache() {
+    protected function getCache()
+    {
         if (!$this->cache) {
             throw new \Exception('Cache not set');
         }
+
         return $this->cache;
     }
 
     /**
      * Retrieves from cache
-     * 
-     * @param string $channel
-     * @return boolean 
+     *
+     * @param  string  $channel
+     * @return boolean
      */
-    protected function getFromCache($channel = 'default') {
+    protected function getFromCache($channel = 'default')
+    {
         $hash = $this->getCacheKey($channel);
         if ($this->getCache()->has($hash)) {
             return $this->getCache()->get($hash);
         }
+
         return false;
     }
 
     /**
-     * 
+     *
      * @param type $channel
      * @param type $nodes
      */
-    protected function setToCache($nodes, $channel = 'default') {
+    protected function setToCache($nodes, $channel = 'default')
+    {
         $hash = $this->getCacheKey($channel);
         $this->getCache()->set($hash, $nodes);
     }

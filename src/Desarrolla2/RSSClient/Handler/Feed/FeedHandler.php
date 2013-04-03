@@ -2,10 +2,10 @@
 
 /**
  * This file is part of the RSSClient proyect.
- * 
+ *
  * Copyright (c)
- * Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>  
- * 
+ * Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
+ *
  * This source file is subject to the MIT license that is bundled
  * with this package in the file LICENSE.
  */
@@ -16,27 +16,28 @@ use Desarrolla2\RSSClient\Handler\Error\ErrorHandler;
 use Desarrolla2\RSSClient\Exception\InvalidArgumentException;
 
 /**
- * 
+ *
  * Description of Feed
  *
- * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>  
+ * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
  * @file : Feed.php , UTF-8
  * @date : Mar 15, 2013 , 11:49:39 AM
  */
-class FeedHandler extends ErrorHandler {
-
+class FeedHandler extends ErrorHandler
+{
     /**
-     * @var array 
+     * @var array
      */
     protected $channels;
 
     /**
      * add channels for client
-     * 
-     * @param type $channels
+     *
+     * @param  type                     $channels
      * @throws InvalidArgumentException
      */
-    public function addChannels($channels) {
+    public function addChannels($channels)
+    {
         if (!is_array($channels)) {
             throw new InvalidArgumentException('channels not valid (' . gettype($channels) . ')');
         }
@@ -47,24 +48,27 @@ class FeedHandler extends ErrorHandler {
 
     /**
      * Retrieve feeds from a channel
-     * 
-     * @param string $channel
-     * @return array feeds
+     *
+     * @param  string $channel
+     * @return array  feeds
      */
-    public function getFeeds($channel = 'default') {
+    public function getFeeds($channel = 'default')
+    {
         $this->createChannel($channel);
+
         return $this->feeds[$channel];
     }
 
     /**
      * Add feed to channel
-     * 
-     * @param string $feed 
-     * @param string $channel
+     *
+     * @param  string                   $feed
+     * @param  string                   $channel
      * @throws InvalidArgumentException
      * @throws Exception
      */
-    public function addFeed($feed, $channel = 'default') {
+    public function addFeed($feed, $channel = 'default')
+    {
         if (!is_string($feed)) {
             throw new InvalidArgumentException('feed not valid (' . gettype($feed) . ')');
         }
@@ -85,12 +89,13 @@ class FeedHandler extends ErrorHandler {
 
     /**
      * Add feeds to channel
-     *       
-     * @param array $feeds 
-     * @param string $channel
+     *
+     * @param  array                    $feeds
+     * @param  string                   $channel
      * @throws InvalidArgumentException
      */
-    public function addFeeds($feeds, $channel = 'default') {
+    public function addFeeds($feeds, $channel = 'default')
+    {
         if (!is_array($feeds)) {
             throw new InvalidArgumentException('feeds not valid (' . gettype($feeds) . ')');
         }
@@ -103,77 +108,86 @@ class FeedHandler extends ErrorHandler {
     }
 
     /**
-     * 
+     *
      * Retrieve the number of channels
-     * 
+     *
      * @return int count $feeds
      */
-    public function countChannels() {
+    public function countChannels()
+    {
         return count($this->feeds);
     }
 
     /**
-     * 
+     *
      * Retrieve the number of feeds from a channels
-     * 
-     * @param string $channel
-     * @return int count $feeds
+     *
+     * @param  string $channel
+     * @return int    count $feeds
      */
-    public function countFeeds($channel = 'default') {
+    public function countFeeds($channel = 'default')
+    {
         $this->createChannel($channel);
+
         return count($this->feeds[$channel]);
     }
 
     /**
      * Retrieve Channel
-     * 
+     *
      * @return array $channels
      */
-    public function getChannels() {
+    public function getChannels()
+    {
         return $this->feeds;
     }
 
     /**
      * Retrieve Channel Names
-     * 
+     *
      * @return array $channels
      */
-    public function getChannelsNames() {
+    public function getChannelsNames()
+    {
         $channels = array();
         foreach ($this->feeds as $channel => $feed) {
             array_push($channels, $channel);
         }
+
         return $channels;
     }
 
     /**
      * set the channels for client
-     * 
+     *
      * @param type $channels
      */
-    public function setChannels($channels) {
+    public function setChannels($channels)
+    {
         $this->clearChannels();
         $this->addChannels($channels);
     }
 
     /**
      * Set feed in a hacnnel
-     * 
-     * @param string $feed 
+     *
+     * @param string $feed
      * @param string $channel
      */
-    public function setFeed($feed, $channel = 'default') {
+    public function setFeed($feed, $channel = 'default')
+    {
         $this->clearFeeds($channel);
         $this->addFeed($feed, $channel);
     }
 
     /**
      * Set feeds in a channel
-     * 
-     * @param array $feeds
-     * @param string $channel 
+     *
+     * @param array  $feeds
+     * @param string $channel
      */
-    public function setFeeds($feeds, $channel = 'default') {
+    public function setFeeds($feeds, $channel = 'default')
+    {
         if (!is_array($feeds)) {
             throw new InvalidArgumentException('feeds not valid (' . gettype($feeds) . ')');
         }
@@ -185,28 +199,31 @@ class FeedHandler extends ErrorHandler {
 
     /**
      * Clear Channels
-     * 
+     *
      * @return type
      */
-    protected function clearChannels() {
+    protected function clearChannels()
+    {
         $this->feeds = array();
     }
 
     /**
      * Clear feeds
-     * 
+     *
      * @param string $channel
      */
-    protected function clearFeeds($channel = 'default') {
+    protected function clearFeeds($channel = 'default')
+    {
         $this->feeds[$channel] = array();
     }
 
     /**
      * Create Channel if not exist;
-     * 
+     *
      * @param string $channel
      */
-    protected function createChannel($channel = 'default') {
+    protected function createChannel($channel = 'default')
+    {
         if (!isset($this->feeds[$channel])) {
             $this->feeds[$channel] = array();
         }
@@ -216,11 +233,12 @@ class FeedHandler extends ErrorHandler {
     }
 
     /**
-     * 
-     * @param type $url
+     *
+     * @param  type    $url
      * @return boolean
      */
-    protected function isValidURL($url) {
+    protected function isValidURL($url)
+    {
         return filter_var($url, FILTER_VALIDATE_URL) ? true : false;
     }
 
