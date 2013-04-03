@@ -28,17 +28,17 @@ use Desarrolla2\Cache\Adapter\NotCache;
 class RSSClient extends BaseClient {
 
     /**
-     * @var type 
+     * @var string This key is used as a pronoun to cache objects generated
      */
     static private $CACHE_KEY = 'rss_cache_client';
 
     /**
-     * @var type 
+     * @var \Desarrolla2\Cache\Cache Cache Handler
      */
     protected $cache = null;
 
     /**
-     * @var type 
+     * @var array temporal array
      */
     protected $cacheHash = array();
 

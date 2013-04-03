@@ -35,27 +35,37 @@ class FeedParser implements ParserInterface {
 
     /**
      *
-     * @var \DOMDocument 
+     * @var \DOMDocument Feed XML Document
      */
     protected $xml;
 
     /**
      *
-     * @var type 
+     * @var array nodes in feed
      */
     protected $nodes = array();
 
     /**
-     * @var string
+     * @var string path to schemas documents
      */
     protected $schemaPath;
 
+    /**
+     * Contructor
+     */
     public function __construct() {
         $this->xml = new DOMDocument();
         $this->xml->strictErrorChecking = false;
         $this->schemaPath = __DIR__ . '/schemas/';
     }
 
+    /**
+     * 
+     * @param string $feed
+     * @param \Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface $sanitizer
+     * @return array
+     * @throws ParseException
+     */
     public function parse($feed, SanitizerHandlerInterface $sanitizer) {
         $this->nodes = new NodeCollection();
         try {
