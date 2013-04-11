@@ -37,7 +37,7 @@ class SanitizerHandler implements SanitizerHandlerInterface
     public function __construct($cacheDirectory = null )
     {
         if (!$cacheDirectory) {
-            $cacheDirectory = sys_get_temp_dir();
+            $cacheDirectory = realpath(sys_get_temp_dir());
         }
 
         if (!is_writable($cacheDirectory)) {
