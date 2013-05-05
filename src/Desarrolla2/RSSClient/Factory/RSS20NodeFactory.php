@@ -42,10 +42,6 @@ class RSS20NodeFactory extends AbstractNodeFactory
         $this->setCategories($item, $node);
         $this->setPubDate($item, $node);
 
-        if (!$node->getGuid()) {
-            throw new ParseException('Guid not found');
-        }
-
         return $node;
     }
 
