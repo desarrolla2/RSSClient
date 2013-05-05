@@ -24,6 +24,7 @@ use \Desarrolla2\RSSClient\Handler\Error\ErrorHandler;
  */
 class ErrorHandlerTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * @var \Desarrolla2\RSSClient\Handler\Error\ErrorHandler
      */
@@ -42,7 +43,7 @@ class ErrorHandlerTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetErrors()
     {
-        $this->assertEquals($this->handler->getErrors(), array());
+        $this->assertEquals(array(), $this->handler->getErrors());
     }
 
     /**
@@ -50,7 +51,24 @@ class ErrorHandlerTest extends \PHPUnit_Framework_TestCase
      */
     public function testHasErrors()
     {
-        $this->assertEquals($this->handler->hasErrors(), false);
+        $this->assertEquals(false, $this->handler->hasErrors());
+    }
+
+    /**
+     * @test
+     */
+    public function testClearErrors()
+    {
+        $this->handler->clearErrors();
+        $this->assertEquals(array(), $this->handler->getErrors());
+    }
+
+    /**
+     * @test
+     */
+    public function testGetLastError()
+    {
+        $this->assertEquals(false, $this->handler->getLastError());
     }
 
 }
