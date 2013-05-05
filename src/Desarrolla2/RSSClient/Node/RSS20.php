@@ -30,7 +30,6 @@ class RSS20 extends Node
      * Based RSS2.0 specification
      *
      * @link http://feed2.w3.org/docs/rss2.html#requiredChannelElements
-     * @return boolean
      */
     public function validate(DOMElement $item){
         $properties = array(

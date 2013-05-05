@@ -36,14 +36,12 @@ class Atom10NodeFactory extends AbstractNodeFactory
     public function create(DOMElement $entry)
     {
         $node = $this->getNode();
+        $node->validate($entry);
+
         $this->setProperties($entry, $node);
         $this->setCategories($entry, $node);
         $this->setLink($entry, $node);
         $this->setPubDate($entry, $node);
-
-        if (!$node->getGuid()) {
-            throw new ParseException('Guid not found');
-        }
 
         return $node;
     }
