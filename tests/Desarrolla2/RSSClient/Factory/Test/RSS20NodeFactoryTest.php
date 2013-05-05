@@ -26,6 +26,7 @@ use \DOMDocument;
  */
 class RSS20NodeFactoryTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * @var \Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerDummy
      */
@@ -58,6 +59,24 @@ class RSS20NodeFactoryTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array(
+                '/data/rss20/jhosmanlirazo.xml',
+                'Como instalar #LibreOffice4 en #Ubuntu',
+                'http://jhosman.com/es/documentacion-ubuntu/oficina6/289-como-instalar-libreoffice-4-en-ubuntu.html',
+                'http://jhosman.com/es/documentacion-ubuntu/oficina6/289-como-instalar-libreoffice-4-en-ubuntu.html',
+                '<div class="wp-caption aligncenter" style="margin-right: auto;',
+                '7',
+                0,
+            ),
+            array(
+                '/data/rss20/libuntu.xml',
+                'Google lanza la versión 27.0.1453.73 beta del navegador chrome añadiendo varias mejoras en Linux',
+                'http://libuntu.wordpress.com/?p=1457',
+                'http://libuntu.wordpress.com/2013/05/01/google-lanza-la-version-27-0-1453-73-beta-del-navegador-chrome-anadiendo-varias-mejoras-en-linux/',
+                'Short description',
+                '01',
+                14,
+            ),
+            array(
                 '/data/rss20/nyt.xml',
                 'At Yad Vashem in Israel, Obama Urges Action Against Racism',
                 'http://www.nytimes.com/2013/03/23/world/middleeast/president-obama-israel.html',
@@ -65,15 +84,6 @@ class RSS20NodeFactoryTest extends \PHPUnit_Framework_TestCase
                 'Short description',
                 '22',
                 4,
-            ),
-            array(
-                '/data/rss20/ubuntuleon.xml',
-                'GPS para seres humanos II. Instalando cartografía digital',
-                'tag:blogger.com,1999:blog-2720232213758762610.post-661750892382071101',
-                'http://www.ubuntuleon.com/2013/03/gps-para-seres-humanos-ii-instalando.html',
-                'En el primer artículo de la serie ...',
-                '19',
-                6,
             ),
             array(
                 '/data/rss20/ubuntuespana.xml',
@@ -85,13 +95,13 @@ class RSS20NodeFactoryTest extends \PHPUnit_Framework_TestCase
                 0,
             ),
             array(
-                '/data/rss20/jhosmanlirazo.xml',
-                'Como instalar #LibreOffice4 en #Ubuntu',
-                'http://jhosman.com/es/documentacion-ubuntu/oficina6/289-como-instalar-libreoffice-4-en-ubuntu.html',
-                'http://jhosman.com/es/documentacion-ubuntu/oficina6/289-como-instalar-libreoffice-4-en-ubuntu.html',
-                '<div class="wp-caption aligncenter" style="margin-right: auto;',
-                '7',
-                0,
+                '/data/rss20/ubuntuleon.xml',
+                'GPS para seres humanos II. Instalando cartografía digital',
+                'tag:blogger.com,1999:blog-2720232213758762610.post-661750892382071101',
+                'http://www.ubuntuleon.com/2013/03/gps-para-seres-humanos-ii-instalando.html',
+                'En el primer artículo de la serie ...',
+                '19',
+                6,
             ),
         );
     }

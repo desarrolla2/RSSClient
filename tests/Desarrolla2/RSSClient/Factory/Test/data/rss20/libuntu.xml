@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+     xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+     xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:media="http://search.yahoo.com/mrss/"
+>
+    <channel>
+        <title>Libuntu, un novedoso blog sobre Ubuntu &#187; ubuntu</title>
+        <atom:link href="http://libuntu.wordpress.com/tag/ubuntu/feed/" rel="self" type="application/rss+xml" />
+        <link>http://libuntu.wordpress.com</link>
+        <description>Compartiendo novedades sobre Ubuntu y Otras distros Linux</description>
+        <lastBuildDate>Sun, 05 May 2013 08:02:12 +0000</lastBuildDate>
+        <language>es</language>
+        <sy:updatePeriod>hourly</sy:updatePeriod>
+        <sy:updateFrequency>1</sy:updateFrequency>
+        <generator>http://wordpress.com/</generator>
+        <cloud domain='libuntu.wordpress.com' port='80' path='/?rsscloud=notify' registerProcedure='' protocol='http-post' />
+        <image>
+            <url>http://s2.wp.com/i/buttonw-com.png</url>
+            <title>Libuntu, un novedoso blog sobre Ubuntu &#187; ubuntu</title>
+            <link>http://libuntu.wordpress.com</link>
+        </image>
+        <atom:link rel="search" type="application/opensearchdescription+xml" href="http://libuntu.wordpress.com/osd.xml" title="Libuntu, un novedoso blog sobre Ubuntu" />
+        <atom:link rel='hub' href='http://libuntu.wordpress.com/?pushpress=hub'/>
+        <item>
+            <title>Google lanza la versión 27.0.1453.73 beta del navegador chrome añadiendo varias mejoras en Linux</title>
+            <link>http://libuntu.wordpress.com/2013/05/01/google-lanza-la-version-27-0-1453-73-beta-del-navegador-chrome-anadiendo-varias-mejoras-en-linux/</link>
+            <comments>http://libuntu.wordpress.com/2013/05/01/google-lanza-la-version-27-0-1453-73-beta-del-navegador-chrome-anadiendo-varias-mejoras-en-linux/#comments</comments>
+            <pubDate>Wed, 01 May 2013 23:59:53 +0000</pubDate>
+            <dc:creator>rmarquez</dc:creator>
+            <category><![CDATA[Noticias]]></category>
+            <category><![CDATA[13.04]]></category>
+            <category><![CDATA[27.0.1453.73]]></category>
+            <category><![CDATA[beta]]></category>
+            <category><![CDATA[cookies]]></category>
+            <category><![CDATA[google]]></category>
+            <category><![CDATA[historial]]></category>
+            <category><![CDATA[instalador]]></category>
+            <category><![CDATA[lanzar]]></category>
+            <category><![CDATA[linux]]></category>
+            <category><![CDATA[mejoras]]></category>
+            <category><![CDATA[navegador]]></category>
+            <category><![CDATA[ubuntu]]></category>
+            <category><![CDATA[version]]></category>
+
+            <guid isPermaLink="false">http://libuntu.wordpress.com/?p=1457</guid>
+            <description><![CDATA[Short description]]></description>
+            <wfw:commentRss>http://libuntu.wordpress.com/2013/05/01/google-lanza-la-version-27-0-1453-73-beta-del-navegador-chrome-anadiendo-varias-mejoras-en-linux/feed/</wfw:commentRss>
+            <slash:comments>0</slash:comments>
+	
+            <media:content url="http://0.gravatar.com/avatar/3b76fd4f6565ab55837c65f569367362?s=96&#38;d=&#38;r=G" medium="image">
+                <media:title type="html">reduardowise</media:title>
+            </media:content>
+
+            <media:content url="https://lh6.googleusercontent.com/-jAUQpbJQu9A/TywSQmMvtxI/AAAAAAAAKYA/1LQT5aaC2hI/s385/Chrome-logo.jpg" medium="image" />
+        </item>
+    </channel>
+</rss>
