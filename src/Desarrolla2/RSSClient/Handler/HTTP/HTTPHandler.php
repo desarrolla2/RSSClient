@@ -27,6 +27,9 @@ use Desarrolla2\RSSClient\Exception\RuntimeException;
  */
 class HTTPHandler implements HTTPHandlerInterface
 {
+
+    const USER_AGENT = 'Desarrolla2/RSSClient 2.0';
+
     /**
      * @var \Guzzle\Http\Client
      */
@@ -52,17 +55,27 @@ class HTTPHandler implements HTTPHandlerInterface
     /**
      * Retrieve a resource in plain text from a url
      *
-     * @param  string $resource
+     * @param string $resource
+     * @param array $headers
+     * @param string $body
      * @return string
+     * @throws RuntimeException
      */
-    public function get($resource)
+    public function get($resource, $headers = null, $body = null)
     {
-        $request = $this->client->get($resource);
-        $response = $request->send();
-        if ($response->getStatusCode() == 200) {
-            return $response->getBody();
+        $_headers = array(
+            'User-Agent' => self::USER_AGENT,
+        );
+        if (is_array($headers)) {
+            $_headers = array_merge($headers, $_headers);
         }
-        throw new RuntimeException('Error on HTTP request');
+        $request = $this->client->get($resource, $_headers);
+        $response = $request->send();
+        $status = $response->getStatusCode();
+        if ($status != 200) {
+            throw new RuntimeException('Error HTTP ' . $status . '  on request');
+        }
+        return $response->getBody();
     }
 
 }
