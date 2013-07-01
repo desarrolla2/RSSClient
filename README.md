@@ -1,6 +1,6 @@
 # RSSClient
 
-[![Build Status](https://secure.travis-ci.org/desarrolla2/RSSClient.png)](http://travis-ci.org/desarrolla2/RSSClient)
+[![Latest Stable Version](https://poser.pugx.org/desarrolla2/rss-client/v/stable.png)](https://packagist.org/packages/desarrolla2/rss-client) [![Total Downloads](https://poser.pugx.org/desarrolla2/rss-client/downloads.png)](https://packagist.org/packages/desarrolla2/rss-client) [![Build Status](https://secure.travis-ci.org/desarrolla2/RSSClient.png)](http://travis-ci.org/desarrolla2/RSSClient)
 
 RSSClient is a simple to use RSS library to fetch and use RSS feeds.
 RSSClient is very fast!
