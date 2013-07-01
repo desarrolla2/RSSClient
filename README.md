@@ -5,9 +5,9 @@
 RSSClient is a simple to use RSS library to fetch and use RSS feeds.
 RSSClient is very fast!
 
-You can read the RSS specification on [RFC](http://cyber.law.harvard.edu/rss/rss.html)
-
-RSSClient Support Atom1.0 now.
+RSSClient Support 
+* RSS2.0 [RFC](http://cyber.law.harvard.edu/rss/rss.html)
+* Atom1.0 [RFC](http://tools.ietf.org/html/rfc4287) new!!.
 
 
 ## Installation
