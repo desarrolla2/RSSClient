@@ -36,15 +36,12 @@ class RSS20NodeFactory extends AbstractNodeFactory
     public function create(DOMElement $item)
     {
         $node = $this->getNode();
+        $node->validate($item);
 
         $this->setProperties($item, $node);
         $this->setLink($item, $node);
         $this->setCategories($item, $node);
         $this->setPubDate($item, $node);
-
-        if (!$node->getGuid()) {
-            throw new ParseException('Guid not found');
-        }
 
         return $node;
     }
@@ -105,5 +102,4 @@ class RSS20NodeFactory extends AbstractNodeFactory
     {
         return new RSS20();
     }
-
 }

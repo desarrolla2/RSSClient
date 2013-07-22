@@ -13,6 +13,8 @@
 namespace Desarrolla2\RSSClient\Node;
 
 use Desarrolla2\RSSClient\Node\Node;
+use Desarrolla2\RSSClient\Exception\ParseException;
+use \DOMElement;
 
 /**
  *
@@ -24,4 +26,27 @@ use Desarrolla2\RSSClient\Node\Node;
  */
 class Atom10 extends Node
 {
+    /**
+     * Based Atom 1.0 specification
+     *
+     * @link http://www.atomenabled.org/developers/syndication/atom-format-spec.php#element.entry
+     */
+    public function validate(DOMElement $entry){
+        //@TODO: define all properties
+        $properties = array(
+            'id'          	=> array('required' => TRUE),
+            'title'         => array('required' => TRUE), 
+            'content'   	=> array('required' => TRUE),
+            'updated'		=> array('required' => TRUE),
+            'link'			=> array('required' => FALSE),
+        );
+        foreach ($properties as $propertyName => $attributes) {
+            if($attributes['required'] == FALSE) continue;
+
+            $value = $entry->getElementsByTagName($propertyName)->item(0);
+            if(!$value){
+                throw new ParseException('<entry> node invalid');
+            }
+        }
+    }
 }
