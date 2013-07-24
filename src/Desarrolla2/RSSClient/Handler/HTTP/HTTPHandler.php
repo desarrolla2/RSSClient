@@ -55,9 +55,9 @@ class HTTPHandler implements HTTPHandlerInterface
     /**
      * Retrieve a resource in plain text from a url
      *
-     * @param string $resource
-     * @param array $headers
-     * @param string $body
+     * @param  string           $resource
+     * @param  array            $headers
+     * @param  string           $body
      * @return string
      * @throws RuntimeException
      */
@@ -75,6 +75,7 @@ class HTTPHandler implements HTTPHandlerInterface
         if ($status != 200) {
             throw new RuntimeException('Error HTTP ' . $status . '  on request');
         }
+
         return $response->getBody();
     }
 

@@ -14,6 +14,7 @@ namespace Desarrolla2\RSSClient;
 
 use Desarrolla2\RSSClient\RSSClientInterface;
 use Desarrolla2\RSSClient\Parser\FeedParser;
+use Desarrolla2\RSSClient\Parser\ParserInterface;
 use Desarrolla2\RSSClient\Handler\HTTP\HTTPHandler;
 use Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerInterface;
 use Desarrolla2\RSSClient\Handler\Feed\FeedHandler;
@@ -26,8 +27,8 @@ use Desarrolla2\RSSClient\Node\NodeCollection;
  * Description of RSSClient
  *
  * @author : Daniel González <daniel.gonzalez@freelancemadrid.es>
- * @file : Client.php , UTF-8
- * @date : Oct 3, 2012 , 2:07:02 AM
+ * @file   : Client.php , UTF-8
+ * @date   : Oct 3, 2012 , 2:07:02 AM
  */
 class RSSClient extends FeedHandler implements RSSClientInterface
 {
@@ -57,9 +58,9 @@ class RSSClient extends FeedHandler implements RSSClientInterface
      */
     public function __construct(array $feeds = array(), $channel = 'default')
     {
-        $this->httpHandler = new HTTPHandler();
+        $this->httpHandler      = new HTTPHandler();
         $this->sanitizerHandler = new SanitizerHandler();
-        $this->parser = new FeedParser();
+        $this->parser           = new FeedParser();
         $this->setFeeds($feeds, $channel);
     }
 
@@ -85,14 +86,23 @@ class RSSClient extends FeedHandler implements RSSClientInterface
     }
 
     /**
+     * @param ParserInterface $parser
+     */
+    public function setParser(ParserInterface $parser)
+    {
+        $this->parser = $parser;
+    }
+
+
+    /**
      * Retrieve nodes from a chanel
      *
-     * @param  int                       $limit
-     * @param  string                    $channel
-     * @return array                     $nodes
+     * @param string $channel
+     * @param int    $limit
+     * @return NodeCollection
      * @throws \InvalidArgumentException
      */
-    public function fetch($channel = 'default')
+    public function fetch($channel = 'default', $limit = 100)
     {
         if (!is_string($channel)) {
             throw new \InvalidArgumentException('channel not valid (' . gettype($channel) . ')');
@@ -115,6 +125,7 @@ class RSSClient extends FeedHandler implements RSSClientInterface
             }
         }
         $this->nodes->short();
+        $this->nodes->limit($limit);
 
         return $this->nodes;
     }
@@ -134,5 +145,4 @@ class RSSClient extends FeedHandler implements RSSClientInterface
 
         return '';
     }
-
 }

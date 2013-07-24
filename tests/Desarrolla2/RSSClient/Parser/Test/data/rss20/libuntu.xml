@@ -52,7 +52,7 @@
             <description><![CDATA[Google ha actualizado su canal beta del navegador Chrome con la versión 27.0.1453.73 incluyendo varias mejoras en Linux. Estas mejoras son: Se corrige un cuelgue en el historial rápido en navegadores no-inglés en Linux El navegador ya no desactiva las cookies al visualizar los favicons Se añade un nuevo archivo para el instalador de Chrome [...]<img alt="" border="0" src="http://stats.wordpress.com/b.gif?host=libuntu.wordpress.com&#038;blog=40169159&#038;post=1457&#038;subd=libuntu&#038;ref=&#038;feed=1" width="1" height="1" />]]></description>
             <wfw:commentRss>http://libuntu.wordpress.com/2013/05/01/google-lanza-la-version-27-0-1453-73-beta-del-navegador-chrome-anadiendo-varias-mejoras-en-linux/feed/</wfw:commentRss>
             <slash:comments>0</slash:comments>
-	
+
             <media:content url="http://0.gravatar.com/avatar/3b76fd4f6565ab55837c65f569367362?s=96&#38;d=&#38;r=G" medium="image">
                 <media:title type="html">reduardowise</media:title>
             </media:content>
@@ -86,7 +86,7 @@
             <description><![CDATA[La aplicación CrossOver, la cuál es considerada una mejora de Wine, ha sido actualizada a la versión 12.2.0 trayendo varias mejoras. En esta nueva versión, podemos mencionar algunas mejoras como: Se solventan algunas distorsiones gráficas en algunas ventanas al usar Quicken Se solventan algunos errores que causaban el cuelgue de Office 2007 en algunas circunstancias. [...]<img alt="" border="0" src="http://stats.wordpress.com/b.gif?host=libuntu.wordpress.com&#038;blog=40169159&#038;post=1454&#038;subd=libuntu&#038;ref=&#038;feed=1" width="1" height="1" />]]></description>
             <wfw:commentRss>http://libuntu.wordpress.com/2013/05/01/codeweaver-lanza-crossover-12-2-0/feed/</wfw:commentRss>
             <slash:comments>0</slash:comments>
-	
+
             <media:content url="http://0.gravatar.com/avatar/3b76fd4f6565ab55837c65f569367362?s=96&#38;d=&#38;r=G" medium="image">
                 <media:title type="html">reduardowise</media:title>
             </media:content>
@@ -121,7 +121,7 @@
             <description><![CDATA[A través de la wiki oficial de Ubuntu, Canonical ha publicado la hoja de ruta o el roadmap de Ubuntu 13.10 &#8220;Saucy Salamander&#8221;, conoce cuales serán las fechas de lanzamientos. la hoja de ruta de Ubuntu 13.10 &#8220;Saucy salamander&#8221; es la siguiente: 30 de mayo &#8211; Congelación de definición de caracaterísticas 20 de Junio &#8211; [...]<img alt="" border="0" src="http://stats.wordpress.com/b.gif?host=libuntu.wordpress.com&#038;blog=40169159&#038;post=1452&#038;subd=libuntu&#038;ref=&#038;feed=1" width="1" height="1" />]]></description>
             <wfw:commentRss>http://libuntu.wordpress.com/2013/05/01/se-publica-la-hoja-de-ruta-o-el-roadmap-de-ubuntu-13-10/feed/</wfw:commentRss>
             <slash:comments>0</slash:comments>
-	
+
             <media:content url="http://0.gravatar.com/avatar/3b76fd4f6565ab55837c65f569367362?s=96&#38;d=&#38;r=G" medium="image">
                 <media:title type="html">reduardowise</media:title>
             </media:content>
@@ -152,7 +152,7 @@
             <description><![CDATA[Los usuarios que deseen ir probando la próxima versión de Ubuntu 13.10 &#8220;Saucy Salamander&#8221; están de suerte, ya que Canonical puso a disposición pública las construcciones diarias o Daily Builds. Canonical ya puso a disposición de todo público, la descarga de las construcciones diarias o daily Builds de Ubuntu 13.10 &#8220;Saucy Salamander&#8221; para todos aquellos [...]<img alt="" border="0" src="http://stats.wordpress.com/b.gif?host=libuntu.wordpress.com&#038;blog=40169159&#038;post=1449&#038;subd=libuntu&#038;ref=&#038;feed=1" width="1" height="1" />]]></description>
             <wfw:commentRss>http://libuntu.wordpress.com/2013/05/01/ya-se-encuentran-disponibles-las-construcciones-diarias-o-daily-builds-de-ubuntu-13-10/feed/</wfw:commentRss>
             <slash:comments>1</slash:comments>
-	
+
             <media:content url="http://0.gravatar.com/avatar/3b76fd4f6565ab55837c65f569367362?s=96&#38;d=&#38;r=G" medium="image">
                 <media:title type="html">reduardowise</media:title>
             </media:content>
@@ -186,7 +186,7 @@
             <description><![CDATA[Canonical ha liberado una nueva versión de seguridad del kernel Linux en Ubuntu 12.04 LTS, solventando varios problemas de seguridad. La nueva versión de seguridad del kernel Linux es la 3.2.0-41.66 y solventa varios problemas de seguridad. Se solventa un fallo en la información del kernel Linux al implementar el sistema de archivos UDF. Esto [...]<img alt="" border="0" src="http://stats.wordpress.com/b.gif?host=libuntu.wordpress.com&#038;blog=40169159&#038;post=1442&#038;subd=libuntu&#038;ref=&#038;feed=1" width="1" height="1" />]]></description>
             <wfw:commentRss>http://libuntu.wordpress.com/2013/05/01/canonical-lanza-una-nueva-version-de-seguridad-del-kernel-linux-en-ubuntu-12-04-lts/feed/</wfw:commentRss>
             <slash:comments>0</slash:comments>
-	
+
             <media:content url="http://0.gravatar.com/avatar/3b76fd4f6565ab55837c65f569367362?s=96&#38;d=&#38;r=G" medium="image">
                 <media:title type="html">reduardowise</media:title>
             </media:content>
@@ -219,7 +219,7 @@
             <description><![CDATA[A través de la lista de correo de Ubuntu, Matthias Klose ha anunciado que el desarrollo de Ubuntu 13.10 ha comenzado y ya recibió sus primeras actualizaciones de paquetes. Se trata de los paquetes GCC y Boost, ambos han sido actualizados. GCC 4.8 es ahora el compilador por defecto en Ubuntu 13.10 añadiendo un montón [...]<img alt="" border="0" src="http://stats.wordpress.com/b.gif?host=libuntu.wordpress.com&#038;blog=40169159&#038;post=1426&#038;subd=libuntu&#038;ref=&#038;feed=1" width="1" height="1" />]]></description>
             <wfw:commentRss>http://libuntu.wordpress.com/2013/04/29/ubuntu-13-10-comienza-a-recibir-actualizaciones/feed/</wfw:commentRss>
             <slash:comments>0</slash:comments>
-	
+
             <media:content url="http://0.gravatar.com/avatar/3b76fd4f6565ab55837c65f569367362?s=96&#38;d=&#38;r=G" medium="image">
                 <media:title type="html">reduardowise</media:title>
             </media:content>
@@ -253,7 +253,7 @@
             <description><![CDATA[Con el lanzamiento de Ubuntu 13.04, también la versión para dispositivos móviles se ha actualizado y la terminal en este caso, he recibido varias mejoras y características visuales. La terminal en Ubuntu Phone ha pasado a ser una aplicación principal de Ubuntu Touch, el cuál ha comenzado a recibir numerosas mejoras y nuevas características en [...]<img alt="" border="0" src="http://stats.wordpress.com/b.gif?host=libuntu.wordpress.com&#038;blog=40169159&#038;post=1420&#038;subd=libuntu&#038;ref=&#038;feed=1" width="1" height="1" />]]></description>
             <wfw:commentRss>http://libuntu.wordpress.com/2013/04/27/se-anaden-nuevas-caracteristicas-visuales-a-la-terminal-de-ubuntu-phone/feed/</wfw:commentRss>
             <slash:comments>0</slash:comments>
-	
+
             <media:content url="http://0.gravatar.com/avatar/3b76fd4f6565ab55837c65f569367362?s=96&#38;d=&#38;r=G" medium="image">
                 <media:title type="html">reduardowise</media:title>
             </media:content>
@@ -288,7 +288,7 @@
             <description><![CDATA[El popular observatorio espacial open source Stellarium, ha sido actualizado a la versión 12.1 trayendo nuevas características y mejoras. Considerada una actualización mayor, la versión 12.1 trae numerosas características y mejoras entre ellas estan: Se añade el catálogo Caldwell Se añade el nuevo skyculture Tongan Soporte para los lentes Barlow/Shapley, esto como una nueva característica [...]<img alt="" border="0" src="http://stats.wordpress.com/b.gif?host=libuntu.wordpress.com&#038;blog=40169159&#038;post=1414&#038;subd=libuntu&#038;ref=&#038;feed=1" width="1" height="1" />]]></description>
             <wfw:commentRss>http://libuntu.wordpress.com/2013/04/26/se-lanza-la-version-12-1-de-stellarium/feed/</wfw:commentRss>
             <slash:comments>0</slash:comments>
-	
+
             <media:content url="http://0.gravatar.com/avatar/3b76fd4f6565ab55837c65f569367362?s=96&#38;d=&#38;r=G" medium="image">
                 <media:title type="html">reduardowise</media:title>
             </media:content>
@@ -317,7 +317,7 @@
             <description><![CDATA[A través del siguiente tutorial, les indicaré como instalar los controladores propietarios Broadcom en Ubuntu. En el blog desdelinux indican en unos breves pasos como instalar los controladores privativos Broadcom en Ubuntu para redes inalámbricas. Estos son los pasos: Descargamos (obviamente en una pc que tenga conexión a internet) los siguientes paquetes: DKMS y dependiendo [...]<img alt="" border="0" src="http://stats.wordpress.com/b.gif?host=libuntu.wordpress.com&#038;blog=40169159&#038;post=1412&#038;subd=libuntu&#038;ref=&#038;feed=1" width="1" height="1" />]]></description>
             <wfw:commentRss>http://libuntu.wordpress.com/2013/04/26/instalar-los-controladores-propietarios-de-broadcom-en-ubuntu/feed/</wfw:commentRss>
             <slash:comments>2</slash:comments>
-	
+
             <media:content url="http://0.gravatar.com/avatar/3b76fd4f6565ab55837c65f569367362?s=96&#38;d=&#38;r=G" medium="image">
                 <media:title type="html">reduardowise</media:title>
             </media:content>
@@ -348,7 +348,7 @@
             <description><![CDATA[¿Coincidiendo? con el lanzamiento de Ubuntu 13.04 el día de hoy, la gente de Ubuntu Tweak lanza la versión 0.8.4 de esta popular herramienta de optimización, configuración y algo mas tanto para Ubuntu como para Linux Mint. En el anuncio oficial, Tualatrix Chou ha indicado que esta versión es de mantenimiento prácticamente, por lo que [...]<img alt="" border="0" src="http://stats.wordpress.com/b.gif?host=libuntu.wordpress.com&#038;blog=40169159&#038;post=1404&#038;subd=libuntu&#038;ref=&#038;feed=1" width="1" height="1" />]]></description>
             <wfw:commentRss>http://libuntu.wordpress.com/2013/04/25/se-lanza-ubuntu-tweak-0-8-4/feed/</wfw:commentRss>
             <slash:comments>0</slash:comments>
-	
+
             <media:content url="http://0.gravatar.com/avatar/3b76fd4f6565ab55837c65f569367362?s=96&#38;d=&#38;r=G" medium="image">
                 <media:title type="html">reduardowise</media:title>
             </media:content>

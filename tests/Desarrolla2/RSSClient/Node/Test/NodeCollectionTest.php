@@ -12,7 +12,7 @@
 
 namespace Desarrolla2\RSSClient\Node\Test;
 
-use Desarrolla2\RSSClient\Node\RSS20;
+use Desarrolla2\RSSClient\Node\RSS20 as Node;
 use Desarrolla2\RSSClient\Node\NodeCollection;
 
 /**
@@ -20,8 +20,8 @@ use Desarrolla2\RSSClient\Node\NodeCollection;
  * Description of NodeCollectionTest
  *
  * @author : Daniel González <daniel.gonzalez@freelancemadrid.es>
- * @file : NodeCollectionTest.php , UTF-8
- * @date : Mar 24, 2013 , 11:16:06 PM
+ * @file   : NodeCollectionTest.php , UTF-8
+ * @date   : Mar 24, 2013 , 11:16:06 PM
  */
 class NodeCollectionTest extends \PHPUnit_Framework_TestCase
 {
@@ -44,11 +44,13 @@ class NodeCollectionTest extends \PHPUnit_Framework_TestCase
     public function testShort()
     {
         $dates = array(
-            '2012-01-01', '2012-01-02', '2012-01-03',
+            '2012-01-01',
+            '2012-01-02',
+            '2012-01-03',
         );
 
         foreach ($dates as $date) {
-            $node = new RSS20();
+            $node = new Node();
             $node->setPubDate(new \DateTime($date));
             $this->collection->append($node);
         }
@@ -58,4 +60,29 @@ class NodeCollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($first->getPubDate()->format('d'), '3');
     }
 
+    /**
+     * @dataProvider dataProviderForTestLimit
+     */
+    public function testLimit($limit)
+    {
+        for ($i = 1; $i <= 20; $i++) {
+            $node = new Node();
+            $node->setPubDate(new \DateTime());
+            $this->collection->append($node);
+        }
+        $this->collection->limit($limit);
+        $this->assertEquals($limit, $this->collection->count());
+    }
+
+
+    /**
+     * @return array
+     */
+    public function dataProviderForTestLimit()
+    {
+        return array(
+            array(5),
+            array(15),
+        );
+    }
 }
