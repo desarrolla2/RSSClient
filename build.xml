@@ -53,7 +53,7 @@
     </target>
 
     <target name="pdepend"
-            description="Generate jdepend.xml and software metrics charts using PHP_Depend">
+            description="Generate software metrics charts using PHP_Depend">
         <exec executable="pdepend">
             <arg value="--jdepend-chart=build/pdepend/dependencies.svg"/>
             <arg value="--overview-pyramid=build/pdepend/overview-pyramid.svg"/>
@@ -71,7 +71,7 @@
     </target>
 
     <target name="phpmd"
-            description="Generate coding standard metrics using PHPCS">
+            description="Generate coding metrics for mess code using PHPMD">
         <exec executable="phpmd">
             <arg value="src"/>
             <arg value="text"/>
