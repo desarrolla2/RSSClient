@@ -76,7 +76,8 @@
             <arg value="src"/>
             <arg value="text"/>
             <arg value="codesize,unusedcode,naming,design,controversial"/>
-            <arg value=" --reportfile build/phpmd/report.txt"/>
+            <arg value="--reportfile"/>
+            <arg value="build/phpmd/report.txt"/>
         </exec>
 
     </target>
