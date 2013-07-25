@@ -90,12 +90,11 @@ class RSSClient extends FeedHandler implements RSSClientInterface
         $this->parser = $parser;
     }
 
-
     /**
      * Retrieve nodes from a chanel
      *
-     * @param string $channel
-     * @param int    $limit
+     * @param  string                    $channel
+     * @param  int                       $limit
      * @return NodeCollection
      * @throws \InvalidArgumentException
      */

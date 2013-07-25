@@ -27,7 +27,7 @@ interface RSSClientInterface
     /**
      * set HTTP Handler
      *
-     * @param  \Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerInterface $handler
+     * @param \Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerInterface $handler
      */
     public function setHTTPHandler(HTTPHandlerInterface $handler);
 
@@ -46,8 +46,8 @@ interface RSSClientInterface
     /**
      * Retrieve nodes from a chanel
      *
-     * @param string $channel
-     * @param int    $limit
+     * @param  string                    $channel
+     * @param  int                       $limit
      * @return NodeCollection
      * @throws \InvalidArgumentException
      */

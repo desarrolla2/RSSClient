@@ -82,7 +82,7 @@ class NodeCollection extends \ArrayObject
      */
     public function limit($limit)
     {
-        $limit = (int)$limit;
+        $limit = (int) $limit;
         if (!$limit) {
             return;
         }

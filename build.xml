@@ -2,41 +2,71 @@
 
 <project name="RSS Client" default="build">
 
-    <target name="build" depends="install,prepare,pdepend,phpdoc,phpunit" description="Run all tests and build everything" />
+    <target name="install" depends="composer"
+            description="Prepare for execution"/>
 
-    <target name="install" depends="composer" description="Prepare for execution" />
+    <target name="build" depends="install, init"
+            description="Run all tests and build everything"/>
 
-    <target name="prepare" depends="clean" description="Prepare for build">
-        <mkdir dir="cache/htmlpurifier"/>
-        <mkdir dir="build/api"/>
-        <mkdir dir="build/code-browser"/>
-        <mkdir dir="build/coverage"/>
-        <mkdir dir="build/logs"/>
-    </target>
+    <target name="metrics" depends="build, phpunit, phpdoc, pdepend, phpcs, phpmd"
+            description="Generate Metrics"/>
 
-    <target name="composer" description="Composer install">
-        <exec executable="composer">
-            <arg value="install" />
-        </exec>
-    </target>
-
-    <target name="clean" description="Cleanup build artifacts">
+    <target name="clean"
+            description="Cleanup build artifacts">
         <delete dir="cache/htmlpurifier"/>
         <delete dir="build/api"/>
         <delete dir="build/coverage"/>
-        <delete dir="build/logs"/>
+        <delete dir="build/pdepend"/>
+        <delete dir="build/phpcs"/>
+        <delete dir="build/phpmd"/>
     </target>
 
-    <target name="pdepend" description="Generate jdepend.xml and software metrics charts using PHP_Depend">
-        <exec command="pdepend --summary-xml=build/pdepend/summary.xml --jdepend-xml=app/build/logs/jdepend.xml --jdepend-chart=build/pdepend/dependencies.svg --overview-pyramid=app/build/pdepend/overview-pyramid.svg src"/>
+    <target name="init" depends="clean"
+            description="Prepare for build">
+        <mkdir dir="cache/htmlpurifier"/>
+        <mkdir dir="build/api"/>
+        <mkdir dir="build/coverage"/>
+        <mkdir dir="build/pdepend"/>
+        <mkdir dir="build/phpcs"/>
+        <mkdir dir="build/phpmd"/>
     </target>
 
-    <target name="phpdoc" description="Generate API documentation using PHPDocumentor">
+    <target name="composer"
+            description="Composer install">
+        <exec executable="composer">
+            <arg value="install"/>
+        </exec>
+    </target>
+
+    <target name="phpdoc"
+            description="Generate API documentation using PHPDocumentor">
         <exec command="phpdoc -d src/ -t build/api/"/>
     </target>
 
-    <target name="phpunit" description="Run unit tests using PHPUnit and generates junit.xml and clover.xml">
-        <exec passthru="true" checkreturn="true" command="phpunit -c phpunit.xml"/>
+    <target name="phpunit"
+            description="Run unit tests using PHPUnit">
+        <exec command="phpunit -c phpunit.xml"/>
+    </target>
+
+    <target name="pdepend"
+            description="Generate jdepend.xml and software metrics charts using PHP_Depend">
+        <exec command="pdepend
+        --jdepend-chart=build/pdepend/dependencies.svg
+        --overview-pyramid=build/pdepend/overview-pyramid.svg
+        src"
+                />
+    </target>
+
+    <target name="phpcs"
+            description="Generate coding standard metrics using PHPCS">
+        <exec command="phpcs --report-full=build/phpcs/full.txt --report-summary=build/phpcs/sumary.txt src"
+                />
+    </target>
+
+    <target name="phpmd"
+            description="Generate coding standard metrics using PHPCS">
+        <exec command="phpmd src/ text codesize,unusedcode,naming,design,controversial --reportfile build/phpmd/report.txt"
+                />
     </target>
 
 </project>
