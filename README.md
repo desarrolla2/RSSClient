@@ -4,11 +4,10 @@
 
 RSSClient is a simple to use RSS library to fetch and use RSS feeds. RSSClient is very fast!
 
-
 ## Formats Supported
 
-* RSS2.0 [RFC](http://cyber.law.harvard.edu/rss/rss.html)
-* Atom1.0 [RFC](http://tools.ietf.org/html/rfc4287) new!!.
+* [RSS2.0](http://cyber.law.harvard.edu/rss/rss.html)
+* [Atom1.0](http://tools.ietf.org/html/rfc4287)
 
 ## Installation
 
@@ -108,5 +107,6 @@ You can contact with me on [twitter](https://twitter.com/desarrolla2).
 ## Other
 
 * [Code Coverage](http://rssclient.desarrolla2.com/coverage/index.html)
-* API Docs
+* API Docs // not ready
+* Code Sniffer // not ready
 
