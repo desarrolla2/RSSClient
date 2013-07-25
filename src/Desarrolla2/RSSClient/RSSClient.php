@@ -24,11 +24,9 @@ use Desarrolla2\RSSClient\Node\NodeCollection;
 
 /**
  *
- * Description of RSSClient
+ * RSSClient is a class to handling fetch feeds
  *
  * @author : Daniel González <daniel.gonzalez@freelancemadrid.es>
- * @file   : Client.php , UTF-8
- * @date   : Oct 3, 2012 , 2:07:02 AM
  */
 class RSSClient extends FeedHandler implements RSSClientInterface
 {
@@ -65,10 +63,9 @@ class RSSClient extends FeedHandler implements RSSClientInterface
     }
 
     /**
-     * set HTTPClient
+     * set HTTP Handler
      *
-     * @param  \Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerInterface $handler
-     * @return type
+     * @param HTTPHandlerInterface $handler
      */
     public function setHTTPHandler(HTTPHandlerInterface $handler)
     {
@@ -78,7 +75,7 @@ class RSSClient extends FeedHandler implements RSSClientInterface
     /**
      * Set Sanitizer
      *
-     * @param \Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface $handler
+     * @param SanitizerHandlerInterface $handler
      */
     public function setSanitizerHandler(SanitizerHandlerInterface $handler)
     {
@@ -131,6 +128,7 @@ class RSSClient extends FeedHandler implements RSSClientInterface
     }
 
     /**
+     * Retrieve feeds content
      *
      * @param  string $feedUrl
      * @return string

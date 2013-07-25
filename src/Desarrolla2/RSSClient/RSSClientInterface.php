@@ -14,19 +14,42 @@ namespace Desarrolla2\RSSClient;
 
 use Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerInterface;
 use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface;
+use Desarrolla2\RSSClient\Parser\ParserInterface;
+
 /**
  *
- * Description of RSSClientInterface
+ * RSSClient Interface
  *
  * @author : Daniel González <daniel.gonzalez@freelancemadrid.es>
- * @file : ClientInterface.php , UTF-8
- * @date : Oct 3, 2012 , 2:07:10 AM
  */
 interface RSSClientInterface
 {
+    /**
+     * set HTTP Handler
+     *
+     * @param  \Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerInterface $handler
+     */
     public function setHTTPHandler(HTTPHandlerInterface $handler);
 
+    /**
+     * Set Sanitizer
+     *
+     * @param \Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface $handler
+     */
     public function setSanitizerHandler(SanitizerHandlerInterface $handler);
 
-    public function fetch($channel = 'default');
+    /**
+     * @param ParserInterface $parser
+     */
+    public function setParser(ParserInterface $parser);
+
+    /**
+     * Retrieve nodes from a chanel
+     *
+     * @param string $channel
+     * @param int    $limit
+     * @return NodeCollection
+     * @throws \InvalidArgumentException
+     */
+    public function fetch($channel = 'default', $limit = 100);
 }
