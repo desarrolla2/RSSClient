@@ -13,12 +13,8 @@
 
     <target name="clean"
             description="Cleanup build artifacts">
-        <delete dir="cache/htmlpurifier"/>
-        <delete dir="build/api"/>
-        <delete dir="build/coverage"/>
-        <delete dir="build/pdepend"/>
-        <delete dir="build/phpcs"/>
-        <delete dir="build/phpmd"/>
+        <delete dir="cache"/>
+        <delete dir="build"/>
     </target>
 
     <target name="init" depends="clean"
@@ -40,33 +36,49 @@
 
     <target name="phpdoc"
             description="Generate API documentation using PHPDocumentor">
-        <exec command="phpdoc -d src/ -t build/api/"/>
+        <exec executable="phpdoc">
+            <arg value="-d"/>
+            <arg value="src"/>
+            <arg value="-t"/>
+            <arg value="build/api/"/>
+        </exec>
     </target>
 
     <target name="phpunit"
             description="Run unit tests using PHPUnit">
-        <exec command="phpunit -c phpunit.xml"/>
+        <exec executable="phpunit">
+            <arg value="-c"/>
+            <arg value="phpunit.xml"/>
+        </exec>
     </target>
 
     <target name="pdepend"
             description="Generate jdepend.xml and software metrics charts using PHP_Depend">
-        <exec command="pdepend
-        --jdepend-chart=build/pdepend/dependencies.svg
-        --overview-pyramid=build/pdepend/overview-pyramid.svg
-        src"
-                />
+        <exec executable="pdepend">
+            <arg value="--jdepend-chart=build/pdepend/dependencies.svg"/>
+            <arg value="--overview-pyramid=build/pdepend/overview-pyramid.svg"/>
+            <arg value="src"/>
+        </exec>
     </target>
 
     <target name="phpcs"
             description="Generate coding standard metrics using PHPCS">
-        <exec command="phpcs --report-full=build/phpcs/full.txt --report-summary=build/phpcs/sumary.txt src"
-                />
+        <exec executable="phpcs">
+            <arg value="--report-full=build/phpcs/full.txt"/>
+            <arg value="--report-summary=build/phpcs/sumary.txt"/>
+            <arg value="src"/>
+        </exec>
     </target>
 
     <target name="phpmd"
             description="Generate coding standard metrics using PHPCS">
-        <exec command="phpmd src/ text codesize,unusedcode,naming,design,controversial --reportfile build/phpmd/report.txt"
-                />
+        <exec executable="phpmd">
+            <arg value="src"/>
+            <arg value="text"/>
+            <arg value="codesize,unusedcode,naming,design,controversial"/>
+            <arg value=" --reportfile build/phpmd/report.txt"/>
+        </exec>
+
     </target>
 
 </project>
