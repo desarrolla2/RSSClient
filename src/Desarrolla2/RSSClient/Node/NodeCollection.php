@@ -82,14 +82,18 @@ class NodeCollection extends \ArrayObject
      */
     public function limit($limit)
     {
+        $limit = (int)$limit;
+        if (!$limit) {
+            return;
+        }
         $total = $this->count();
-        if ($limit < $total) {
-            for ($i = $limit ; $i < $total; $i++) {
-                if (isset($this[$i])) {
-                    unset ($this[$i]);
-                }
+        if ($limit > $total) {
+            return;
+        }
+        for ($i = $limit; $i < $total; $i++) {
+            if (isset($this[$i])) {
+                unset ($this[$i]);
             }
         }
-
     }
 }

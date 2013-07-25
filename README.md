@@ -37,6 +37,7 @@ This example does not use any cache, so it probably will be too slow to be used 
 a website, you should implement your system cache, or use the cache system described below
 
 ``` php
+<?php
 
 use Desarrolla2\RSSClient\RSSClient;
 
@@ -61,6 +62,7 @@ select the adapter depending on your needs, you can find all the info in the
 repository [Github] (https://github.com/desarrolla2/Cache).
 
 ``` php
+<?php
 
 use Desarrolla2\RSSClient\Cache\RSSClient;
 use Desarrolla2\Cache\Cache;
@@ -77,6 +79,7 @@ You can see how to configure desarrolla2/cache in its [README] (https://github.c
 The rest of the procedure is exactly the same as if you were using the client without cache.
 
 ``` php
+<?php
 
 $client->addFeeds(
     array(
@@ -95,6 +98,7 @@ $feeds = $client->fetch('news');
 You can use the second parameter of `fetch` to limit the number of elements
 
 ``` php
+<?php
 
 $feeds = $client->fetch('news', 20);
 

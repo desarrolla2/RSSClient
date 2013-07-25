@@ -67,6 +67,7 @@ class RSSClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testLimit($limit)
     {
+        // @TODO Refactor this test to no test the limit function of NodeCollection
         $httpHandler = $this->getHTTPHandlerMock();
         $httpHandler->expects($this->once())
             ->method('get')
