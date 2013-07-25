@@ -110,7 +110,12 @@ You can contact with me on [twitter](https://twitter.com/desarrolla2).
 
 ## Other
 
-* [Code Coverage](http://rssclient.desarrolla2.com/coverage/index.html)
-* API Docs // not ready
-* Code Sniffer // not ready
+* [API docs](http://rssclient.desarrolla2.com/api/)
+* [Code coverage](http://rssclient.desarrolla2.com/coverage/)
+* [Code dependencies](http://rssclient.desarrolla2.com/pdepend/dependencies.svg)
+* [Code overview pyramid](http://rssclient.desarrolla2.com/pdepend/overview-pyramid.svg)
+* [Coding standard report](http://rssclient.desarrolla2.com/phpcs/sumary.txt)
+* [Coding standard report full](http://rssclient.desarrolla2.com/phpcs/full.txt)
+* [Code mess report ](http://rssclient.desarrolla2.com/phpmd/report.txt)
+
 
