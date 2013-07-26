@@ -23,8 +23,6 @@ use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerDummy;
  * Description of RSSClientTest
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
- * @file   : RSSClientTest.php , UTF-8
- * @date   : Mar 19, 2013 , 6:23:26 PM
  */
 class RSSClientTest extends \PHPUnit_Framework_TestCase
 {

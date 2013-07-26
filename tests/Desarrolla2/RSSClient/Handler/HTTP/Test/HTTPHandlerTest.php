@@ -21,8 +21,6 @@ use \Guzzle\Http\Message\Request;
  * Description of HTTPHandlerTest
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
- * @file   : HTTPHandlerTest.php , UTF-8
- * @date   : Mar 19, 2013 , 5:18:58 PM
  */
 class HTTPHandlerTest extends \PHPUnit_Framework_TestCase
 {

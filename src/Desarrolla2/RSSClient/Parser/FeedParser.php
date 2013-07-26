@@ -25,8 +25,6 @@ use Desarrolla2\RSSClient\Exception\ParseException;
  * Description of Parser
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
- * @file   : Parser.php , UTF-8
- * @date   : Mar 22, 2013 , 12:36:14 PM
  */
 class FeedParser implements ParserInterface
 {

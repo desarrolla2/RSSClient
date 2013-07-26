@@ -17,8 +17,6 @@ namespace Desarrolla2\RSSClient\Handler\HTTP;
  * Description of HTTPClientInterface
  *
  * @author : Daniel González <daniel.gonzalez@freelancemadrid.es>
- * @file : HTTPClientInterface.php , UTF-8
- * @date : Dec 12, 2012 , 9:06:59 PM
  */
 interface HTTPHandlerInterface
 {

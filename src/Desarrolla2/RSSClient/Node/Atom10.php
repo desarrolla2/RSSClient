@@ -19,8 +19,6 @@ use Desarrolla2\RSSClient\Node\Node;
  * Description of Atom10
  *
  * @author : Daniel González <daniel.gonzalez@freelancemadrid.es>
- * @file : Atom10.php , UTF-8
- * @date : Mar 24, 2013 , 7:12:40 PM
  */
 class Atom10 extends Node
 {

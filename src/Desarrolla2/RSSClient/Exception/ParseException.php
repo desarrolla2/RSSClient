@@ -16,13 +16,10 @@ use Desarrolla2\RSSClient\Exception\RuntimeException;
 
 /**
  *
- * Description of ParseException
+ * ParseException
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
- * @file : ParseException.php , UTF-8
- * @date : Mar 22, 2013 , 2:40:58 PM
  */
 class ParseException extends RuntimeException
 {
-    //put your code here
 }

@@ -17,8 +17,6 @@ namespace Desarrolla2\RSSClient\Exception;
  * Description of RuntimeException
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
- * @file : RuntimeException.php , UTF-8
- * @date : Mar 19, 2013 , 6:12:38 PM
  */
 class RuntimeException extends \RuntimeException
 {

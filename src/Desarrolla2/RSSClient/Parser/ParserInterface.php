@@ -19,10 +19,13 @@ use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface;
  * Description of ParserInterface
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
- * @file : ParserInterface.php , UTF-8
- * @date : Mar 15, 2013 , 2:34:30 PM
  */
 interface ParserInterface
 {
+    /**
+     * @param                           $feed
+     * @param SanitizerHandlerInterface $sanitizer
+     * @return mixed
+     */
     public function parse($feed, SanitizerHandlerInterface $sanitizer);
 }

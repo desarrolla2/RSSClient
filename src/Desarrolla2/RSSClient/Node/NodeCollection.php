@@ -17,8 +17,6 @@ namespace Desarrolla2\RSSClient\Node;
  * Description of NodeCollection
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
- * @file   : NodeCollection.php , UTF-8
- * @date   : Mar 22, 2013 , 1:43:19 PM
  */
 class NodeCollection extends \ArrayObject
 {
@@ -66,11 +64,12 @@ class NodeCollection extends \ArrayObject
         $total = $this->count();
         for ($i = 1; $i < $total; $i++) {
             for ($j = 0; $j < $total - $i; $j++) {
-                if ($this[$j]->getPubDate()->getTimestamp() < $this[$j + 1]->getPubDate()->getTimestamp()) {
-                    $aux          = $this[$j + 1];
-                    $this[$j + 1] = $this[$j];
-                    $this[$j]     = $aux;
+                if ($this[$j]->getPubDate()->getTimestamp() > $this[$j + 1]->getPubDate()->getTimestamp()) {
+                    continue;
                 }
+                $aux          = $this[$j + 1];
+                $this[$j + 1] = $this[$j];
+                $this[$j]     = $aux;
             }
         }
     }
@@ -82,7 +81,7 @@ class NodeCollection extends \ArrayObject
      */
     public function limit($limit)
     {
-        $limit = (int) $limit;
+        $limit = (int)$limit;
         if (!$limit) {
             return;
         }

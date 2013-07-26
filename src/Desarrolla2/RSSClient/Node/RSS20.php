@@ -16,11 +16,9 @@ use Desarrolla2\RSSClient\Node\Node;
 
 /**
  *
- * Description of RSS
+ * RSS20
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
- * @file : RSS.php , UTF-8
- * @date : Mar 15, 2013 , 11:49:45 AM
  */
 class RSS20 extends Node
 {

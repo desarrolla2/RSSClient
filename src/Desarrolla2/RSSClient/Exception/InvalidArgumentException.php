@@ -14,11 +14,9 @@ namespace Desarrolla2\RSSClient\Exception;
 
 /**
  *
- * Description of InvalidArgumentException
+ * InvalidArgumentException
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
- * @file : InvalidArgumentException.php , UTF-8
- * @date : Mar 15, 2013 , 2:40:51 PM
  */
 class InvalidArgumentException extends \InvalidArgumentException
 {

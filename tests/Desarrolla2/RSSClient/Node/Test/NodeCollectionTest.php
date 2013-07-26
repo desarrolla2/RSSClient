@@ -20,8 +20,6 @@ use Desarrolla2\RSSClient\Node\NodeCollection;
  * Description of NodeCollectionTest
  *
  * @author : Daniel González <daniel.gonzalez@freelancemadrid.es>
- * @file   : NodeCollectionTest.php , UTF-8
- * @date   : Mar 24, 2013 , 11:16:06 PM
  */
 class NodeCollectionTest extends \PHPUnit_Framework_TestCase
 {
