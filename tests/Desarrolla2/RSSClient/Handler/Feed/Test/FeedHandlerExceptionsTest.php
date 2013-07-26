@@ -19,13 +19,11 @@ use \Desarrolla2\RSSClient\Handler\Feed\FeedHandler;
  * Description of FeedHandlerTestExceptions
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
- * @file : FeedHandlerTestExceptions.php , UTF-8
- * @date : Mar 19, 2013 , 4:28:13 PM
  */
-class FeedHandlerTestExceptions extends \PHPUnit_Framework_TestCase
+class FeedHandlerTestExceptionsTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Desarrolla2\RSSClient\Handler\FeedHandler;
+     * @var \Desarrolla2\RSSClient\Handler\Feed\FeedHandler
      */
     protected $handler = null;
 
@@ -39,16 +37,12 @@ class FeedHandlerTestExceptions extends \PHPUnit_Framework_TestCase
      */
     protected $example_feed2 = 'http://blog.desarrolla2.com/feed/';
 
-    /**
-     *
-     */
     public function setUp()
     {
         $this->handler = new FeedHandler();
     }
 
     /**
-     * @test
      * @expectedException \Desarrolla2\RSSClient\Exception\InvalidArgumentException
      */
     public function testAddChannels()
@@ -57,7 +51,6 @@ class FeedHandlerTestExceptions extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @test
      * @expectedException \Desarrolla2\RSSClient\Exception\InvalidArgumentException
      */
     public function testAddFeed1()
@@ -66,7 +59,6 @@ class FeedHandlerTestExceptions extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @test
      * @expectedException \Desarrolla2\RSSClient\Exception\InvalidArgumentException
      */
     public function testAddFeed2()
@@ -75,7 +67,6 @@ class FeedHandlerTestExceptions extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @test
      * @expectedException \Desarrolla2\RSSClient\Exception\InvalidArgumentException
      */
     public function testAddFeed3()
@@ -84,7 +75,6 @@ class FeedHandlerTestExceptions extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @test
      * @expectedException \Desarrolla2\RSSClient\Exception\InvalidArgumentException
      */
     public function testAddFeeds1()
@@ -93,7 +83,6 @@ class FeedHandlerTestExceptions extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @test
      * @expectedException \Desarrolla2\RSSClient\Exception\InvalidArgumentException
      */
     public function testAddFeeds2()
@@ -102,12 +91,10 @@ class FeedHandlerTestExceptions extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @test
      * @expectedException \Desarrolla2\RSSClient\Exception\InvalidArgumentException
      */
     public function testSetFeeds()
     {
         $this->handler->setFeeds('string');
     }
-
 }

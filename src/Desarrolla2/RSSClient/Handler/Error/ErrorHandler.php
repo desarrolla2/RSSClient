@@ -17,8 +17,6 @@ namespace Desarrolla2\RSSClient\Handler\Error;
  * Description of ErrorHandler
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
- * @file : ErrorHandler.php , UTF-8
- * @date : Mar 19, 2013 , 4:13:03 PM
  */
 class ErrorHandler
 {
@@ -29,8 +27,7 @@ class ErrorHandler
 
     /**
      * Retrieve last Error
-     *
-     * @return string $lastError | false
+     * @return false|string $lastError
      */
     public function getLastError()
     {
@@ -62,7 +59,8 @@ class ErrorHandler
     }
 
     /**
-     * Retrieve if any errors ocurred
+     * Retrieve if any errors occurred
+     *
      * @return boolean
      */
     public function hasErrors()
@@ -77,7 +75,6 @@ class ErrorHandler
      */
     protected function addError($errorString)
     {
-        $this->errors[] = (string) $errorString;
+        $this->errors[] = (string)$errorString;
     }
-
 }

@@ -68,6 +68,7 @@
             <arg value="--report-full=build/phpcs/full.txt"/>
             <arg value="--report-summary=build/phpcs/sumary.txt"/>
             <arg value="src"/>
+            <arg value="tests"/>
         </exec>
     </target>
 

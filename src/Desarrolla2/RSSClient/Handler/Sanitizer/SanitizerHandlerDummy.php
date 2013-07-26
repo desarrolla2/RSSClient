@@ -16,11 +16,9 @@ use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface;
 
 /**
  *
- * Description of NoneSanitizer
+ * SanitizerHandlerDummy
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrides>
- * @file : NoneSanitizer.php , UTF-8
- * @date : Feb 28, 2013 , 12:27:15 PM
  */
 class SanitizerHandlerDummy implements SanitizerHandlerInterface
 {
@@ -32,7 +30,6 @@ class SanitizerHandlerDummy implements SanitizerHandlerInterface
      */
     public function doClean($text)
     {
-        return (string) $text;
+        return (string)$text;
     }
-
 }

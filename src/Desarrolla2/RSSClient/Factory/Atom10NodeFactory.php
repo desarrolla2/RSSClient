@@ -20,17 +20,17 @@ use \DateTime;
 
 /**
  *
- * Description of Atom10NodeFactory
+ * Atom10NodeFactory
  *
  * @author : Daniel González <daniel.gonzalez@freelancemadrid.es>
- * @file : Atom10NodeFactory.php , UTF-8
- * @date : Mar 24, 2013 , 7:12:06 PM
  */
 class Atom10NodeFactory extends AbstractNodeFactory
 {
     /**
+     * Create Node Element
      *
-     * @param  DOMElement                         $entry
+     * @param  DOMElement $entry
+     * @throws \Desarrolla2\RSSClient\Exception\ParseException
      * @return \Desarrolla2\RSSClient\Node\Atom10
      */
     public function create(DOMElement $entry)
@@ -48,6 +48,11 @@ class Atom10NodeFactory extends AbstractNodeFactory
         return $node;
     }
 
+    /**
+     * @param DOMElement $entry
+     * @param Atom10     $node
+     * @throws \Desarrolla2\RSSClient\Exception\ParseException
+     */
     protected function setLink(DOMElement $entry, Atom10 $node)
     {
         try {
@@ -58,7 +63,7 @@ class Atom10NodeFactory extends AbstractNodeFactory
                         $value = $result->getAttribute('href');
                         if ($this->isValidURL($value)) {
                             $node->setLink(
-                                    $this->doClean($value)
+                                $this->doClean($value)
                             );
 
                             return;
@@ -71,6 +76,10 @@ class Atom10NodeFactory extends AbstractNodeFactory
         }
     }
 
+    /**
+     * @param DOMElement $entry
+     * @param Atom10     $node
+     */
     protected function setPubDate(DOMElement $entry, Atom10 $node)
     {
         $value = $this->getNodeValueByTagName($entry, 'published');
@@ -81,29 +90,37 @@ class Atom10NodeFactory extends AbstractNodeFactory
         }
     }
 
+    /**
+     * @param DOMElement $entry
+     * @param Atom10     $node
+     */
     protected function setProperties(DOMElement $entry, Atom10 $node)
     {
         $properties = array(
-            'id' => 'setGUID',
-            'title' => 'setTitle',
+            'id'      => 'setGUID',
+            'title'   => 'setTitle',
             'content' => 'setDescription'
         );
         foreach ($properties as $propertyName => $method) {
             $value = $this->getNodeValueByTagName($entry, $propertyName);
             if ($value) {
                 $node->$method(
-                        $this->doClean($value)
+                    $this->doClean($value)
                 );
             }
         }
     }
 
+    /**
+     * @param DOMElement $entry
+     * @param Atom10     $node
+     */
     protected function setCategories(DOMElement $entry, Atom10 $node)
     {
         $categories = $this->getNodePropertiesByTagName($entry, 'category', 'term');
         foreach ($categories as $category) {
             $node->addCategory(
-                    $this->doClean($category)
+                $this->doClean($category)
             );
         }
     }
@@ -116,5 +133,4 @@ class Atom10NodeFactory extends AbstractNodeFactory
     {
         return new Atom10();
     }
-
 }

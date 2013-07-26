@@ -20,33 +20,30 @@ use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerDummy;
  * Description of FeedParserTest
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
- * @file : FeedParserTest.php , UTF-8
- * @date : Mar 22, 2013 , 12:47:12 PM
  */
 class FeedParserExceptionTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     *
-     * @var \Desarrolla2\RSSClient\Parser\FeedParser
+     * @var FeedParser
      */
     protected $parser;
 
     /**
-     * Setup
+     * @var SanitizerHandlerDummy
      */
+    protected $sanitizer;
+
     public function setUp()
     {
-        $this->parser = new FeedParser();
+        $this->parser    = new FeedParser();
         $this->sanitizer = new SanitizerHandlerDummy();
     }
 
     /**
-     * @test
      * @expectedException \Desarrolla2\RSSClient\Exception\RuntimeException
      */
-    public function parseStringTest()
+    public function testParseStringTest()
     {
         $this->parser->parse('my string', $this->sanitizer);
     }
-
 }

@@ -20,23 +20,22 @@ use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerDummy;
  * Description of FeedParserTest
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@externos.seap.minhap.es>
- * @file : FeedParserTest.php , UTF-8
- * @date : Mar 27, 2013 , 1:00:07 PM
  */
 class FeedParserTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     *
-     * @var \Desarrolla2\RSSClient\Parser\FeedParser
+     * @var FeedParser
      */
     protected $parser;
 
     /**
-     * Setup
+     * @var SanitizerHandlerDummy
      */
+    protected $sanitizer;
+
     public function setUp()
     {
-        $this->parser = new FeedParser();
+        $this->parser    = new FeedParser();
         $this->sanitizer = new SanitizerHandlerDummy();
     }
 
@@ -49,44 +48,50 @@ class FeedParserTest extends \PHPUnit_Framework_TestCase
         return array(
             /* RSS20 */
             array(
-                '/data/rss20/jhosmanlirazo.xml', 15,
+                '/data/rss20/jhosmanlirazo.xml',
+                15,
             ),
             array(
-                '/data/rss20/libuntu.xml', 10,
+                '/data/rss20/libuntu.xml',
+                10,
             ),
             array(
-                '/data/rss20/nyt.xml', 25,
+                '/data/rss20/nyt.xml',
+                25,
             ),
             array(
-                '/data/rss20/ubuntuespana.xml', 7,
+                '/data/rss20/ubuntuespana.xml',
+                7,
             ),
             array(
-                '/data/rss20/ubuntuleon.xml', 25,
+                '/data/rss20/ubuntuleon.xml',
+                25,
             ),
             /* ATOM10 */
             array(
-                '/data/atom10/elblogdediego.xml', 25,
+                '/data/atom10/elblogdediego.xml',
+                25,
             ),
             array(
-                '/data/atom10/ubuntuleon.xml', 25,
+                '/data/atom10/ubuntuleon.xml',
+                25,
             ),
             array(
-                '/data/atom10/unawebmaslibre.xml', 25,
+                '/data/atom10/unawebmaslibre.xml',
+                25,
             ),
         );
     }
 
     /**
-     * @test
      * @dataProvider dataProvider
-     * @param type $file
-     * @param type $items
+     * @param string $file
+     * @param int    $totalItems
      */
-    public function feedParserTest($file, $items)
+    public function testFeedParserTest($file, $totalItems)
     {
         $string = file_get_contents(__DIR__ . $file);
-        $nodes = $this->parser->parse($string, $this->sanitizer);
-        $this->assertEquals($items, $nodes->count());
+        $nodes  = $this->parser->parse($string, $this->sanitizer);
+        $this->assertEquals($totalItems, $nodes->count());
     }
-
 }

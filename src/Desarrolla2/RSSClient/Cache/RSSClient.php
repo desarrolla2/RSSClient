@@ -22,8 +22,6 @@ use Desarrolla2\Cache\Adapter\NotCache;
  * Description of RSSClient
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
- * @file : RSSClient.php , UTF-8
- * @date : Mar 15, 2013 , 2:34:16 PM
  */
 class RSSClient extends BaseClient
 {
@@ -43,8 +41,6 @@ class RSSClient extends BaseClient
     protected $cacheHash = array();
 
     /**
-     * Constructor
-     *
      * @param array  $feeds
      * @param string $channel
      */
@@ -55,9 +51,11 @@ class RSSClient extends BaseClient
     }
 
     /**
+     * Retrieve Nodes from Channel
      *
-     * @param type $channel
-     * @param type $limit
+     * @param string $channel
+     * @param int    $limit
+     * @return bool|\Desarrolla2\RSSClient\Node\NodeCollection
      */
     public function fetch($channel = 'default', $limit = 20)
     {
@@ -112,7 +110,7 @@ class RSSClient extends BaseClient
     /**
      * Retrieves from cache
      *
-     * @param  string  $channel
+     * @param  string $channel
      * @return boolean
      */
     protected function getFromCache($channel = 'default')
@@ -135,5 +133,4 @@ class RSSClient extends BaseClient
         $hash = $this->getCacheKey($channel);
         $this->getCache()->set($hash, $nodes);
     }
-
 }

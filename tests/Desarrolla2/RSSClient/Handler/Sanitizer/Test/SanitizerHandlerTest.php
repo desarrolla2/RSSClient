@@ -19,8 +19,6 @@ use \Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandler;
  * Description of SanitizerHandlerTest
  *
  * @author : Daniel González <daniel.gonzalez@freelancemadrid.es>
- * @file : SanitizerHandlerTest.php , UTF-8
- * @date : May 5, 2013 , 8:55:36 PM
  */
 class SanitizerHandlerTest extends \PHPUnit_Framework_TestCase
 {
@@ -30,9 +28,6 @@ class SanitizerHandlerTest extends \PHPUnit_Framework_TestCase
      */
     protected $handler = null;
 
-    /**
-     * Setup
-     */
     public function setUp()
     {
         $this->handler = new SanitizerHandler();
@@ -47,18 +42,17 @@ class SanitizerHandlerTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array(
-                '', ''
+                '',
+                ''
             )
         );
     }
 
     /**
-     * @test
      * @dataProvider dataProvider
      */
     public function testDoClean($expected, $data)
     {
         $this->assertEquals($expected, $this->handler->doClean($data));
     }
-
 }

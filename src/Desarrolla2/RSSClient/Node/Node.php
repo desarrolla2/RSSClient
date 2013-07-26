@@ -16,11 +16,9 @@ use Desarrolla2\RSSClient\Node\NodeInterface;
 
 /**
  *
- * Description of Node
+ * Node
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
- * @file : Node.php , UTF-8
- * @date : Mar 22, 2013 , 1:35:56 PM
  */
 abstract class Node implements NodeInterface
 {
@@ -74,109 +72,171 @@ abstract class Node implements NodeInterface
      */
     protected $source = null;
 
+    /**
+     * @return null|string
+     */
     public function getTitle()
     {
         return $this->title;
     }
 
+    /**
+     * @param string $title
+     */
     public function setTitle($title)
     {
         $this->title = $title;
     }
 
+    /**
+     * @return null|string
+     */
     public function getLink()
     {
         return $this->link;
     }
 
+    /**
+     * @param string $link
+     */
     public function setLink($link)
     {
         $this->link = $link;
     }
 
+    /**
+     * @return null|string
+     */
     public function getDescription()
     {
         return $this->description;
     }
 
+    /**
+     * @param string $description
+     */
     public function setDescription($description)
     {
         $this->description = $description;
     }
 
+    /**
+     * @return null|string
+     */
     public function getAuthor()
     {
         return $this->author;
     }
 
+    /**
+     * @param string $author
+     */
     public function setAuthor($author)
     {
         $this->author = $author;
     }
 
+    /**
+     * @return array
+     */
     public function getCategories()
     {
         return $this->categories;
     }
 
+    /**
+     * @param array $categories
+     */
     public function setCategories(array $categories)
     {
         $this->categories = $categories;
     }
 
+    /**
+     * @param string $category
+     */
     public function addCategory($category)
     {
         $this->categories[] = $category;
     }
 
+    /**
+     * @return null|string
+     */
     public function getComments()
     {
         return $this->comments;
     }
 
+    /**
+     * @param string $comments
+     */
     public function setComments($comments)
     {
         $this->comments = $comments;
     }
 
+    /**
+     * @return null|string
+     */
     public function getEnclosure()
     {
         return $this->enclosure;
     }
 
+    /**
+     * @param string $enclosure
+     */
     public function setEnclosure($enclosure)
     {
         $this->enclosure = $enclosure;
     }
 
+    /**
+     * @return null|string
+     */
     public function getGuid()
     {
         return $this->guid;
     }
 
+    /**
+     * @param string $guid
+     */
     public function setGuid($guid)
     {
         $this->guid = $guid;
     }
 
+    /**
+     * @return \DateTime|null
+     */
     public function getPubDate()
     {
         return $this->pubDate;
     }
 
+    /**
+     * @param \DateTime $pubDate
+     */
     public function setPubDate(\DateTime $pubDate)
     {
         $this->pubDate = $pubDate;
     }
 
+    /**
+     * @return null|string
+     */
     public function getSource()
     {
         return $this->source;
     }
 
+    /**
+     * @param string $source
+     */
     public function setSource($source)
     {
         $this->source = $source;
     }
-
 }

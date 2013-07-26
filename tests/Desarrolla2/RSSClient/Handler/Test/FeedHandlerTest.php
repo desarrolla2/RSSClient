@@ -16,16 +16,14 @@ use Desarrolla2\RSSClient\RSSClient;
 
 /**
  *
- * Description of FeedHanlerTest
+ * FeedHandlerTest
  *
  * @author : Daniel González <daniel.gonzalez@freelancemadrid.es>
- * @file : FeedHanlerTest.php , UTF-8
- * @date : Mar 18, 2013 , 11:23:56 PM
  */
-class FeedHanlerTest extends \PHPUnit_Framework_TestCase
+class FeedHandlerTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var Desarrolla2\RSSClient\RSSClient;
+     * @var \Desarrolla2\RSSClient\RSSClient;
      */
     protected $client = null;
 
@@ -39,17 +37,13 @@ class FeedHanlerTest extends \PHPUnit_Framework_TestCase
      */
     protected $example_feed2 = 'http://blog.desarrolla2.com/feed/';
 
-    /**
-     *
-     */
     public function setUp()
     {
         $this->client = new RSSClient();
     }
 
     /**
-     *
-     * @return type
+     * @return array
      */
     public function getDataForFeeds()
     {
@@ -140,7 +134,6 @@ class FeedHanlerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @test
      * @dataProvider getDataForFeeds
      */
     public function testAddFeed($data)
@@ -153,7 +146,6 @@ class FeedHanlerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @test
      * @dataProvider getDataForFeeds
      */
     public function testAddFeeds($data)
@@ -165,7 +157,6 @@ class FeedHanlerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @test
      * @dataProvider getDataForFeeds
      */
     public function testSetFeed($data)
@@ -178,7 +169,6 @@ class FeedHanlerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @test
      * @dataProvider getDataForFeeds
      */
     public function countFeeds($data)
@@ -189,7 +179,6 @@ class FeedHanlerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @test
      * @dataProvider getDataForChannels
      */
     public function testCountChannels($data)
@@ -199,7 +188,6 @@ class FeedHanlerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @test
      * @dataProvider getDataForChannels
      */
     public function testGetChannels($data)
@@ -209,7 +197,6 @@ class FeedHanlerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @test
      * @dataProvider getDataForChannels
      */
     public function testGetChannelsNames($data)
@@ -219,22 +206,22 @@ class FeedHanlerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @test
      * @dataProvider getDataForChannels
      */
     public function testAddChannels($data)
     {
-        $this->client->addChannels(array(
-            'test1' => array(
-                $this->example_feed,
-            ),
-        ));
+        $this->client->addChannels(
+            array(
+                'test1' => array(
+                    $this->example_feed,
+                ),
+            )
+        );
         $this->client->addChannels($data);
         $this->assertEquals((count($data) + 1), $this->client->countChannels());
     }
 
     /**
-     * @test
      * @dataProvider getDataForChannels
      */
     public function testClearChannels($data)
@@ -243,5 +230,4 @@ class FeedHanlerTest extends \PHPUnit_Framework_TestCase
         $this->client->setChannels($data);
         $this->assertEquals(count($data), $this->client->countChannels());
     }
-
 }

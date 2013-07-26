@@ -21,8 +21,8 @@ use \Guzzle\Http\Message\Request;
  * Description of HTTPHandlerTest
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
- * @file : HTTPHandlerTest.php , UTF-8
- * @date : Mar 19, 2013 , 5:18:58 PM
+ * @file   : HTTPHandlerTest.php , UTF-8
+ * @date   : Mar 19, 2013 , 5:18:58 PM
  */
 class HTTPHandlerTest extends \PHPUnit_Framework_TestCase
 {
@@ -50,16 +50,20 @@ class HTTPHandlerTest extends \PHPUnit_Framework_TestCase
         $response = new Response(200, null, self::HTTP_BODY_EXAMPLE);
 
         $httpRequestMock = $this->getMock(
-                '\Guzzle\Http\Message\Request', array(), array(), '', false
+            '\Guzzle\Http\Message\Request',
+            array(),
+            array(),
+            '',
+            false
         );
         $httpRequestMock->expects($this->any())
-                ->method('send')
-                ->will($this->returnValue($response));
+            ->method('send')
+            ->will($this->returnValue($response));
 
         $httpClientMock = $this->getMock('\Guzzle\Http\Client');
         $httpClientMock->expects($this->any())
-                ->method('get')
-                ->will($this->returnValue($httpRequestMock));
+            ->method('get')
+            ->will($this->returnValue($httpRequestMock));
 
         $this->client->setClient($httpClientMock);
 
@@ -75,19 +79,22 @@ class HTTPHandlerTest extends \PHPUnit_Framework_TestCase
         $response = new Response(500, null, self::HTTP_BODY_EXAMPLE);
 
         $httpRequestMock = $this->getMock(
-                '\Guzzle\Http\Message\Request', array(), array(), '', false
+            '\Guzzle\Http\Message\Request',
+            array(),
+            array(),
+            '',
+            false
         );
         $httpRequestMock->expects($this->any())
-                ->method('send')
-                ->will($this->returnValue($response));
+            ->method('send')
+            ->will($this->returnValue($response));
 
         $httpClientMock = $this->getMock('\Guzzle\Http\Client');
         $httpClientMock->expects($this->any())
-                ->method('get')
-                ->will($this->returnValue($httpRequestMock));
+            ->method('get')
+            ->will($this->returnValue($httpRequestMock));
 
         $this->client->setClient($httpClientMock);
         $this->client->get('http://example.org');
     }
-
 }

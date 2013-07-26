@@ -21,8 +21,8 @@ use \DOMDocument;
  * Description of RSS20NodeFactoryTest
  *
  * @author : Daniel González <daniel.gonzalez@freelancemadrid.es>
- * @file : RSS20NodeFactoryTest.php , UTF-8
- * @date : Mar 24, 2013 , 6:20:28 PM
+ * @file   : RSS20NodeFactoryTest.php , UTF-8
+ * @date   : Mar 24, 2013 , 6:20:28 PM
  */
 class RSS20NodeFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -48,7 +48,7 @@ class RSS20NodeFactoryTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->sanitizer = new SanitizerHandlerDummy();
-        $this->factory = new RSS20NodeFactory($this->sanitizer);
+        $this->factory   = new RSS20NodeFactory($this->sanitizer);
     }
 
     /**
@@ -71,7 +71,8 @@ class RSS20NodeFactoryTest extends \PHPUnit_Framework_TestCase
                 '/data/rss20/libuntu.xml',
                 'Google lanza la versión 27.0.1453.73 beta del navegador chrome añadiendo varias mejoras en Linux',
                 'http://libuntu.wordpress.com/?p=1457',
-                'http://libuntu.wordpress.com/2013/05/01/google-lanza-la-version-27-0-1453-73-beta-del-navegador-chrome-anadiendo-varias-mejoras-en-linux/',
+                'http://libuntu.wordpress.com/2013/05/01/google-lanza-la-version-27-0-1453-73-beta-del-navegador-' .
+                'chrome-anadiendo-varias-mejoras-en-linux/',
                 'Short description',
                 '01',
                 14,
@@ -90,7 +91,8 @@ class RSS20NodeFactoryTest extends \PHPUnit_Framework_TestCase
                 'Ubuntu Phone: Premio a la Mejor Innovación del MWC 2013',
                 '133 at http://xn--ubuntu-espaa-khb.org',
                 'http://xn--ubuntu-espaa-khb.org/content/ubuntu-phone-premio-la-mejor-innovaci%C3%B3n-del-mwc-2013',
-                ' <p>La <a href="http://www.ubuntu.com/devices/phone">versión para móviles de Ubuntu</a> se ha hecho con ...',
+                ' <p>La <a href="http://www.ubuntu.com/devices/phone">versión para móviles de Ubuntu</a> ' .
+                'se ha hecho con ...',
                 '28',
                 0,
             ),
@@ -109,20 +111,20 @@ class RSS20NodeFactoryTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      * @dataProvider dataProvider
-     * @param type $file
-     * @param type $title
-     * @param type $guid
-     * @param type $link
-     * @param type $description
-     * @param type $pubDay
-     * @param type $categories
+     * @param string $file
+     * @param string $title
+     * @param string $guid
+     * @param string $link
+     * @param string $description
+     * @param string $pubDay
+     * @param int $totalCategories
      */
-    public function testRSS20NodeFactory($file, $title, $guid, $link, $description, $pubDay, $categories)
+    public function testRSS20NodeFactory($file, $title, $guid, $link, $description, $pubDay, $totalCategories)
     {
         $sting = file_get_contents(__DIR__ . $file);
-        $dom = new DOMDocument();
+        $dom   = new DOMDocument();
         $dom->loadXML($sting);
-        $item = $dom->getElementsByTagName('item')->item(0);
+        $item       = $dom->getElementsByTagName('item')->item(0);
         $this->node = $this->factory->create($item);
 
         $this->assertEquals($title, $this->node->getTitle());
@@ -130,7 +132,6 @@ class RSS20NodeFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($link, $this->node->getLink());
         $this->assertEquals($description, $this->node->getDescription());
         $this->assertEquals($pubDay, $this->node->getPubDate()->format('d'));
-        $this->assertEquals($categories, count($this->node->getCategories()));
+        $this->assertEquals($totalCategories, count($this->node->getCategories()));
     }
-
 }

@@ -17,11 +17,10 @@ use Desarrolla2\RSSClient\Exception\InvalidArgumentException;
 
 /**
  *
- * Description of Feed
+ * FeedHandler
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
- * @file : Feed.php , UTF-8
- * @date : Mar 15, 2013 , 11:49:39 AM
+
  */
 class FeedHandler extends ErrorHandler
 {
@@ -33,7 +32,7 @@ class FeedHandler extends ErrorHandler
     /**
      * add channels for client
      *
-     * @param  type                     $channels
+     * @param  array $channels
      * @throws InvalidArgumentException
      */
     public function addChannels($channels)
@@ -62,8 +61,8 @@ class FeedHandler extends ErrorHandler
     /**
      * Add feed to channel
      *
-     * @param  string                   $feed
-     * @param  string                   $channel
+     * @param  string $feed
+     * @param  string $channel
      * @throws InvalidArgumentException
      * @throws Exception
      */
@@ -90,8 +89,8 @@ class FeedHandler extends ErrorHandler
     /**
      * Add feeds to channel
      *
-     * @param  array                    $feeds
-     * @param  string                   $channel
+     * @param  array  $feeds
+     * @param  string $channel
      * @throws InvalidArgumentException
      */
     public function addFeeds($feeds, $channel = 'default')
@@ -185,6 +184,7 @@ class FeedHandler extends ErrorHandler
      *
      * @param array  $feeds
      * @param string $channel
+     * @throws \Desarrolla2\RSSClient\Exception\InvalidArgumentException
      */
     public function setFeeds($feeds, $channel = 'default')
     {
@@ -199,8 +199,6 @@ class FeedHandler extends ErrorHandler
 
     /**
      * Clear Channels
-     *
-     * @return type
      */
     protected function clearChannels()
     {
@@ -234,12 +232,11 @@ class FeedHandler extends ErrorHandler
 
     /**
      *
-     * @param  type    $url
+     * @param  string $url
      * @return boolean
      */
     protected function isValidURL($url)
     {
         return filter_var($url, FILTER_VALIDATE_URL) ? true : false;
     }
-
 }

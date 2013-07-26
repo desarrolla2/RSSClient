@@ -16,11 +16,9 @@ use Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerInterface;
 
 /**
  *
- * Description of HTTPNativeHandler
+ * HTTPNativeHandler
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
- * @file : HTTPNativeHandler.php , UTF-8
- * @date : Mar 19, 2013 , 4:42:31 PM
  */
 class HTTPNativeHandler implements HTTPHandlerInterface
 {
@@ -34,5 +32,4 @@ class HTTPNativeHandler implements HTTPHandlerInterface
     {
         return file_get_contents($resource);
     }
-
 }

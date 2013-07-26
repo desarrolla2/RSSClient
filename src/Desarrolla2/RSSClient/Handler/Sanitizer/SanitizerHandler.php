@@ -17,11 +17,9 @@ use Desarrolla2\RSSClient\Exception\InvalidArgumentException;
 
 /**
  *
- * Description of Sanitizer
+ * SanitizerHandler
  *
  * @author : Daniel González <daniel.gonzalez@freelancemadrid.es>
- * @file : Sanitizer.php , UTF-8
- * @date : Oct 3, 2012 , 11:14:19 AM
  */
 class SanitizerHandler implements SanitizerHandlerInterface
 {
@@ -30,11 +28,12 @@ class SanitizerHandler implements SanitizerHandlerInterface
      */
     protected $purifier;
 
+
     /**
-     *
-     * @param type $cacheDirectory
+     * @param string $cacheDirectory
+     * @throws \Desarrolla2\RSSClient\Exception\InvalidArgumentException
      */
-    public function __construct($cacheDirectory = null )
+    public function __construct($cacheDirectory = null)
     {
         if (!$cacheDirectory) {
             $cacheDirectory = realpath(sys_get_temp_dir());
@@ -60,5 +59,4 @@ class SanitizerHandler implements SanitizerHandlerInterface
     {
         return trim($this->purifier->purify($text));
     }
-
 }

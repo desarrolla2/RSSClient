@@ -74,7 +74,6 @@ class NodeCollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($limit, $this->collection->count());
     }
 
-
     /**
      * @return array
      */

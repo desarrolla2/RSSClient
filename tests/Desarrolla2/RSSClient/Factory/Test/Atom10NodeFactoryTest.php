@@ -18,11 +18,9 @@ use \DOMDocument;
 
 /**
  *
- * Description of Atom10NodeFactoryTest
+ * Atom10NodeFactoryTest
  *
  * @author : Daniel González <daniel.gonzalez@freelancemadrid.es>
- * @file : Atom10NodeFactoryTest.php , UTF-8
- * @date : Mar 24, 2013 , 7:14:45 PM
  */
 class Atom10NodeFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -41,15 +39,15 @@ class Atom10NodeFactoryTest extends \PHPUnit_Framework_TestCase
      */
     protected $node;
 
-    /**
-     * Setup
-     */
     public function setUp()
     {
         $this->sanitizer = new SanitizerHandlerDummy();
-        $this->factory = new Atom10NodeFactory($this->sanitizer);
+        $this->factory   = new Atom10NodeFactory($this->sanitizer);
     }
 
+    /**
+     * @return array
+     */
     public function dataProvider()
     {
         return array(
@@ -76,7 +74,8 @@ class Atom10NodeFactoryTest extends \PHPUnit_Framework_TestCase
                 'Ubuntu tendrá su propio servidor gráfico y Unity volverá a Qt [Actualizada]',
                 'tag:blogger.com,1999:blog-432243268593805349.post-1743194106039184020',
                 'http://diegohacking.blogspot.com/2013/03/ubuntu-tendra-su-propio-servidor.html',
-                '<div dir="ltr" style="text-align: left;" trbidi="on"><span style="font-size: large;">Con más retraso del ...',
+                '<div dir="ltr" style="text-align: left;" trbidi="on"><span style="font-size: large;">Con más ' .
+                'retraso del ...',
                 '8',
                 3,
             ),
@@ -84,22 +83,21 @@ class Atom10NodeFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @test
      * @dataProvider dataProvider
-     * @param type $file
-     * @param type $title
-     * @param type $guid
-     * @param type $link
-     * @param type $description
-     * @param type $pubDay
-     * @param type $categories
+     * @param string $file
+     * @param string $title
+     * @param string $guid
+     * @param string $link
+     * @param string $description
+     * @param string $pubDay
+     * @param int    $totalCategories
      */
-    public function testRSS20NodeFactory($file, $title, $guid, $link, $description, $pubDay, $categories)
+    public function testRSS20NodeFactory($file, $title, $guid, $link, $description, $pubDay, $totalCategories)
     {
         $string = file_get_contents(__DIR__ . $file);
-        $dom = new DOMDocument();
+        $dom    = new DOMDocument();
         $dom->loadXML($string);
-        $item = $dom->getElementsByTagName('entry')->item(0);
+        $item       = $dom->getElementsByTagName('entry')->item(0);
         $this->node = $this->factory->create($item);
 
         $this->assertEquals($title, $this->node->getTitle());
@@ -107,7 +105,6 @@ class Atom10NodeFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($link, $this->node->getLink());
         $this->assertEquals($description, $this->node->getDescription());
         $this->assertEquals($pubDay, $this->node->getPubDate()->format('d'));
-        $this->assertEquals($categories, count($this->node->getCategories()));
+        $this->assertEquals($totalCategories, count($this->node->getCategories()));
     }
-
 }

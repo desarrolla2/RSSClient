@@ -21,17 +21,17 @@ use \DOMElement;
  * Description of NodeFactory
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
- * @file : NodeFactory.php , UTF-8
- * @date : Mar 22, 2013 , 2:01:17 PM
  */
 abstract class AbstractNodeFactory
 {
     /**
-     *
      * @var \Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface
      */
     protected $sanitizer;
 
+    /**
+     * @param SanitizerHandlerInterface $sanitizer
+     */
     public function __construct(SanitizerHandlerInterface $sanitizer)
     {
         $this->sanitizer = $sanitizer;
@@ -39,8 +39,8 @@ abstract class AbstractNodeFactory
 
     /**
      *
-     * @param  type $text
-     * @return type
+     * @param  string $text
+     * @return string
      */
     protected function doClean($text)
     {
@@ -51,6 +51,7 @@ abstract class AbstractNodeFactory
      *
      * @param  \DOMElement $DOMnode
      * @param  string      $tagName
+     * @throws \Desarrolla2\RSSClient\Exception\ParseException
      * @return string
      */
     protected function getNodeValueByTagName(\DOMElement $DOMnode, $tagName)
@@ -74,9 +75,9 @@ abstract class AbstractNodeFactory
 
     /**
      *
-     * @param  \DOMElement    $DOMnode
-     * @param  type           $tagName
-     * @param  type           $propertyName
+     * @param  \DOMElement $DOMnode
+     * @param  type        $tagName
+     * @param  type        $propertyName
      * @return type
      * @throws ParseException
      */
@@ -103,6 +104,7 @@ abstract class AbstractNodeFactory
      *
      * @param  \DOMElement $DOMnode
      * @param  string      $tagName
+     * @throws \Desarrolla2\RSSClient\Exception\ParseException
      * @return array
      */
     protected function getNodeValuesByTagName(\DOMElement $DOMnode, $tagName)
@@ -124,10 +126,13 @@ abstract class AbstractNodeFactory
         return $values;
     }
 
-    protected function isValidURL()
+    /**
+     *
+     * @param string $url
+     * @return bool
+     */
+    protected function isValidURL($url)
     {
-        // @TODO
-        return true;
+        return filter_var($url, FILTER_VALIDATE_URL) ? true : false;
     }
-
 }

@@ -25,12 +25,12 @@ use Desarrolla2\RSSClient\Exception\ParseException;
  * Description of Parser
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
- * @file : Parser.php , UTF-8
- * @date : Mar 22, 2013 , 12:36:14 PM
+ * @file   : Parser.php , UTF-8
+ * @date   : Mar 22, 2013 , 12:36:14 PM
  */
 class FeedParser implements ParserInterface
 {
-    const RSS20_SCHEMA_FILE = 'rss20.xsd';
+    const RSS20_SCHEMA_FILE  = 'rss20.xsd';
     const ATOM10_SCHEMA_FILE = 'atom10.xsd';
 
     /**
@@ -55,9 +55,9 @@ class FeedParser implements ParserInterface
      */
     public function __construct()
     {
-        $this->xml = new DOMDocument();
+        $this->xml                      = new DOMDocument();
         $this->xml->strictErrorChecking = false;
-        $this->schemaPath = __DIR__ . '/schemas/';
+        $this->schemaPath               = __DIR__ . '/schemas/';
     }
 
     /**
@@ -112,12 +112,14 @@ class FeedParser implements ParserInterface
 
     protected function getSchema()
     {
-//        if ($this->trySchema(self::RSS20_SCHEMA_FILE)) {
-//            return 'RSS20';
-//        }
-//        if ($this->trySchema(self::ATOM10_SCHEMA_FILE)) {
-//            return 'ATOM10';
-//        }
+        /*
+        if ($this->trySchema(self::RSS20_SCHEMA_FILE)) {
+            return 'RSS20';
+        }
+        if ($this->trySchema(self::ATOM10_SCHEMA_FILE)) {
+            return 'ATOM10';
+        }
+        */
         if ($this->isRSS20()) {
             return 'RSS20';
         }
@@ -164,7 +166,7 @@ class FeedParser implements ParserInterface
 
     /**
      *
-     * @param  type                                            $schema
+     * @param  type $schema
      * @return boolean
      * @throws \Desarrolla2\RSSClient\Exception\ParseException
      */
@@ -180,5 +182,4 @@ class FeedParser implements ParserInterface
 
         return false;
     }
-
 }

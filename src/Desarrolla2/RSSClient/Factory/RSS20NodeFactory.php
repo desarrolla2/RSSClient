@@ -19,18 +19,16 @@ use \DOMElement;
 use \DateTime;
 
 /**
- *
- * Description of RSS20NodeFactory
+ * RSS20NodeFactory
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
- * @file : RSS.php , UTF-8
- * @date : Mar 15, 2013 , 11:50:30 AM
  */
 class RSS20NodeFactory extends AbstractNodeFactory
 {
     /**
      *
-     * @param  DOMElement                        $item
+     * @param  DOMElement $item
+     * @throws \Desarrolla2\RSSClient\Exception\ParseException
      * @return \Desarrolla2\RSSClient\Node\RSS20
      */
     public function create(DOMElement $item)
@@ -49,6 +47,11 @@ class RSS20NodeFactory extends AbstractNodeFactory
         return $node;
     }
 
+    /**
+     * @param DOMElement                        $item
+     * @param \Desarrolla2\RSSClient\Node\RSS20 $node
+     * @param RSS20                             $node
+     */
     protected function setPubDate(DOMElement $item, RSS20 $node)
     {
         $value = $this->getNodeValueByTagName($item, 'pubDate');
@@ -59,40 +62,56 @@ class RSS20NodeFactory extends AbstractNodeFactory
         }
     }
 
+    /**
+     * @param DOMElement $item
+     * @param RSS20      $node
+     */
     protected function setProperties(DOMElement $item, RSS20 $node)
     {
         $properties = array(
-            'title', 'description',
-            'author', 'comments', 'enclosure',
-            'guid', 'source'
+            'title',
+            'description',
+            'author',
+            'comments',
+            'enclosure',
+            'guid',
+            'source'
         );
         foreach ($properties as $propertyName) {
             $value = $this->getNodeValueByTagName($item, $propertyName);
             if ($value) {
                 $method = 'set' . $propertyName;
                 $node->$method(
-                        $this->doClean($value)
+                    $this->doClean($value)
                 );
             }
         }
     }
 
+    /**
+     * @param DOMElement $item
+     * @param RSS20      $node
+     */
     protected function setCategories(DOMElement $item, RSS20 $node)
     {
         $categories = $this->getNodeValuesByTagName($item, 'category');
         foreach ($categories as $category) {
             $node->addCategory(
-                    $this->doClean($category)
+                $this->doClean($category)
             );
         }
     }
 
+    /**
+     * @param DOMElement $item
+     * @param RSS20      $node
+     */
     protected function setLink(DOMElement $item, RSS20 $node)
     {
         $value = $this->getNodeValueByTagName($item, 'link');
         if ($this->isValidURL($value)) {
             $node->setLink(
-                    $this->doClean($value)
+                $this->doClean($value)
             );
         }
     }
@@ -105,5 +124,4 @@ class RSS20NodeFactory extends AbstractNodeFactory
     {
         return new RSS20();
     }
-
 }
