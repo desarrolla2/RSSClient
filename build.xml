@@ -75,7 +75,7 @@
     <target name="phpmd"
             description="Generate coding metrics for mess code using PHPMD">
         <exec executable="phpmd">
-            <arg value="src"/>
+            <arg value="src,tests"/>
             <arg value="text"/>
             <arg value="codesize,unusedcode,naming,design,controversial"/>
             <arg value="--reportfile"/>

@@ -30,12 +30,12 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase
     /**
      * @var string
      */
-    protected $example_feed = 'http://desarrolla2.com/feed/';
+    protected $exampleFeed1 = 'http://desarrolla2.com/feed/';
 
     /**
      * @var string
      */
-    protected $example_feed2 = 'http://blog.desarrolla2.com/feed/';
+    protected $exampleFeed2 = 'http://blog.desarrolla2.com/feed/';
 
     public function setUp()
     {
@@ -50,30 +50,30 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase
         return array(
             array(
                 array(
-                    $this->example_feed,
+                    $this->exampleFeed1,
                 ),
             ),
             array(
                 array(
-                    $this->example_feed,
-                    $this->example_feed,
+                    $this->exampleFeed1,
+                    $this->exampleFeed1,
                 ),
             ),
             array(
                 array(
-                    $this->example_feed,
-                    $this->example_feed,
-                    $this->example_feed,
+                    $this->exampleFeed1,
+                    $this->exampleFeed1,
+                    $this->exampleFeed1,
                 ),
             ),
             array(
                 array(
-                    $this->example_feed,
-                    $this->example_feed,
-                    $this->example_feed,
-                    $this->example_feed,
-                    $this->example_feed,
-                    $this->example_feed,
+                    $this->exampleFeed1,
+                    $this->exampleFeed1,
+                    $this->exampleFeed1,
+                    $this->exampleFeed1,
+                    $this->exampleFeed1,
+                    $this->exampleFeed1,
                 ),
             ),
         );
@@ -88,45 +88,45 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase
             array(
                 array(
                     'channel1' => array(
-                        $this->example_feed,
+                        $this->exampleFeed1,
                     ),
                 ),
             ),
             array(
                 array(
                     'channel1' => array(
-                        $this->example_feed,
-                        $this->example_feed,
+                        $this->exampleFeed1,
+                        $this->exampleFeed1,
                     ),
                 ),
                 array(
                     'channel1' => array(
-                        $this->example_feed,
+                        $this->exampleFeed1,
                     ),
                     'channel2' => array(
-                        $this->example_feed,
-                        $this->example_feed,
+                        $this->exampleFeed1,
+                        $this->exampleFeed1,
                     ),
                 ),
             ),
             array(
                 array(
                     'channel1' => array(
-                        $this->example_feed,
+                        $this->exampleFeed1,
                     ),
                     'channel2' => array(
-                        $this->example_feed,
-                        $this->example_feed,
+                        $this->exampleFeed1,
+                        $this->exampleFeed1,
                     ),
                     'channel3' => array(
-                        $this->example_feed,
-                        $this->example_feed,
-                        $this->example_feed,
-                        $this->example_feed,
-                        $this->example_feed,
-                        $this->example_feed,
-                        $this->example_feed,
-                        $this->example_feed,
+                        $this->exampleFeed1,
+                        $this->exampleFeed1,
+                        $this->exampleFeed1,
+                        $this->exampleFeed1,
+                        $this->exampleFeed1,
+                        $this->exampleFeed1,
+                        $this->exampleFeed1,
+                        $this->exampleFeed1,
                     ),
                 ),
             ),
@@ -138,7 +138,7 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddFeed($data)
     {
-        $this->client->addFeed($this->example_feed);
+        $this->client->addFeed($this->exampleFeed1);
         foreach ($data as $feed) {
             $this->client->addFeed($feed);
         }
@@ -150,7 +150,7 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddFeeds($data)
     {
-        $this->client->addFeed($this->example_feed2);
+        $this->client->addFeed($this->exampleFeed2);
         $this->client->addFeeds($data);
         $this->client->addFeeds($data);
         $this->assertEquals(count($this->client->getFeeds()), 2);
@@ -161,7 +161,7 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetFeed($data)
     {
-        $this->client->addFeed($this->example_feed2);
+        $this->client->addFeed($this->exampleFeed2);
         foreach ($data as $feed) {
             $this->client->setFeed($feed);
         }
@@ -173,7 +173,7 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase
      */
     public function countFeeds($data)
     {
-        $this->client->addFeed($this->example_feed2);
+        $this->client->addFeed($this->exampleFeed2);
         $this->client->addFeeds($data);
         $this->assertEquals($this->client->countFeeds(), 2);
     }
@@ -213,7 +213,7 @@ class FeedHandlerTest extends \PHPUnit_Framework_TestCase
         $this->client->addChannels(
             array(
                 'test1' => array(
-                    $this->example_feed,
+                    $this->exampleFeed1,
                 ),
             )
         );

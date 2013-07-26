@@ -49,15 +49,15 @@ abstract class AbstractNodeFactory
 
     /**
      *
-     * @param  \DOMElement $DOMnode
+     * @param  \DOMElement $domNode
      * @param  string      $tagName
      * @throws \Desarrolla2\RSSClient\Exception\ParseException
      * @return string
      */
-    protected function getNodeValueByTagName(\DOMElement $DOMnode, $tagName)
+    protected function getNodeValueByTagName(\DOMElement $domNode, $tagName)
     {
         try {
-            $list = $DOMnode->getElementsByTagName($tagName);
+            $list = $domNode->getElementsByTagName($tagName);
             for ($i = 0; $i < $list->length; $i++) {
                 $result = $list->item($i);
                 if (!$result->nodeValue) {
@@ -75,17 +75,17 @@ abstract class AbstractNodeFactory
 
     /**
      *
-     * @param  \DOMElement $DOMnode
+     * @param  \DOMElement $domNode
      * @param  type        $tagName
      * @param  type        $propertyName
      * @return type
      * @throws ParseException
      */
-    protected function getNodePropertiesByTagName(\DOMElement $DOMnode, $tagName, $propertyName)
+    protected function getNodePropertiesByTagName(\DOMElement $domNode, $tagName, $propertyName)
     {
         $values = array();
         try {
-            $results = $DOMnode->getElementsByTagName($tagName);
+            $results = $domNode->getElementsByTagName($tagName);
             if ($results->length) {
                 foreach ($results as $result) {
                     if ($result->getAttribute($propertyName)) {
@@ -102,16 +102,16 @@ abstract class AbstractNodeFactory
 
     /**
      *
-     * @param  \DOMElement $DOMnode
+     * @param  \DOMElement $domNode
      * @param  string      $tagName
      * @throws \Desarrolla2\RSSClient\Exception\ParseException
      * @return array
      */
-    protected function getNodeValuesByTagName(\DOMElement $DOMnode, $tagName)
+    protected function getNodeValuesByTagName(\DOMElement $domNode, $tagName)
     {
         $values = array();
         try {
-            $results = $DOMnode->getElementsByTagName($tagName);
+            $results = $domNode->getElementsByTagName($tagName);
             if ($results->length) {
                 foreach ($results as $result) {
                     if ($result->nodeValue) {

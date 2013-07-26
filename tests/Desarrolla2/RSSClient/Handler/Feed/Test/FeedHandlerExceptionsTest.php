@@ -30,12 +30,12 @@ class FeedHandlerTestExceptionsTest extends \PHPUnit_Framework_TestCase
     /**
      * @var string
      */
-    protected $example_feed1 = 'http://desarrolla2.com/feed/';
+    protected $exampleFeed1 = 'http://desarrolla2.com/feed/';
 
     /**
      * @var string
      */
-    protected $example_feed2 = 'http://blog.desarrolla2.com/feed/';
+    protected $exampleFeed2 = 'http://blog.desarrolla2.com/feed/';
 
     public function setUp()
     {
@@ -63,7 +63,7 @@ class FeedHandlerTestExceptionsTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddFeed2()
     {
-        $this->handler->addFeed($this->example_feed1, array());
+        $this->handler->addFeed($this->exampleFeed1, array());
     }
 
     /**

@@ -142,18 +142,13 @@ class FeedHandler extends ErrorHandler
     }
 
     /**
-     * Retrieve Channel Names
+     * Retrieve Channels Names
      *
      * @return array $channels
      */
     public function getChannelsNames()
     {
-        $channels = array();
-        foreach ($this->feeds as $channel => $feed) {
-            array_push($channels, $channel);
-        }
-
-        return $channels;
+        return array_keys($this->feeds);
     }
 
     /**

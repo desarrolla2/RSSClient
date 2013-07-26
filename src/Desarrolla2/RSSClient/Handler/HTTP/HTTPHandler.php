@@ -26,7 +26,7 @@ use Desarrolla2\RSSClient\Exception\RuntimeException;
 class HTTPHandler implements HTTPHandlerInterface
 {
 
-    const VERSION = '2.1.0';
+    const VERSION    = '2.1.0';
     const USER_AGENT = 'Desarrolla2/RSSClient';
 
     /**
@@ -58,13 +58,13 @@ class HTTPHandler implements HTTPHandlerInterface
      */
     public function get($resource, $headers = null, $body = null)
     {
-        $_headers = array(
+        $vendorHeaders = array(
             'User-Agent' => self::USER_AGENT . self::VERSION,
         );
         if (is_array($headers)) {
-            $_headers = array_merge($headers, $_headers);
+            $vendorHeaders = array_merge($headers, $vendorHeaders);
         }
-        $request  = $this->client->get($resource, $_headers);
+        $request  = $this->client->get($resource, $vendorHeaders);
         $response = $request->send();
         $status   = $response->getStatusCode();
         if ($status != 200) {
