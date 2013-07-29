@@ -15,7 +15,7 @@ namespace Desarrolla2\RSSClient\Test;
 use Desarrolla2\RSSClient\Node\NodeCollection;
 use Desarrolla2\RSSClient\Node\RSS20 as Node;
 use Desarrolla2\RSSClient\RSSClient;
-use Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerDummy;
+use Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerNative;
 use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerDummy;
 
 /**
@@ -38,7 +38,7 @@ class RSSClientTest extends \PHPUnit_Framework_TestCase
 
     public function testSetHTTPHandler()
     {
-        $this->client->setHTTPHandler(new HTTPHandlerDummy());
+        $this->client->setHTTPHandler(new HTTPHandlerNative());
         $this->assertTrue(true);
     }
 
@@ -113,11 +113,11 @@ class RSSClientTest extends \PHPUnit_Framework_TestCase
 
     private function getHTTPHandlerMock()
     {
-        return $this->getMock('\Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerDummy');
+        return $this->getMock('\Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerNative');
     }
 
     /**
-     * @return \Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerDummy
+     * @return \Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerNative
      */
     private function getFeedParserMock()
     {

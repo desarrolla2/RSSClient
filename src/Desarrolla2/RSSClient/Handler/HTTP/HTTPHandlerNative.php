@@ -16,11 +16,11 @@ use \Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerInterface;
 
 /**
  *
- * Description of HTTPHandlerDummy
+ * HTTPHandlerNative its a HTTP Handler to do test
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
  */
-class HTTPHandlerDummy implements HTTPHandlerInterface
+class HTTPHandlerNative implements HTTPHandlerInterface
 {
     public function get($resource)
     {
