@@ -9,4 +9,4 @@ notifications:
     - daniel.gonzalez@freelancemadrid.es
 
 before_script:
-  - composer install
+  - composer install --prefer-source
