@@ -22,13 +22,15 @@ use Desarrolla2\Cache\Adapter\NotCache;
  * Description of RSSClient
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
+ * @file   : RSSClient.php , UTF-8
+ * @date   : Mar 15, 2013 , 2:34:16 PM
  */
 class RSSClient extends BaseClient
 {
     /**
      * @var string This key is used as a pronoun to cache objects generated
      */
-    const CACHE_KEY = 'rss_cache_client';
+    private static $CACHE_KEY = 'rss_cache_client';
 
     /**
      * @var \Desarrolla2\Cache\Cache Cache Handler
@@ -41,6 +43,8 @@ class RSSClient extends BaseClient
     protected $cacheHash = array();
 
     /**
+     * Constructor
+     *
      * @param array  $feeds
      * @param string $channel
      */
@@ -51,13 +55,12 @@ class RSSClient extends BaseClient
     }
 
     /**
-     * Retrieve Nodes from Channel
      *
      * @param string $channel
      * @param int    $limit
      * @return bool|\Desarrolla2\RSSClient\Node\NodeCollection
      */
-    public function fetch($channel = 'default', $limit = 20)
+    public function fetch($channel = 'default', $limit = 100)
     {
         $nodes = $this->getFromCache($channel);
         if (!$nodes) {
@@ -87,7 +90,7 @@ class RSSClient extends BaseClient
     protected function getCacheKey($channel = 'default')
     {
         if (!isset($this->cacheHash[$channel])) {
-            $this->cacheHash[$channel] = self::CACHE_KEY . '_' . md5(implode('|', $this->getFeeds($channel)));
+            $this->cacheHash[$channel] = self::$CACHE_KEY . '_' . md5(implode('|', $this->getFeeds($channel)));
         }
 
         return $this->cacheHash[$channel];
@@ -111,7 +114,7 @@ class RSSClient extends BaseClient
      * Retrieves from cache
      *
      * @param  string $channel
-     * @return boolean|string
+     * @return boolean
      */
     protected function getFromCache($channel = 'default')
     {
@@ -125,8 +128,8 @@ class RSSClient extends BaseClient
 
     /**
      *
-     * @param type $channel
-     * @param type $nodes
+     * @param array  $nodes
+     * @param string $channel
      */
     protected function setToCache($nodes, $channel = 'default')
     {
