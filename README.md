@@ -69,7 +69,7 @@ use Desarrolla2\Cache\Cache;
 use Desarrolla2\Cache\Adapter\File;
 
 // It is important that you select and configure your cache adapter
-$client = new RSSClient());
+$client = new RSSClient();
 $client->setCache(new Cache(new File('/tmp')));
 
 ```
