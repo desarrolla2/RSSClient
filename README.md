@@ -1,6 +1,8 @@
 # RSSClient
 
-[![Latest Stable Version](https://poser.pugx.org/desarrolla2/rss-client/v/stable.png)](https://packagist.org/packages/desarrolla2/rss-client) [![Total Downloads](https://poser.pugx.org/desarrolla2/rss-client/downloads.png)](https://packagist.org/packages/desarrolla2/rss-client) [![Build Status](https://secure.travis-ci.org/desarrolla2/RSSClient.png)](http://travis-ci.org/desarrolla2/RSSClient)
+[![Build Status](https://secure.travis-ci.org/desarrolla2/RSSClient.png)](http://travis-ci.org/desarrolla2/RSSClient)  [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/desarrolla2/RSSClient/badges/quality-score.png?s=7a7212c89918ef32a6deaf517d2e9a6dbf62aff1)](https://scrutinizer-ci.com/g/desarrolla2/RSSClient/) [![Code Coverage](https://scrutinizer-ci.com/g/desarrolla2/RSSClient/badges/coverage.png?s=63d93e31dc96210e3e531c741c66d6a80bb028d2)](https://scrutinizer-ci.com/g/desarrolla2/RSSClient/)
+
+[![Latest Stable Version](https://poser.pugx.org/desarrolla2/rss-client/v/stable.png)](https://packagist.org/packages/desarrolla2/rss-client) [![Total Downloads](https://poser.pugx.org/desarrolla2/rss-client/downloads.png)](https://packagist.org/packages/desarrolla2/rss-client) 
 
 RSSClient is a simple to use RSS library to fetch and use RSS feeds. RSSClient is very fast!
 
@@ -111,11 +113,5 @@ You can contact with me on [twitter](https://twitter.com/desarrolla2).
 ## Other
 
 * [API docs](http://rssclient.desarrolla2.com/api/namespaces/Desarrolla2.RSSClient.html)
-* [Code coverage](http://rssclient.desarrolla2.com/coverage/index.dashboard.html)
-* [Code dependencies](http://rssclient.desarrolla2.com/pdepend/dependencies.svg)
-* [Code overview pyramid](http://rssclient.desarrolla2.com/pdepend/overview-pyramid.svg)
-* [Coding standard report](http://rssclient.desarrolla2.com/phpcs/sumary.txt)
-* [Coding standard report full](http://rssclient.desarrolla2.com/phpcs/full.txt)
-* [Code mess report ](http://rssclient.desarrolla2.com/phpmd/report.txt)
 
 
