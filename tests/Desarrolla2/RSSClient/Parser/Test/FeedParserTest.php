@@ -47,6 +47,10 @@ class FeedParserTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             /* RSS20 */
+	    array(
+		'/data/rss20/banen.bol.com.xml',
+		23
+	    ),
             array(
                 '/data/rss20/jhosmanlirazo.xml',
                 15,
