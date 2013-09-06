@@ -27,9 +27,8 @@ tools:
     php_cpd:
         enabled:              true
         command:              phpcpd
-        filter:
-            excluded_paths:
-                - 'vendor/*'
+        excluded_dirs:
+            - 'vendor'
 
 
     # PHP CS Fixer (http://http://cs.sensiolabs.org/).
