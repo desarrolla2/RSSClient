@@ -25,27 +25,6 @@ use \DateTime;
  */
 class RSS20NodeFactory extends AbstractNodeFactory
 {
-    /**
-     *
-     * @param  DOMElement $item
-     * @throws \Desarrolla2\RSSClient\Exception\ParseException
-     * @return \Desarrolla2\RSSClient\Node\RSS20
-     */
-    public function create(DOMElement $item)
-    {
-        $node = $this->getNode();
-
-        $this->setProperties($item, $node);
-        $this->setLink($item, $node);
-        $this->setCategories($item, $node);
-        $this->setPubDate($item, $node);
-
-        if (!$node->getGuid()) {
-            throw new ParseException('Guid not found');
-        }
-
-        return $node;
-    }
 
     /**
      * @param DOMElement                        $item

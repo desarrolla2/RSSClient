@@ -26,27 +26,6 @@ use \DateTime;
  */
 class Atom10NodeFactory extends AbstractNodeFactory
 {
-    /**
-     * Create Node Element
-     *
-     * @param  DOMElement $entry
-     * @throws \Desarrolla2\RSSClient\Exception\ParseException
-     * @return \Desarrolla2\RSSClient\Node\Atom10
-     */
-    public function create(DOMElement $entry)
-    {
-        $node = $this->getNode();
-        $this->setProperties($entry, $node);
-        $this->setCategories($entry, $node);
-        $this->setLink($entry, $node);
-        $this->setPubDate($entry, $node);
-
-        if (!$node->getGuid()) {
-            throw new ParseException('Guid not found');
-        }
-
-        return $node;
-    }
 
     /**
      * @param DOMElement $entry
@@ -97,8 +76,8 @@ class Atom10NodeFactory extends AbstractNodeFactory
     protected function setProperties(DOMElement $entry, Atom10 $node)
     {
         $properties = array(
-            'id'      => 'setGUID',
-            'title'   => 'setTitle',
+            'id' => 'setGUID',
+            'title' => 'setTitle',
             'content' => 'setDescription'
         );
         foreach ($properties as $propertyName => $method) {

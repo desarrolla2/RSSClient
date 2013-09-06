@@ -59,6 +59,15 @@ class RSS20NodeFactoryTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array(
+                '/data/rss20/banen.bol.com.xml',
+                'Senior Online Marketeer',
+                'https://banen.bol.com/vacature/senior-online-marketeer/?utm_source=rss&utm_medium=rss&utm_campaign=senior-online-marketeer',
+                'https://banen.bol.com/vacature/senior-online-marketeer/?utm_source=rss&utm_medium=rss&utm_campaign=senior-online-marketeer',
+                'Ben jij de ideale gids in de wereld van Google Adwords?',
+                '5',
+                0,
+            ),
+            array(
                 '/data/rss20/jhosmanlirazo.xml',
                 'Como instalar #LibreOffice4 en #Ubuntu',
                 'http://jhosman.com/es/documentacion-ubuntu/oficina6/289-como-instalar-libreoffice-4-en-ubuntu.html',
@@ -91,7 +100,7 @@ class RSS20NodeFactoryTest extends \PHPUnit_Framework_TestCase
                 'Ubuntu Phone: Premio a la Mejor Innovación del MWC 2013',
                 '133 at http://xn--ubuntu-espaa-khb.org',
                 'http://xn--ubuntu-espaa-khb.org/content/ubuntu-phone-premio-la-mejor-innovaci%C3%B3n-del-mwc-2013',
-                ' <p>La <a href="http://www.ubuntu.com/devices/phone">versión para móviles de Ubuntu</a> ' .
+                '<p>La <a href="http://www.ubuntu.com/devices/phone">versión para móviles de Ubuntu</a> ' .
                 'se ha hecho con ...',
                 '28',
                 0,

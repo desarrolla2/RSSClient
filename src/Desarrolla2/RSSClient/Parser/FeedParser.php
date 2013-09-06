@@ -18,6 +18,7 @@ use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface;
 use Desarrolla2\RSSClient\Node\NodeCollection;
 use Desarrolla2\RSSClient\Factory\RSS20NodeFactory;
 use Desarrolla2\RSSClient\Factory\Atom10NodeFactory;
+use Desarrolla2\RSSClient\Factory\FactoryInterface;
 use Desarrolla2\RSSClient\Exception\ParseException;
 
 /**
@@ -28,7 +29,7 @@ use Desarrolla2\RSSClient\Exception\ParseException;
  */
 class FeedParser implements ParserInterface
 {
-    const RSS20_SCHEMA_FILE  = 'rss20.xsd';
+    const RSS20_SCHEMA_FILE = 'rss20.xsd';
     const ATOM10_SCHEMA_FILE = 'atom10.xsd';
 
     /**
@@ -48,14 +49,12 @@ class FeedParser implements ParserInterface
      */
     protected $schemaPath;
 
-    /**
-     * Contructor
-     */
+
     public function __construct()
     {
-        $this->xml                      = new DOMDocument();
+        $this->xml = new DOMDocument();
         $this->xml->strictErrorChecking = false;
-        $this->schemaPath               = __DIR__ . '/schemas/';
+        $this->schemaPath = __DIR__ . '/schemas/';
     }
 
     /**
@@ -91,33 +90,11 @@ class FeedParser implements ParserInterface
         return $this->nodes;
     }
 
-    protected function parseTagsWithFactory($tagName, $factory)
-    {
-        $items = $this->xml->getElementsByTagName($tagName);
-        if ($items->length) {
-            foreach ($items as $item) {
-                try {
-                    $node = $factory->create($item);
-                    if ($node) {
-                        $this->nodes->append($node);
-                    }
-                } catch (\Exception $e) {
-                    throw new ParseException($e->getMessage());
-                }
-            }
-        }
-    }
-
+    /**
+     * @return bool|string
+     */
     protected function getSchema()
     {
-        /*
-        if ($this->trySchema(self::RSS20_SCHEMA_FILE)) {
-            return 'RSS20';
-        }
-        if ($this->trySchema(self::ATOM10_SCHEMA_FILE)) {
-            return 'ATOM10';
-        }
-        */
         if ($this->isRSS20()) {
             return 'RSS20';
         }
@@ -128,6 +105,10 @@ class FeedParser implements ParserInterface
         return false;
     }
 
+    /**
+     * @return bool
+     * @throws \Desarrolla2\RSSClient\Exception\ParseException
+     */
     protected function isRSS20()
     {
         try {
@@ -145,6 +126,10 @@ class FeedParser implements ParserInterface
         return false;
     }
 
+    /**
+     * @return bool
+     * @throws \Desarrolla2\RSSClient\Exception\ParseException
+     */
     protected function isAtom10()
     {
         try {
@@ -163,21 +148,24 @@ class FeedParser implements ParserInterface
     }
 
     /**
-     *
-     * @param  type $schema
-     * @return boolean
+     * @param string           $tagName
+     * @param FactoryInterface $factory
      * @throws \Desarrolla2\RSSClient\Exception\ParseException
      */
-    protected function trySchema($schema)
+    protected function parseTagsWithFactory($tagName, $factory)
     {
-        try {
-            if ($this->xml->schemaValidate($this->schemaPath . $schema)) {
-                return true;
+        $items = $this->xml->getElementsByTagName($tagName);
+        if ($items->length) {
+            foreach ($items as $item) {
+                try {
+                    $node = $factory->create($item);
+                    if ($node) {
+                        $this->nodes->append($node);
+                    }
+                } catch (\Exception $e) {
+                    throw new ParseException($e->getMessage());
+                }
             }
-        } catch (\Exception $e) {
-            throw new ParseException($e->getMessage());
         }
-
-        return false;
     }
 }

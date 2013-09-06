@@ -22,7 +22,7 @@ use \DOMElement;
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
  */
-abstract class AbstractNodeFactory
+abstract class AbstractNodeFactory implements FactoryInterface
 {
     /**
      * @var \Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface
@@ -38,13 +38,46 @@ abstract class AbstractNodeFactory
     }
 
     /**
+     * Create Node Element
+     *
+     * @param  DOMElement $entry
+     * @throws \Desarrolla2\RSSClient\Exception\ParseException
+     * @return \Desarrolla2\RSSClient\Node\Atom10
+     */
+    public function create(DOMElement $entry)
+    {
+        $node = $this->getNode();
+        $this->setProperties($entry, $node);
+        $this->setCategories($entry, $node);
+        $this->setLink($entry, $node);
+        $this->setPubDate($entry, $node);
+
+        if (!$node->getGuid()) {
+            $node->setGuid($node->getLink());
+        }
+
+        if (!$node->getGuid()) {
+            $node->setGuid($node->getTitle());
+        }
+
+        return $node;
+    }
+
+
+    /**
+     *
+     * @return \Desarrolla2\RSSClient\Node\Node
+     */
+    abstract protected function getNode();
+
+    /**
      *
      * @param  string $text
      * @return string
      */
     protected function doClean($text)
     {
-        return $this->sanitizer->doClean($text);
+        return trim($this->sanitizer->doClean($text));
     }
 
     /**
