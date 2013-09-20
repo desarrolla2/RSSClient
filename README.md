@@ -1,10 +1,10 @@
 # RSSClient
 
+RSSClient is a simple to use RSS library to fetch and use RSS feeds. RSSClient is very fast!
+
 [![Build Status](https://secure.travis-ci.org/desarrolla2/RSSClient.png)](http://travis-ci.org/desarrolla2/RSSClient)  [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/desarrolla2/RSSClient/badges/quality-score.png?s=7a7212c89918ef32a6deaf517d2e9a6dbf62aff1)](https://scrutinizer-ci.com/g/desarrolla2/RSSClient/) [![Code Coverage](https://scrutinizer-ci.com/g/desarrolla2/RSSClient/badges/coverage.png?s=63d93e31dc96210e3e531c741c66d6a80bb028d2)](https://scrutinizer-ci.com/g/desarrolla2/RSSClient/)
 
-[![Latest Stable Version](https://poser.pugx.org/desarrolla2/rss-client/v/stable.png)](https://packagist.org/packages/desarrolla2/rss-client) [![Total Downloads](https://poser.pugx.org/desarrolla2/rss-client/downloads.png)](https://packagist.org/packages/desarrolla2/rss-client) 
-
-RSSClient is a simple to use RSS library to fetch and use RSS feeds. RSSClient is very fast!
+[![Latest Stable Version](https://poser.pugx.org/desarrolla2/rss-client/v/stable.png)](https://packagist.org/packages/desarrolla2/rss-client) [![Total Downloads](https://poser.pugx.org/desarrolla2/rss-client/downloads.png)](https://packagist.org/packages/desarrolla2/rss-client)  [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/desarrolla2/rssclient/trend.png)](https://bitdeli.com/free)
 
 ## Formats Supported
 
