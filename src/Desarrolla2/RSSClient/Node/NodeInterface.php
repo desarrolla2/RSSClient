@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the RSSClient proyect.
+ * This file is part of the RSSClient project.
  *
  * Copyright (c)
  * Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>

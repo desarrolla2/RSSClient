@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the RSSClient proyect.
+ * This file is part of the RSSClient project.
  *
  * Copyright (c)
  * Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
@@ -51,14 +51,6 @@ abstract class AbstractNodeFactory implements FactoryInterface
         $this->setCategories($entry, $node);
         $this->setLink($entry, $node);
         $this->setPubDate($entry, $node);
-
-        if (!$node->getGuid()) {
-            $node->setGuid($node->getLink());
-        }
-
-        if (!$node->getGuid()) {
-            $node->setGuid($node->getTitle());
-        }
 
         return $node;
     }

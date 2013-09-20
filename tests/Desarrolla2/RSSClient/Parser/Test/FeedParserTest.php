@@ -35,7 +35,7 @@ class FeedParserTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->parser    = new FeedParser();
+        $this->parser = new FeedParser();
         $this->sanitizer = new SanitizerHandlerDummy();
     }
 
@@ -47,10 +47,10 @@ class FeedParserTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             /* RSS20 */
-	    array(
-		'/data/rss20/banen.bol.com.xml',
-		23
-	    ),
+            array(
+                '/data/rss20/banen.bol.com.xml',
+                23
+            ),
             array(
                 '/data/rss20/jhosmanlirazo.xml',
                 15,
@@ -95,7 +95,7 @@ class FeedParserTest extends \PHPUnit_Framework_TestCase
     public function testFeedParserTest($file, $totalItems)
     {
         $string = file_get_contents(__DIR__ . $file);
-        $nodes  = $this->parser->parse($string, $this->sanitizer);
+        $nodes = $this->parser->parse($string, $this->sanitizer);
         $this->assertEquals($totalItems, $nodes->count());
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the RSSClient proyect.
+ * This file is part of the RSSClient project.
  *
  * Copyright (c)
  * Daniel González <daniel.gonzalez@freelancemadrid.es>
@@ -23,8 +23,9 @@ interface HTTPHandlerInterface
     /**
      * Retrieve a resource in plain text from a url
      *
-     * @param  string $resource
+     * @param string $resource
+     * @param null   $headers
      * @return string
      */
-    public function get($resource);
+    public function get($resource, $headers = null);
 }

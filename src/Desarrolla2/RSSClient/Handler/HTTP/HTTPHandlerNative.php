@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the RSSClient proyect.
+ * This file is part of the RSSClient project.
  *
  * Copyright (c)
  * Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
@@ -22,7 +22,7 @@ use \Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerInterface;
  */
 class HTTPHandlerNative implements HTTPHandlerInterface
 {
-    public function get($resource)
+    public function get($resource, $headers = null)
     {
         return file_get_contents($resource);
     }

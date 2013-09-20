@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the RSSClient proyect.
+ * This file is part of the RSSClient project.
  *
  * Copyright (c)
  * Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
@@ -28,14 +28,14 @@ use Desarrolla2\Cache\Adapter\NotCache;
 class RSSClient extends BaseClient
 {
     /**
-     * @var string This key is used as a pronoun to cache objects generated
-     */
-    private static $CACHE_KEY = 'rss_cache_client';
-
-    /**
      * @var \Desarrolla2\Cache\Cache Cache Handler
      */
     protected $cache = null;
+
+    /**
+     * @var string This key is used as a pronoun to cache objects generated
+     */
+    private static $cacheKey = 'rss_cache_client';
 
     /**
      * @var array temporal array
@@ -90,7 +90,7 @@ class RSSClient extends BaseClient
     protected function getCacheKey($channel = 'default')
     {
         if (!isset($this->cacheHash[$channel])) {
-            $this->cacheHash[$channel] = self::$CACHE_KEY . '_' . md5(implode('|', $this->getFeeds($channel)));
+            $this->cacheHash[$channel] = self::$cacheKey . '_' . md5(implode('|', $this->getFeeds($channel)));
         }
 
         return $this->cacheHash[$channel];
@@ -114,7 +114,7 @@ class RSSClient extends BaseClient
      * Retrieves from cache
      *
      * @param  string $channel
-     * @return boolean
+     * @return mixed|false
      */
     protected function getFromCache($channel = 'default')
     {

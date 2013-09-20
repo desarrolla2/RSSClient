@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the RSSClient proyect.
+ * This file is part of the RSSClient project.
  *
  * Copyright (c)
  * Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
@@ -26,7 +26,7 @@ use Desarrolla2\RSSClient\Exception\RuntimeException;
 class HTTPHandler implements HTTPHandlerInterface
 {
 
-    const VERSION    = '2.1.0';
+    const VERSION = '2.1.0';
     const USER_AGENT = 'Desarrolla2/RSSClient';
 
     /**
@@ -50,13 +50,12 @@ class HTTPHandler implements HTTPHandlerInterface
     /**
      * Retrieve a resource in plain text from a url
      *
-     * @param  string $resource
-     * @param  array  $headers
-     * @param  string $body
+     * @param string $resource
+     * @param array  $headers
      * @return string
      * @throws RuntimeException
      */
-    public function get($resource, $headers = null, $body = null)
+    public function get($resource, $headers = null)
     {
         $vendorHeaders = array(
             'User-Agent' => self::USER_AGENT . self::VERSION,
@@ -64,9 +63,9 @@ class HTTPHandler implements HTTPHandlerInterface
         if (is_array($headers)) {
             $vendorHeaders = array_merge($headers, $vendorHeaders);
         }
-        $request  = $this->client->get($resource, $vendorHeaders);
+        $request = $this->client->get($resource, $vendorHeaders);
         $response = $request->send();
-        $status   = $response->getStatusCode();
+        $status = $response->getStatusCode();
         if ($status != 200) {
             throw new RuntimeException('Error HTTP ' . $status . '  on request');
         }

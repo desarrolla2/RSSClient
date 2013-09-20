@@ -12,6 +12,7 @@
 
 namespace Desarrolla2\RSSClient\Factory\Test;
 
+use Desarrolla2\RSSClient\Factory\AbstractNodeFactory;
 use Desarrolla2\RSSClient\Factory\RSS20NodeFactory;
 use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerDummy;
 use \DOMDocument;
@@ -24,31 +25,19 @@ use \DOMDocument;
  * @file   : RSS20NodeFactoryTest.php , UTF-8
  * @date   : Mar 24, 2013 , 6:20:28 PM
  */
-class RSS20NodeFactoryTest extends \PHPUnit_Framework_TestCase
+class RSS20NodeFactoryTest extends AbstractNodeFactoryTest
 {
 
     /**
-     * @var \Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerDummy
+     * @var string
      */
-    protected $sanitizer;
+    protected $itemName = 'item';
 
-    /**
-     * @var \Desarrolla2\RSSClient\Factory\RSS20NodeFactory
-     */
-    protected $factory;
-
-    /**
-     * @var \Desarrolla2\RSSClient\Node\RSS20
-     */
-    protected $node;
-
-    /**
-     * Setup
-     */
     public function setUp()
     {
+        parent::setUp();
         $this->sanitizer = new SanitizerHandlerDummy();
-        $this->factory   = new RSS20NodeFactory($this->sanitizer);
+        $this->factory = new RSS20NodeFactory($this->sanitizer);
     }
 
     /**
@@ -61,8 +50,9 @@ class RSS20NodeFactoryTest extends \PHPUnit_Framework_TestCase
             array(
                 '/data/rss20/banen.bol.com.xml',
                 'Senior Online Marketeer',
-                'https://banen.bol.com/vacature/senior-online-marketeer/?utm_source=rss&utm_medium=rss&utm_campaign=senior-online-marketeer',
-                'https://banen.bol.com/vacature/senior-online-marketeer/?utm_source=rss&utm_medium=rss&utm_campaign=senior-online-marketeer',
+                null,
+                'https://banen.bol.com/vacature/senior-online-marketeer/' .
+                '?utm_source=rss&utm_medium=rss&utm_campaign=senior-online-marketeer',
                 'Ben jij de ideale gids in de wereld van Google Adwords?',
                 '5',
                 0,
@@ -118,7 +108,6 @@ class RSS20NodeFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @test
      * @dataProvider dataProvider
      * @param string $file
      * @param string $title
@@ -126,21 +115,10 @@ class RSS20NodeFactoryTest extends \PHPUnit_Framework_TestCase
      * @param string $link
      * @param string $description
      * @param string $pubDay
-     * @param int $totalCategories
+     * @param int    $totalCategories
      */
-    public function testRSS20NodeFactory($file, $title, $guid, $link, $description, $pubDay, $totalCategories)
+    public function testNodeFactory($file, $title, $guid, $link, $description, $pubDay, $totalCategories)
     {
-        $sting = file_get_contents(__DIR__ . $file);
-        $dom   = new DOMDocument();
-        $dom->loadXML($sting);
-        $item       = $dom->getElementsByTagName('item')->item(0);
-        $this->node = $this->factory->create($item);
-
-        $this->assertEquals($title, $this->node->getTitle());
-        $this->assertEquals($guid, $this->node->getGuid());
-        $this->assertEquals($link, $this->node->getLink());
-        $this->assertEquals($description, $this->node->getDescription());
-        $this->assertEquals($pubDay, $this->node->getPubDate()->format('d'));
-        $this->assertEquals($totalCategories, count($this->node->getCategories()));
+        parent::testNodeFactory($file, $title, $guid, $link, $description, $pubDay, $totalCategories);
     }
 }

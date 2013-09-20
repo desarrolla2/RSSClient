@@ -14,7 +14,6 @@ namespace Desarrolla2\RSSClient\Factory\Test;
 
 use Desarrolla2\RSSClient\Factory\Atom10NodeFactory;
 use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerDummy;
-use \DOMDocument;
 
 /**
  *
@@ -22,27 +21,19 @@ use \DOMDocument;
  *
  * @author : Daniel González <daniel.gonzalez@freelancemadrid.es>
  */
-class Atom10NodeFactoryTest extends \PHPUnit_Framework_TestCase
+class Atom10NodeFactoryTest extends AbstractNodeFactoryTest
 {
-    /**
-     * @var \Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerDummy
-     */
-    protected $sanitizer;
 
     /**
-     * @var \Desarrolla2\RSSClient\Factory\Atom10NodeFactory
+     * @var string
      */
-    protected $factory;
-
-    /**
-     * @var \Desarrolla2\RSSClient\Node\Atom10
-     */
-    protected $node;
+    protected  $itemName = 'entry';
 
     public function setUp()
     {
+        parent::setUp();
         $this->sanitizer = new SanitizerHandlerDummy();
-        $this->factory   = new Atom10NodeFactory($this->sanitizer);
+        $this->factory = new Atom10NodeFactory($this->sanitizer);
     }
 
     /**
@@ -92,19 +83,8 @@ class Atom10NodeFactoryTest extends \PHPUnit_Framework_TestCase
      * @param string $pubDay
      * @param int    $totalCategories
      */
-    public function testRSS20NodeFactory($file, $title, $guid, $link, $description, $pubDay, $totalCategories)
+    public function testNodeFactory($file, $title, $guid, $link, $description, $pubDay, $totalCategories)
     {
-        $string = file_get_contents(__DIR__ . $file);
-        $dom    = new DOMDocument();
-        $dom->loadXML($string);
-        $item       = $dom->getElementsByTagName('entry')->item(0);
-        $this->node = $this->factory->create($item);
-
-        $this->assertEquals($title, $this->node->getTitle());
-        $this->assertEquals($guid, $this->node->getGuid());
-        $this->assertEquals($link, $this->node->getLink());
-        $this->assertEquals($description, $this->node->getDescription());
-        $this->assertEquals($pubDay, $this->node->getPubDate()->format('d'));
-        $this->assertEquals($totalCategories, count($this->node->getCategories()));
+        parent::testNodeFactory($file, $title, $guid, $link, $description, $pubDay, $totalCategories);
     }
 }
