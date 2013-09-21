@@ -96,6 +96,53 @@ class RSS20NodeFactory extends AbstractNodeFactory
     }
 
     /**
+     * @param DOMElement $item
+     * @param RSS20      $node
+     */
+    protected function setMedia(DOMElement $item, RSS20 $node)
+    {
+        foreach ($node->getMediaTypes() as $type) {
+            $value = $this->getMediaNodeValueByTagName($item, $type);
+            if (count($value) > 0) {
+                $node->setMedia($type, $value);
+            }
+        }
+    }
+
+    /**
+     * @param  DOMElement $domNode
+     * @param  string      $tagName
+     * @throws \Desarrolla2\RSSClient\Exception\ParseException
+     * @return array
+     */
+    protected function getMediaNodeValueByTagName(DOMElement $domNode, $tagName)
+    {
+        try {
+            $result = array();
+            $list = $domNode->getElementsByTagName($tagName);
+            for ($i = 0; $i < $list->length; $i++) {
+                $result[$i] = array();
+                $item = $list->item($i);
+                foreach ($item->attributes as $key => $attr) {
+                    $result[$i][$key] = $this->doClean($attr->value);
+                }
+
+                if (!$item->nodeValue) {
+                    continue;
+                }
+
+                $result[$i]['node_value'] = $this->doClean($item->nodeValue);
+            }
+
+            return $result;
+        } catch (\Exception $e) {
+            throw new ParseException($e->getMessage());
+        }
+
+        return false;
+    }
+
+    /**
      *
      * @return \Desarrolla2\RSSClient\Node\RSS20
      */

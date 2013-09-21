@@ -22,4 +22,43 @@ use Desarrolla2\RSSClient\Node\Node;
  */
 class RSS20 extends Node
 {
+    /**
+     * @var array
+     */
+    protected $media = array();
+
+    /**
+     * @return array
+     */
+    public function getMediaTypes()
+    {
+        return array(
+            'content',
+            'keywords',
+            'thumbnail',
+            'category',
+            'comments',
+        );
+    }
+
+    /**
+     * @param  string $type
+     * @return null|string
+     */
+    public function getMedia($type)
+    {
+        return array_key_exists($type, $this->media) ? $this->media[$type] : null;
+    }
+
+    /**
+     * @param string $type
+     * @param array  $value
+     * @return self
+     */
+    public function setMedia($type, $value)
+    {
+        $this->media[$type] = $value;
+
+        return $this;
+    }
 }
