@@ -22,7 +22,7 @@ use \Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerInterface;
  */
 class HTTPHandlerNative implements HTTPHandlerInterface
 {
-    public function get($resource, $headers = null)
+    public function get($resource)
     {
         return file_get_contents($resource);
     }

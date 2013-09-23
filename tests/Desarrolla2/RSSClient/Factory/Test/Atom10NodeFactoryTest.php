@@ -27,7 +27,7 @@ class Atom10NodeFactoryTest extends AbstractNodeFactoryTest
     /**
      * @var string
      */
-    protected  $itemName = 'entry';
+    protected $itemName = 'entry';
 
     public function setUp()
     {

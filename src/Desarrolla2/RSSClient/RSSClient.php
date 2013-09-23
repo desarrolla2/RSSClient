@@ -56,9 +56,9 @@ class RSSClient extends FeedHandler implements RSSClientInterface
      */
     public function __construct(array $feeds = array(), $channel = 'default')
     {
-        $this->httpHandler      = new HTTPHandler();
+        $this->httpHandler = new HTTPHandler();
         $this->sanitizerHandler = new SanitizerHandler();
-        $this->parser           = new FeedParser();
+        $this->parser = new FeedParser();
         $this->setFeeds($feeds, $channel);
     }
 
@@ -93,8 +93,8 @@ class RSSClient extends FeedHandler implements RSSClientInterface
     /**
      * Retrieve nodes from a chanel
      *
-     * @param  string                    $channel
-     * @param  int                       $limit
+     * @param  string $channel
+     * @param  int    $limit
      * @return NodeCollection
      * @throws \InvalidArgumentException
      */
@@ -108,22 +108,30 @@ class RSSClient extends FeedHandler implements RSSClientInterface
         }
         $this->nodes = new NodeCollection();
         foreach ($this->feeds[$channel] as $feed) {
-            try {
-                $feed = $this->fetchHTTP($feed);
-                if ($feed) {
-                    $nodes = $this->parser->parse($feed, $this->sanitizerHandler);
-                    foreach ($nodes as $node) {
-                        $this->nodes->append($node);
-                    }
-                }
-            } catch (Exception $e) {
-                $this->addError($e->getMessage());
-            }
+            $this->fetchFeed($feed);
         }
         $this->nodes->short();
         $this->nodes->limit($limit);
 
         return $this->nodes;
+    }
+
+    /**
+     * @param string $feed
+     */
+    protected function fetchFeed($feed)
+    {
+        try {
+            $feed = $this->fetchHTTP($feed);
+            if ($feed) {
+                $nodes = $this->parser->parse($feed, $this->sanitizerHandler);
+                foreach ($nodes as $node) {
+                    $this->nodes->append($node);
+                }
+            }
+        } catch (Exception $e) {
+            $this->addError($e->getMessage());
+        }
     }
 
     /**

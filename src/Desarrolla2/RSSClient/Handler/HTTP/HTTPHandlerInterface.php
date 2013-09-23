@@ -27,5 +27,5 @@ interface HTTPHandlerInterface
      * @param null   $headers
      * @return string
      */
-    public function get($resource, $headers = null);
+    public function get($resource);
 }

@@ -14,7 +14,6 @@ use Desarrolla2\RSSClient\Factory\AbstractNodeFactory;
 use Desarrolla2\RSSClient\Node\Node;
 use DOMDocument;
 
-
 /**
  * Class AbstractNodeFactoryTest
  *
