@@ -22,6 +22,12 @@ use \Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerInterface;
  */
 class HTTPHandlerNative implements HTTPHandlerInterface
 {
+    /**
+     * Retrieve a resource in plain text from a url
+     *
+     * @param string $resource
+     * @return string
+     */
     public function get($resource)
     {
         return file_get_contents($resource);

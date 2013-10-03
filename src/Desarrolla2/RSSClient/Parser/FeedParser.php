@@ -67,9 +67,11 @@ class FeedParser implements ParserInterface
     public function parse($feed, SanitizerHandlerInterface $sanitizer)
     {
         $this->nodes = new NodeCollection();
+        $previousUseLibXmlErrors = libxml_use_internal_errors(true);
         try {
             $this->xml->loadXML(trim($feed));
         } catch (\Exception $e) {
+            libxml_use_internal_errors($previousUseLibXmlErrors);
             throw new ParseException($e->getMessage());
         }
 
@@ -87,6 +89,7 @@ class FeedParser implements ParserInterface
                 break;
         }
 
+        libxml_use_internal_errors($previousUseLibXmlErrors);
         return $this->nodes;
     }
 

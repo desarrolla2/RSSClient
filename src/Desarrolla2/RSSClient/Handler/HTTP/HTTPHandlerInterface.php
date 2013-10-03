@@ -14,7 +14,7 @@ namespace Desarrolla2\RSSClient\Handler\HTTP;
 
 /**
  *
- * Description of HTTPClientInterface
+ * HTTPHandlerInterface
  *
  * @author : Daniel González <daniel.gonzalez@freelancemadrid.es>
  */
@@ -24,7 +24,6 @@ interface HTTPHandlerInterface
      * Retrieve a resource in plain text from a url
      *
      * @param string $resource
-     * @param null   $headers
      * @return string
      */
     public function get($resource);
