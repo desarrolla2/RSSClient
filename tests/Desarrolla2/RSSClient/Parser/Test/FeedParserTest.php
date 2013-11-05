@@ -33,6 +33,9 @@ class FeedParserTest extends \PHPUnit_Framework_TestCase
      */
     protected $sanitizer;
 
+    /**
+     * setup
+     */
     public function setUp()
     {
         $this->parser = new FeedParser();

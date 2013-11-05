@@ -20,6 +20,7 @@ use Desarrolla2\RSSClient\Factory\RSS20NodeFactory;
 use Desarrolla2\RSSClient\Factory\Atom10NodeFactory;
 use Desarrolla2\RSSClient\Factory\FactoryInterface;
 use Desarrolla2\RSSClient\Exception\ParseException;
+use Desarrolla2\RSSClient\Parser\Processor\ProcessorInterface;
 
 /**
  *
@@ -45,17 +46,35 @@ class FeedParser implements ParserInterface
     protected $nodes = array();
 
     /**
+     * @var array;
+     */
+    protected $processors = array();
+
+    /**
      * @var string path to schemas documents
      */
     protected $schemaPath;
 
 
+    /**
+     *
+     */
     public function __construct()
     {
         $this->xml = new DOMDocument();
         $this->xml->strictErrorChecking = false;
         $this->schemaPath = __DIR__ . '/schemas/';
     }
+
+    /**
+     * @param ProcessorInterface $processor
+     * @throws \InvalidArgumentException
+     */
+    public function pushProcessor(ProcessorInterface $processor)
+    {
+        $this->processors[] = $processor;
+    }
+
 
     /**
      *
@@ -78,11 +97,11 @@ class FeedParser implements ParserInterface
         switch ($this->getSchema()) {
             case 'RSS20':
                 $factory = new RSS20NodeFactory($sanitizer);
-                $this->parseTagsWithFactory('item', $factory);
+                $this->parseWithFactory('item', $factory);
                 break;
             case 'ATOM10':
                 $factory = new Atom10NodeFactory($sanitizer);
-                $this->parseTagsWithFactory('entry', $factory);
+                $this->parseWithFactory('entry', $factory);
                 break;
             default:
                 throw new ParseException('Schema not supported');
@@ -90,6 +109,7 @@ class FeedParser implements ParserInterface
         }
 
         libxml_use_internal_errors($previousUseLibXmlErrors);
+
         return $this->nodes;
     }
 
@@ -155,13 +175,14 @@ class FeedParser implements ParserInterface
      * @param FactoryInterface $factory
      * @throws \Desarrolla2\RSSClient\Exception\ParseException
      */
-    protected function parseTagsWithFactory($tagName, $factory)
+    protected function parseWithFactory($tagName, $factory)
     {
         $items = $this->xml->getElementsByTagName($tagName);
         if ($items->length) {
             foreach ($items as $item) {
                 try {
                     $node = $factory->create($item);
+                    $this->executeProcessors($node, $item);
                     if ($node) {
                         $this->nodes->append($node);
                     }
@@ -169,6 +190,17 @@ class FeedParser implements ParserInterface
                     throw new ParseException($e->getMessage());
                 }
             }
+        }
+    }
+
+    /**
+     * @param $node
+     * @param $item
+     */
+    protected function executeProcessors($node, $item)
+    {
+        foreach ($this->processors as $processor) {
+            $processor->execute($node, $item);
         }
     }
 }

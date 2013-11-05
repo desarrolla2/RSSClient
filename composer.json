@@ -19,6 +19,9 @@
         "ezyang/htmlpurifier": "4.5.*",
         "desarrolla2/cache": "1.*"
     },
+    "require-dev": {
+        "raulfraile/ladybug": "~1.0"
+    },
     "autoload": {
         "psr-0": {
             "Desarrolla2\\RSSClient\\": "src/"
