@@ -21,6 +21,7 @@ use Desarrolla2\RSSClient\Handler\Feed\FeedHandler;
 use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandler;
 use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface;
 use Desarrolla2\RSSClient\Node\NodeCollection;
+use Desarrolla2\RSSClient\Parser\Processor\ProcessorInterface;
 
 /**
  *
@@ -91,10 +92,47 @@ class RSSClient extends FeedHandler implements RSSClientInterface
     }
 
     /**
+     * @param ProcessorInterface $processor
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function pushProcessor(ProcessorInterface $processor)
+    {
+        $this->parser->pushProcessor($processor);
+    }
+
+    /**
+     * @return \Guzzle\Http\ClientInterface
+     */
+    public function getHttpHandler()
+    {
+        return $this->httpHandler;
+    }
+
+    /**
+     * @return \Desarrolla2\RSSClient\Parser\FeedParser
+     */
+    public function getParser()
+    {
+        return $this->parser;
+    }
+
+    /**
+     * @return \Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface
+     */
+    public function getSanitizerHandler()
+    {
+        return $this->sanitizerHandler;
+    }
+
+
+
+    /**
      * Retrieve nodes from a chanel
      *
      * @param  string $channel
      * @param  int    $limit
+     *
      * @return NodeCollection
      * @throws \InvalidArgumentException
      */
@@ -138,6 +176,7 @@ class RSSClient extends FeedHandler implements RSSClientInterface
      * Retrieve feeds content
      *
      * @param  string $feedUrl
+     *
      * @return string
      */
     protected function fetchHTTP($feedUrl)

@@ -28,6 +28,7 @@ interface NodeInterface
 
     /**
      * @param $title
+     *
      * @return mixed
      */
     public function setTitle($title);
@@ -39,6 +40,7 @@ interface NodeInterface
 
     /**
      * @param $link
+     *
      * @return mixed
      */
     public function setLink($link);
@@ -50,6 +52,7 @@ interface NodeInterface
 
     /**
      * @param $description
+     *
      * @return mixed
      */
     public function setDescription($description);
@@ -61,6 +64,7 @@ interface NodeInterface
 
     /**
      * @param $author
+     *
      * @return mixed
      */
     public function setAuthor($author);
@@ -72,6 +76,7 @@ interface NodeInterface
 
     /**
      * @param array $categories
+     *
      * @return mixed
      */
     public function setCategories(array $categories);
@@ -83,6 +88,7 @@ interface NodeInterface
 
     /**
      * @param $comments
+     *
      * @return mixed
      */
     public function setComments($comments);
@@ -94,6 +100,7 @@ interface NodeInterface
 
     /**
      * @param $enclosure
+     *
      * @return mixed
      */
     public function setEnclosure($enclosure);
@@ -105,6 +112,7 @@ interface NodeInterface
 
     /**
      * @param $guid
+     *
      * @return mixed
      */
     public function setGuid($guid);
@@ -116,6 +124,7 @@ interface NodeInterface
 
     /**
      * @param \DateTime $pubDate
+     *
      * @return mixed
      */
     public function setPubDate(\DateTime $pubDate);
@@ -127,7 +136,21 @@ interface NodeInterface
 
     /**
      * @param $source
+     *
      * @return mixed
      */
     public function setSource($source);
+
+    /**
+     * @param $key
+     * @param $value
+     */
+    public function setExtended($key, $value);
+
+    /**
+     * @param $key
+     *
+     * @return array
+     */
+    public function getExtended($key);
 }

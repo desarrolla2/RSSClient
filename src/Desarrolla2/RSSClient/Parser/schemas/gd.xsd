@@ -1,14 +1,15 @@
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.google.com/g/2005" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="image">
-    <xs:complexType>
-      <xs:simpleContent>
-        <xs:extension base="xs:string">
-          <xs:attribute type="xs:anyURI" name="rel" use="optional"/>
-          <xs:attribute type="xs:byte" name="width" use="optional"/>
-          <xs:attribute type="xs:byte" name="height" use="optional"/>
-          <xs:attribute type="xs:string" name="src" use="optional"/>
-        </xs:extension>
-      </xs:simpleContent>
-    </xs:complexType>
-  </xs:element>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           targetNamespace="http://schemas.google.com/g/2005" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="image">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute type="xs:anyURI" name="rel" use="optional"/>
+                    <xs:attribute type="xs:byte" name="width" use="optional"/>
+                    <xs:attribute type="xs:byte" name="height" use="optional"/>
+                    <xs:attribute type="xs:string" name="src" use="optional"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
 </xs:schema>

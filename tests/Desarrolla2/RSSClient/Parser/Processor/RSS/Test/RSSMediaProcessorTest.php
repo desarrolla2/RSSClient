@@ -28,10 +28,13 @@ class RSSMediaProcessorTest extends FeedParserTest
      */
     protected $processor;
 
+    /**
+     *
+     */
     public function setUp()
     {
         parent::setUp();
-        $this->processor = new RSSMediaProcessor();
+        $this->processor = new RSSMediaProcessor($this->sanitizer);
         $this->parser->pushProcessor($this->processor);
     }
 }

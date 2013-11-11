@@ -73,6 +73,11 @@ abstract class Node implements NodeInterface
     protected $source = null;
 
     /**
+     * @var array
+     */
+    protected $extended = array();
+
+    /**
      * @return null|string
      */
     public function getTitle()
@@ -81,7 +86,9 @@ abstract class Node implements NodeInterface
     }
 
     /**
-     * @param string $title
+     * @param $title
+     *
+     * @return mixed|void
      */
     public function setTitle($title)
     {
@@ -97,7 +104,9 @@ abstract class Node implements NodeInterface
     }
 
     /**
-     * @param string $link
+     * @param $link
+     *
+     * @return mixed|void
      */
     public function setLink($link)
     {
@@ -113,7 +122,9 @@ abstract class Node implements NodeInterface
     }
 
     /**
-     * @param string $description
+     * @param $description
+     *
+     * @return mixed|void
      */
     public function setDescription($description)
     {
@@ -129,7 +140,9 @@ abstract class Node implements NodeInterface
     }
 
     /**
-     * @param string $author
+     * @param $author
+     *
+     * @return mixed|void
      */
     public function setAuthor($author)
     {
@@ -146,6 +159,8 @@ abstract class Node implements NodeInterface
 
     /**
      * @param array $categories
+     *
+     * @return mixed|void
      */
     public function setCategories(array $categories)
     {
@@ -169,7 +184,9 @@ abstract class Node implements NodeInterface
     }
 
     /**
-     * @param string $comments
+     * @param $comments
+     *
+     * @return mixed|void
      */
     public function setComments($comments)
     {
@@ -201,7 +218,9 @@ abstract class Node implements NodeInterface
     }
 
     /**
-     * @param string $guid
+     * @param $guid
+     *
+     * @return mixed|void
      */
     public function setGuid($guid)
     {
@@ -218,6 +237,8 @@ abstract class Node implements NodeInterface
 
     /**
      * @param \DateTime $pubDate
+     *
+     * @return mixed|void
      */
     public function setPubDate(\DateTime $pubDate)
     {
@@ -233,10 +254,34 @@ abstract class Node implements NodeInterface
     }
 
     /**
-     * @param string $source
+     * @param $source
+     *
+     * @return mixed|void
      */
     public function setSource($source)
     {
         $this->source = $source;
     }
+
+    /**
+     * @param $key
+     * @param $value
+     */
+    public function setExtended($key, $value)
+    {
+        $this->extended[$key] = $value;
+    }
+
+    /**
+     * @param $key
+     *
+     * @return array
+     */
+    public function getExtended($key)
+    {
+        if (isset($this->extended[$key])) {
+            return $this->extended[$key];
+        }
+    }
+
 }

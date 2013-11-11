@@ -1,25 +1,13 @@
+# Custom logic for process RSS
+
+Maybe you need your custom logic for feed process, you need to create a custom processor.
+
+``` php
 <?php
-/**
- * This file is part of the RSSClient project.
- *
- * Copyright (c)
- *
- * This source file is subject to the MIT license that is bundled
- * with this package in the file LICENSE.
- */
 
-namespace Desarrolla2\RSSClient\Parser\Processor\RSS;
+use Desarrolla2\RSSClient\Parser\Processor\ProcessorInterface;
 
-use Desarrolla2\RSSClient\Parser\Processor\AbstractProcessor;
-use Desarrolla2\RSSClient\Node\NodeInterface;
-
-/**
- * Class RSSMediaProcessor
- *
- * @author Daniel González <daniel.gonzalez@freelancemadrid.es>
- * @see    http://www.rssboard.org/media-rss
- */
-class RSSMediaProcessor extends AbstractProcessor
+class CustomProcessor implements ProcessorInterface
 {
     /**
      * @var array
@@ -52,3 +40,21 @@ class RSSMediaProcessor extends AbstractProcessor
         }
     }
 }
+
+```
+
+And them push it on the top of processors stack.
+
+``` php
+<?php
+
+use Desarrolla2\RSSClient\RSSClient;
+
+$client = new RSSClient();
+$client->pushProcessor( new CustomProcessor($client->getSanitizerHandler()));
+
+```
+
+
+
+
