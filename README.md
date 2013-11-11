@@ -102,12 +102,14 @@ $feeds = $client->fetch('news', 20);
 
 ```
 
+## Other
+
+* Do you need a [custom processor] (https://github.com/desarrolla2/RSSClient/blob/master/doc/custom-process.md) ?
+* [API docs](http://rssclient.desarrolla2.com/api/namespaces/Desarrolla2.RSSClient.html)
+
+
 ## Contact
 
 You can contact with me on [twitter](https://twitter.com/desarrolla2).
-
-## Other
-
-* [API docs](http://rssclient.desarrolla2.com/api/namespaces/Desarrolla2.RSSClient.html)
 
 

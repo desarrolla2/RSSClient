@@ -1,6 +1,7 @@
 # Custom logic for process RSS
 
-Maybe you need your custom logic for feed process, you need to create a custom processor.
+Maybe you need your custom logic for feed process. In this case you need to create a custom processor that implements
+ProcessorInterface
 
 ``` php
 <?php
@@ -55,6 +56,12 @@ $client->pushProcessor( new CustomProcessor($client->getSanitizerHandler()));
 
 ```
 
+Now you can continue.
+``` php
+<?php
 
+$client->fetch();
+
+```
 
 
