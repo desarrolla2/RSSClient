@@ -30,11 +30,12 @@ class CustomProcessor implements ProcessorInterface
     public function execute(NodeInterface $node, \DOMElement $item)
     {
         foreach ($this->mediaTypes as $mediaType) {
+            /* Implement getNodeValueByTagName yourself */
             $value = $this->getNodeValueByTagName($item, $mediaType);
             if ($value) {
                 $node->setExtended(
                     $mediaType,
-                    $this->doClean($value)
+                    $value
                 );
 
             }
