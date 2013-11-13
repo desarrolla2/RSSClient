@@ -10,7 +10,6 @@
 
 namespace Desarrolla2\RSSClient\Parser\Processor;
 
-use Desarrolla2\RSSClient\Parser\Processor\ProcessorInterface;
 use Desarrolla2\RSSClient\Exception\ParseException;
 use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface;
 

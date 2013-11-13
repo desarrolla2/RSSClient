@@ -11,4 +11,5 @@ notifications:
     - daniel.gonzalez@freelancemadrid.es
 
 before_script:
-  - composer install --prefer-source
+  - curl -s http://getcomposer.org/installer | php
+  - php composer.phar install --prefer-source

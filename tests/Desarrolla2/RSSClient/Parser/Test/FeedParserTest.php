@@ -46,13 +46,6 @@ class FeedParserTest extends \PHPUnit_Framework_TestCase
     public function dataProvider()
     {
         return array(
-            array(
-                '/data/rss20/jhosmanlirazo.xml',
-                15,
-            ),
-        );
-
-        return array(
             /* RSS20 */
             array(
                 '/data/rss20/banen.bol.com.xml',
@@ -68,6 +61,10 @@ class FeedParserTest extends \PHPUnit_Framework_TestCase
             ),
             array(
                 '/data/rss20/nyt.xml',
+                25,
+            ),
+            array(
+                '/data/rss20/slashdot.com.xml',
                 25,
             ),
             array(

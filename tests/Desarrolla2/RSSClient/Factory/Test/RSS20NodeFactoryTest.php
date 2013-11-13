@@ -86,6 +86,15 @@ class RSS20NodeFactoryTest extends AbstractNodeFactoryTest
                 4,
             ),
             array(
+                '/data/rss20/slashdot.com.xml',
+                'Pentagon Readies Contingency Plans Due To BlackBerry\'s Uncertain Future',
+                'http://slashdot.feedsportal.com/c/35028/f/647410/s/33a2d439/l/0Lyro0Bslashdot0Borg0Cstory0C130C110C130C1422510Cpentagon0Ereadies0Econtingency0Eplans0Edue0Eto0Eblackberrys0Euncertain0Efuture0Dutm0Isource0Frss10B0Amainlinkanon0Gutm0Imedium0Ffeed/story01.htm',
+                'http://rss.slashdot.org/~r/Slashdot/slashdot/~3/on2_eJ4KHrI/story01.htm',
+                'Short description',
+                '13',
+                0,
+            ),
+            array(
                 '/data/rss20/ubuntuespana.xml',
                 'Ubuntu Phone: Premio a la Mejor Innovación del MWC 2013',
                 '133 at http://xn--ubuntu-espaa-khb.org',
@@ -109,6 +118,7 @@ class RSS20NodeFactoryTest extends AbstractNodeFactoryTest
 
     /**
      * @dataProvider dataProvider
+     *
      * @param string $file
      * @param string $title
      * @param string $guid
