@@ -77,11 +77,11 @@ class RSS20NodeFactory extends AbstractNodeFactory
         $values = array();
         $list = $item->getElementsByTagName('*');
         for ($i = 0; $i < $list->length; $i++) {
-          /* @var $result \DOMNode */
-          $result = $list->item($i);
-          if ($result->nodeValue) {
-            $values[$result->nodeName] = $result->nodeValue;
-          }
+            /* @var $result \DOMNode */
+            $result = $list->item($i);
+            if ($result->nodeValue) {
+                $values[$result->nodeName] = $result->nodeValue;
+            }
         }
         return $values;
     }
