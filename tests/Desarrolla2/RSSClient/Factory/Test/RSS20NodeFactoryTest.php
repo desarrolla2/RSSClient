@@ -126,8 +126,8 @@ class RSS20NodeFactoryTest extends AbstractNodeFactoryTest
         $description,
         $pubDay,
         $totalCategories,
-        array $extended = array())
-    {
+        array $extended = array()
+    ) {
         parent::testNodeFactory($file, $title, $guid, $link, $description, $pubDay, $totalCategories);
         $this->assertInstanceOf('Desarrolla2\RSSClient\Node\RSS20', $this->node);
         $this->assertNull($this->node->getExtended('author'));
