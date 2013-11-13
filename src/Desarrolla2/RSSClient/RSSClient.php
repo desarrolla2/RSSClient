@@ -1,51 +1,37 @@
 <?php
 
 /**
- * This file is part of the RSSClient project.
+ * This file is part of the RSSClient package.
  *
- * Copyright (c)
- * Daniel González <daniel.gonzalez@freelancemadrid.es>
+ * (c) Daniel González <daniel@desarrolla2.com>
  *
- * This source file is subject to the MIT license that is bundled
- * with this package in the file LICENSE.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Desarrolla2\RSSClient;
 
-use Desarrolla2\RSSClient\RSSClientInterface;
 use Desarrolla2\RSSClient\Parser\FeedParser;
 use Desarrolla2\RSSClient\Parser\ParserInterface;
 use Desarrolla2\RSSClient\Handler\HTTP\HTTPHandler;
 use Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerInterface;
 use Desarrolla2\RSSClient\Handler\Feed\FeedHandler;
-use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandler;
 use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface;
 use Desarrolla2\RSSClient\Node\NodeCollection;
 use Desarrolla2\RSSClient\Parser\Processor\ProcessorInterface;
 
 /**
- *
  * RSSClient is a class to handling fetch feeds
- *
- * @author : Daniel González <daniel.gonzalez@freelancemadrid.es>
  */
 class RSSClient extends FeedHandler implements RSSClientInterface
 {
     /**
-     *
-     * @var \Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface;
-     */
-    protected $sanitizerHandler;
-
-    /**
-     *
-     * @var \Guzzle\Http\ClientInterface
+     * @var HTTPHandlerInterface
      */
     protected $httpHandler;
 
     /**
-     *
-     * @var \Desarrolla2\RSSClient\Parser\FeedParser
+     * @var ParserInterface
      */
     protected $parser;
 
@@ -58,13 +44,12 @@ class RSSClient extends FeedHandler implements RSSClientInterface
     public function __construct(array $feeds = array(), $channel = 'default')
     {
         $this->httpHandler = new HTTPHandler();
-        $this->sanitizerHandler = new SanitizerHandler();
         $this->parser = new FeedParser();
         $this->setFeeds($feeds, $channel);
     }
 
     /**
-     * set HTTP Handler
+     * Set the handler for http request
      *
      * @param HTTPHandlerInterface $handler
      */
@@ -74,16 +59,18 @@ class RSSClient extends FeedHandler implements RSSClientInterface
     }
 
     /**
-     * Set Sanitizer
+     * Get the handler for http request
      *
-     * @param SanitizerHandlerInterface $handler
+     * @return HTTPHandlerInterface
      */
-    public function setSanitizerHandler(SanitizerHandlerInterface $handler)
+    public function getHttpHandler()
     {
-        $this->sanitizerHandler = $handler;
+        return $this->httpHandler;
     }
 
     /**
+     * Set the handler for parse nodes
+     *
      * @param ParserInterface $parser
      */
     public function setParser(ParserInterface $parser)
@@ -92,25 +79,9 @@ class RSSClient extends FeedHandler implements RSSClientInterface
     }
 
     /**
-     * @param ProcessorInterface $processor
+     * Set the handler for parse nodes
      *
-     * @throws \InvalidArgumentException
-     */
-    public function pushProcessor(ProcessorInterface $processor)
-    {
-        $this->parser->pushProcessor($processor);
-    }
-
-    /**
-     * @return \Guzzle\Http\ClientInterface
-     */
-    public function getHttpHandler()
-    {
-        return $this->httpHandler;
-    }
-
-    /**
-     * @return \Desarrolla2\RSSClient\Parser\FeedParser
+     * @return ParserInterface
      */
     public function getParser()
     {
@@ -118,17 +89,45 @@ class RSSClient extends FeedHandler implements RSSClientInterface
     }
 
     /**
-     * @return \Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface
+     * Set Sanitizer handler for clean nodes
+     *
+     * @param SanitizerHandlerInterface $handler
      */
-    public function getSanitizerHandler()
+    public function setSanitizer(SanitizerHandlerInterface $handler)
     {
-        return $this->sanitizerHandler;
+        $this->parser->setSanitizer($handler);
     }
 
-
+    /**
+     * Get Sanitizer handler for clean nodes
+     *
+     * @return SanitizerHandlerInterface
+     */
+    public function getSanitizer()
+    {
+        return $this->parser->getSanitizer();
+    }
 
     /**
-     * Retrieve nodes from a chanel
+     * Adds a processor on to the stack.
+     *
+     * @param ProcessorInterface $processor
+     */
+    public function pushProcessor(ProcessorInterface $processor)
+    {
+        $this->parser->pushProcessor($processor);
+    }
+
+    /**
+     * @return ProcessorInterface
+     */
+    public function popProcessor()
+    {
+        return $this->parser->popProcessor();
+    }
+
+    /**
+     * Retrieve nodes from a channel
      *
      * @param  string $channel
      * @param  int    $limit
@@ -138,33 +137,47 @@ class RSSClient extends FeedHandler implements RSSClientInterface
      */
     public function fetch($channel = 'default', $limit = 100)
     {
+        $nodes = new NodeCollection();
+        $channel = $this->getChannel($channel);
+        foreach ($this->feeds[$channel] as $feed) {
+            $this->fetchFeed($feed, $nodes);
+        }
+        $nodes->short();
+        $nodes->limit($limit);
+
+        return $nodes;
+    }
+
+    /**
+     * @param $channel
+     *
+     * @return mixed
+     * @throws \InvalidArgumentException
+     */
+    protected function getChannel($channel)
+    {
         if (!is_string($channel)) {
             throw new \InvalidArgumentException('channel not valid (' . gettype($channel) . ')');
         }
         if (!isset($this->feeds[$channel])) {
             throw new \InvalidArgumentException('channel not valid (' . $channel . ')');
         }
-        $this->nodes = new NodeCollection();
-        foreach ($this->feeds[$channel] as $feed) {
-            $this->fetchFeed($feed);
-        }
-        $this->nodes->short();
-        $this->nodes->limit($limit);
 
-        return $this->nodes;
+        return $channel;
     }
 
     /**
-     * @param string $feed
+     * @param string         $feed
+     * @param NodeCollection $nodes
      */
-    protected function fetchFeed($feed)
+    protected function fetchFeed($feed, $nodes)
     {
         try {
             $feed = $this->fetchHTTP($feed);
             if ($feed) {
-                $nodes = $this->parser->parse($feed, $this->sanitizerHandler);
-                foreach ($nodes as $node) {
-                    $this->nodes->append($node);
+                $feedNodes = $this->parser->parse($feed);
+                foreach ($feedNodes as $node) {
+                    $nodes->append($node);
                 }
             }
         } catch (Exception $e) {

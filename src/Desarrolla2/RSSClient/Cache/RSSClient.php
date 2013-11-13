@@ -22,8 +22,6 @@ use Desarrolla2\Cache\Adapter\NotCache;
  * Description of RSSClient
  *
  * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
- * @file   : RSSClient.php , UTF-8
- * @date   : Mar 15, 2013 , 2:34:16 PM
  */
 class RSSClient extends BaseClient
 {

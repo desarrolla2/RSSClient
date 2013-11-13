@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the RSSClient proyect.
+ * This file is part of the RSSClient project.
  *
  * Copyright (c)
  * Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es>
@@ -36,19 +36,25 @@ class RSSClientTest extends \PHPUnit_Framework_TestCase
         $this->client = new RSSClient();
     }
 
-    public function testSetHTTPHandler()
+    public function testSetAndGetHTTPHandler()
     {
         $this->client->setHTTPHandler(new HTTPHandlerNative());
-        $this->assertTrue(true);
+        $this->assertInstanceOf(
+            'Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerNative',
+            $this->client->getHttpHandler()
+        );
     }
 
-    public function testSetSanitizerHandler()
+    public function testSetAndGetSanitizer()
     {
-        $this->client->setSanitizerHandler(new SanitizerHandlerDummy());
-        $this->assertTrue(true);
+        $this->client->setSanitizer(new SanitizerHandlerDummy());
+        $this->assertInstanceOf(
+            'Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerDummy',
+            $this->client->getSanitizer()
+        );
     }
 
-    public function testFetch()
+    public function testGetHttp()
     {
         $httpHandler = $this->getHTTPHandlerMock();
         $httpHandler->expects($this->once())
@@ -61,11 +67,21 @@ class RSSClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @return array
+     */
+    public function dataProviderForTestLimit()
+    {
+        return array(
+            array(5),
+            array(15),
+        );
+    }
+
+    /**
      * @dataProvider dataProviderForTestLimit
      */
     public function testLimit($limit)
     {
-        // @TODO Refactor this test to no test the limit function of NodeCollection
         $httpHandler = $this->getHTTPHandlerMock();
         $httpHandler->expects($this->once())
             ->method('get')
@@ -82,18 +98,8 @@ class RSSClientTest extends \PHPUnit_Framework_TestCase
 
         $result = $this->client->fetch('default', $limit);
 
-        $this->assertEquals($limit, $result->count());
-    }
 
-    /**
-     * @return array
-     */
-    public function dataProviderForTestLimit()
-    {
-        return array(
-            array(5),
-            array(15),
-        );
+        $this->assertEquals($limit, $result->count());
     }
 
     /**

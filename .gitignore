@@ -2,7 +2,6 @@
 /build
 /composer.lock
 /vendor
-/nbproject
 /.idea
 /TODO.txt
 *~

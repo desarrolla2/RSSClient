@@ -1,10 +1,7 @@
 <?php
 
 /**
- * This file is part of the RSSClient proyect.
- *
- * Copyright (c)
- * Daniel González Cerviño <daniel.gonzalez@externos.seap.minhap.es>
+ * This file is part of the RSSClient project.
  *
  * This source file is subject to the MIT license that is bundled
  * with this package in the file LICENSE.
@@ -19,7 +16,7 @@ use Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerDummy;
  *
  * Description of FeedParserTest
  *
- * @author : Daniel González Cerviño <daniel.gonzalez@externos.seap.minhap.es>
+ * @author : Daniel González Cerviño <daniel.gonzalez@freelancemadrid.es.es>
  */
 class FeedParserTest extends \PHPUnit_Framework_TestCase
 {
@@ -48,6 +45,13 @@ class FeedParserTest extends \PHPUnit_Framework_TestCase
      */
     public function dataProvider()
     {
+        return array(
+            array(
+                '/data/rss20/jhosmanlirazo.xml',
+                15,
+            ),
+        );
+
         return array(
             /* RSS20 */
             array(
@@ -91,14 +95,18 @@ class FeedParserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Count that total items is expected
+     *
      * @dataProvider dataProvider
+     *
      * @param string $file
      * @param int    $totalItems
      */
-    public function testFeedParserTest($file, $totalItems)
+    public function testCountTotalItems($file, $totalItems)
     {
         $string = file_get_contents(__DIR__ . $file);
         $nodes = $this->parser->parse($string, $this->sanitizer);
+
         $this->assertEquals($totalItems, $nodes->count());
     }
 }

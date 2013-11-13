@@ -24,8 +24,6 @@ interface ParserInterface
 {
     /**
      * @param                           $feed
-     * @param SanitizerHandlerInterface $sanitizer
-     * @return mixed
      */
-    public function parse($feed, SanitizerHandlerInterface $sanitizer);
+    public function parse($feed);
 }

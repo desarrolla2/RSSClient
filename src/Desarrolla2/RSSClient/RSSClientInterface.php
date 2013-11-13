@@ -1,13 +1,12 @@
 <?php
 
 /**
- * This file is part of the RSSClient project.
+ * This file is part of the RSSClient package.
  *
- * Copyright (c)
- * Daniel González <daniel.gonzalez@freelancemadrid.es>
+ * (c) Daniel González <daniel@desarrolla2.com>
  *
- * This source file is subject to the MIT license that is bundled
- * with this package in the file LICENSE.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Desarrolla2\RSSClient;
@@ -20,23 +19,22 @@ use Desarrolla2\RSSClient\Parser\ParserInterface;
  *
  * RSSClient Interface
  *
- * @author : Daniel González <daniel.gonzalez@freelancemadrid.es>
  */
 interface RSSClientInterface
 {
     /**
      * set HTTP Handler
      *
-     * @param \Desarrolla2\RSSClient\Handler\HTTP\HTTPHandlerInterface $handler
+     * @param HTTPHandlerInterface $handler
      */
     public function setHTTPHandler(HTTPHandlerInterface $handler);
 
     /**
      * Set Sanitizer
      *
-     * @param \Desarrolla2\RSSClient\Handler\Sanitizer\SanitizerHandlerInterface $handler
+     * @param SanitizerHandlerInterface $handler
      */
-    public function setSanitizerHandler(SanitizerHandlerInterface $handler);
+    public function setSanitizer(SanitizerHandlerInterface $handler);
 
     /**
      * @param ParserInterface $parser
@@ -44,10 +42,11 @@ interface RSSClientInterface
     public function setParser(ParserInterface $parser);
 
     /**
-     * Retrieve nodes from a chanel
+     * Retrieve nodes from a channel
      *
-     * @param  string                    $channel
-     * @param  int                       $limit
+     * @param  string $channel
+     * @param  int    $limit
+     *
      * @return NodeCollection
      * @throws \InvalidArgumentException
      */

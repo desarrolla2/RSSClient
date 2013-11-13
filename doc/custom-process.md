@@ -57,7 +57,8 @@ $client->pushProcessor( new CustomProcessor($client->getSanitizerHandler()));
 
 ```
 
-Now you can continue.
+Now you can continue normally.
+
 ``` php
 <?php
 
