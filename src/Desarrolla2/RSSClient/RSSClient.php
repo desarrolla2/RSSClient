@@ -167,7 +167,7 @@ class RSSClient extends FeedHandler implements RSSClientInterface
                     $this->nodes->append($node);
                 }
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->addError($e->getMessage());
         }
     }
@@ -183,7 +183,7 @@ class RSSClient extends FeedHandler implements RSSClientInterface
     {
         try {
             return $this->httpHandler->get($feedUrl);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->addError($e->getMessage());
         }
 
