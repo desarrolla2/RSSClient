@@ -59,6 +59,32 @@ class NodeCollectionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test if any or all node do not have PubDate
+     */
+    public function testShortLackOfPubdate()
+    {
+        $dates = array(
+            '2012-01-01',
+            '2012-01-02',
+            '2012-01-03',
+        );
+
+        foreach ($dates as $date) {
+            $node = new Node();
+            if ($date !== '2012-01-02') {
+                // intentinally make a node without pubdate
+                $node->setPubDate(new \DateTime($date));
+            }
+            $this->collection->append($node);
+        }
+
+        $this->collection->short();
+        $first = $this->collection->getFirst();
+        // bubble sort won't happen
+        $this->assertEquals($first->getPubDate()->format('d'), '1');
+    }
+
+    /**
      * @dataProvider dataProviderForTestLimit
      */
     public function testLimit($limit)

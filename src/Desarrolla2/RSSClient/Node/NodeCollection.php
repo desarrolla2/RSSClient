@@ -64,6 +64,8 @@ class NodeCollection extends \ArrayObject
         $total = $this->count();
         for ($i = 1; $i < $total; $i++) {
             for ($j = 0; $j < $total - $i; $j++) {
+                if ($this[$j]->getPubDate() === NULL
+                    || $this[$j+1]->getPubDate() === NULL) { continue; }
                 if ($this[$j]->getPubDate()->getTimestamp() > $this[$j + 1]->getPubDate()->getTimestamp()) {
                     continue;
                 }
