@@ -1,3 +1,7 @@
+# Warning !!
+
+RSSClient will not be updated, you should consider migrating to FastFeed https://github.com/FastFeed/FastFeed
+
 # RSSClient
 
 RSSClient is a simple to use RSS library to fetch and use RSS feeds. RSSClient is very fast!
