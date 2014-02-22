@@ -22,6 +22,11 @@ use Desarrolla2\RSSClient\Parser\Processor\ProcessorInterface;
 
 /**
  * RSSClient is a class to handling fetch feeds
+ * 
+ * 
+ *
+ * @deprecated RSSClient will not be updated, you should consider migrating to FastFeed 
+ * @see https://github.com/FastFeed/FastFeed
  */
 class RSSClient extends FeedHandler implements RSSClientInterface
 {
