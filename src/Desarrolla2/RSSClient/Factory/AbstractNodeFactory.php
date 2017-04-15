@@ -51,6 +51,7 @@ abstract class AbstractNodeFactory implements FactoryInterface
         $this->setCategories($entry, $node);
         $this->setLink($entry, $node);
         $this->setPubDate($entry, $node);
+        $this->setMedia($entry, $node);
 
         return $node;
     }
