@@ -56,15 +56,34 @@ class RSS20NodeFactory extends AbstractNodeFactory
             'guid',
             'source'
         );
+        $values = $this->createValuesList($item);
         foreach ($properties as $propertyName) {
-            $value = $this->getNodeValueByTagName($item, $propertyName);
-            if ($value) {
+            if (isset($values[$propertyName])) {
                 $method = 'set' . $propertyName;
                 $node->$method(
-                    $this->doClean($value)
+                    $this->doClean($values[$propertyName])
                 );
+                unset($values[$propertyName]);
             }
         }
+        foreach ($values as $key => $value) {
+            /* @var $item \DomElement */
+            $node->setExtended($key, $this->doClean($value));
+        }
+    }
+
+    private function createValuesList(\DOMElement $item)
+    {
+        $values = array();
+        $list = $item->getElementsByTagName('*');
+        for ($i = 0; $i < $list->length; $i++) {
+            /* @var $result \DOMNode */
+            $result = $list->item($i);
+            if ($result->nodeValue) {
+                $values[$result->nodeName] = $result->nodeValue;
+            }
+        }
+        return $values;
     }
 
     /**

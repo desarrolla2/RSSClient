@@ -112,6 +112,7 @@ class RSS20NodeFactoryTest extends AbstractNodeFactoryTest
                 'En el primer artículo de la serie ...',
                 '19',
                 6,
+                array('thr:total' => 2)
             ),
         );
     }
@@ -127,8 +128,21 @@ class RSS20NodeFactoryTest extends AbstractNodeFactoryTest
      * @param string $pubDay
      * @param int    $totalCategories
      */
-    public function testNodeFactory($file, $title, $guid, $link, $description, $pubDay, $totalCategories)
-    {
+    public function testNodeFactory(
+        $file,
+        $title,
+        $guid,
+        $link,
+        $description,
+        $pubDay,
+        $totalCategories,
+        array $extended = array()
+    ) {
         parent::testNodeFactory($file, $title, $guid, $link, $description, $pubDay, $totalCategories);
+        $this->assertInstanceOf('Desarrolla2\RSSClient\Node\RSS20', $this->node);
+        $this->assertNull($this->node->getExtended('author'));
+        foreach ($extended as $key => $expected) {
+            $this->assertEquals($expected, $this->node->getExtended($key));
+        }
     }
 }
